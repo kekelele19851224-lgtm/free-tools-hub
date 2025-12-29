@@ -2,11 +2,13 @@
 
 Free online calculators, converters, counters, and estimators.
 
-🌐 **Live Site**: `https://free-tools-hub.com`
+## 🌐 Live Site
+
+**https://free-tools-hub.com**
 
 ## Features
 
-- Quorum Calculator
+- `https://free-tools-hub.com/quorum-calculator`
 - More tools coming soon...
 
 ## Tech Stack
