@@ -111,6 +111,13 @@ export const calculators: Calculator[] = [
     url: "/balloon-mortgage-calculator",
     category: "Finance",
     type: "Calculator"
+  },
+  {
+    name: "IFTA Calculator",
+    description: "Calculate quarterly IFTA fuel tax by state. Enter miles and fuel purchases to see tax owed or credits due. Export results to CSV.",
+    url: "/ifta-calculator",
+    category: "Finance",
+    type: "Calculator"
   }
 ];
 
