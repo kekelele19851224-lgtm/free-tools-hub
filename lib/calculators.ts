@@ -97,6 +97,13 @@ export const calculators: Calculator[] = [
     url: "/lawn-mowing-cost-calculator",
     category: "Lifestyle",
     type: "Calculator"
+  },
+  {
+    name: "Vehicle Wrap Pricing Calculator",
+    description: "Estimate car wrap costs by vehicle type, material, and coverage. Compare DIY vs professional installation prices.",
+    url: "/vehicle-wrap-pricing-calculator",
+    category: "Finance",
+    type: "Calculator"
   }
 ];
 
