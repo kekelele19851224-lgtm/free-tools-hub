@@ -44,7 +44,7 @@ export const calculators: Calculator[] = [
   },
   {
     name: "Bowling Handicap Calculator",
-    description: "Calculate your bowling handicap score to level the playing field in competitions.",
+    description: "Calculate your bowling handicap and adjusted score. Supports 90% of 220, 80% of 230, and custom league formats.",
     url: "/bowling-handicap-calculator",
     category: "Sports",
     type: "Calculator"
