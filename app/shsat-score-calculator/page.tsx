@@ -14,7 +14,7 @@ const scoreConversionTable: { [key: number]: number } = {
   50: 297, 51: 306, 52: 315, 53: 323, 54: 333, 55: 344, 56: 355, 57: 365
 };
 
-// 8所特殊高中及其 cutoff 分数 (2024年数据)
+// 8所特殊高中及其 cutoff 分数 (2025年数据)
 const schools = [
   { name: "Stuyvesant High School", cutoff8: 556, cutoff9: 563, abbr: "Stuy" },
   { name: "Bronx High School of Science", cutoff8: 518, cutoff9: 525, abbr: "BxSci" },
@@ -203,7 +203,7 @@ export default function SHSATScoreCalculator() {
             SHSAT Score Calculator
           </h1>
           <p style={{ fontSize: "1.125rem", color: "#4B5563", maxWidth: "800px" }}>
-            Calculate your SHSAT score and see which NYC Specialized High Schools you qualify for. Get instant results with 2024 cutoff scores.
+            Calculate your SHSAT score and see which NYC Specialized High Schools you qualify for. Get instant results with 2025 cutoff scores.
           </p>
         </div>
 
@@ -308,7 +308,7 @@ export default function SHSATScoreCalculator() {
                 <>
                   <div style={{ marginBottom: "16px" }}>
                     <label style={{ display: "block", fontSize: "0.875rem", fontWeight: "500", color: "#374151", marginBottom: "6px" }}>
-                      ELA Correct Answers (0-57)
+                      ELA: How many questions did you get right? (0-57)
                     </label>
                     <input
                       type="number"
@@ -329,7 +329,7 @@ export default function SHSATScoreCalculator() {
                   </div>
                   <div style={{ marginBottom: "20px" }}>
                     <label style={{ display: "block", fontSize: "0.875rem", fontWeight: "500", color: "#374151", marginBottom: "6px" }}>
-                      Math Correct Answers (0-57)
+                      Math: How many questions did you get right? (0-57)
                     </label>
                     <input
                       type="number"
@@ -469,7 +469,7 @@ export default function SHSATScoreCalculator() {
                   padding: "16px"
                 }}>
                   <p style={{ fontSize: "0.75rem", fontWeight: "600", color: "#6B7280", textTransform: "uppercase", marginBottom: "12px" }}>
-                    {gradeLevel}th Grade Admission Results (2024 Cutoffs)
+                    {gradeLevel}th Grade Admission Results (2025 Cutoffs)
                   </p>
                   <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
                     {schools.map((school, index) => {
@@ -678,7 +678,7 @@ export default function SHSATScoreCalculator() {
               )}
             </div>
 
-            {/* 2024 Cutoff Scores */}
+            {/* 2025 Cutoff Scores */}
             <div style={{ 
               backgroundColor: "white", 
               borderRadius: "16px", 
@@ -687,10 +687,10 @@ export default function SHSATScoreCalculator() {
               padding: "32px"
             }}>
               <h2 style={{ fontSize: "1.5rem", fontWeight: "bold", color: "#111827", marginBottom: "16px" }}>
-                2024 SHSAT Cutoff Scores
+                2025 SHSAT Cutoff Scores
               </h2>
               <p style={{ color: "#4B5563", marginBottom: "20px", lineHeight: "1.7" }}>
-                Cutoff scores vary each year based on applicant performance and available seats. Here are the estimated cutoffs for the 2024 admissions cycle:
+                Cutoff scores vary each year based on applicant performance and available seats. Here are the estimated cutoffs for the 2025 admissions cycle:
               </p>
               
               <div style={{ overflowX: "auto" }}>
