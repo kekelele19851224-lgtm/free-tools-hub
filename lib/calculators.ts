@@ -30,7 +30,7 @@ export const calculators: Calculator[] = [
   },
   {
     name: "SHSAT Score Calculator",
-    description: "Calculate your SHSAT scaled score and percentile ranking for NYC specialized high schools.",
+    description: "Calculate your SHSAT score and see which NYC Specialized High Schools you qualify for",
     url: "/shsat-score-calculator",
     category: "Education",
     type: "Calculator"
