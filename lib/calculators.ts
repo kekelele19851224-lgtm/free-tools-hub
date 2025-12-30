@@ -48,8 +48,15 @@ export const calculators: Calculator[] = [
     url: "/bowling-handicap-calculator",
     category: "Sports",
     type: "Calculator"
+  },
+  {
+    name: "Pressure Washing Estimate Calculator",
+    description: "Calculate pressure washing costs for driveways, houses, decks and more. Get instant estimates per square foot.",
+    url: "/pressure-washing-calculator",
+    category: "Home",
+    type: "Calculator"
   }
 ];
 
 export const toolTypes = ["All", "Calculator", "Converter", "Counter", "Estimator"];
-export const categories = ["All", "Business", "Finance", "Education", "Lifestyle", "Sports"];
+export const categories = ["All", "Business", "Finance", "Education", "Lifestyle", "Home", "Sports"];
