@@ -772,7 +772,7 @@ export default function GolfClubLengthCalculator() {
                   <div style={{ display: "flex", justifyContent: "space-between" }}>
                     <span style={{ color: "#6B7280" }}>Wrist-to-Floor</span>
                     <span style={{ fontWeight: "500", color: "#111827" }}>
-                      {results.wtfInches}&quot; ({Math.round(inchesToCm(results.wtfInches))} cm)
+                      {results.wtfInches.toFixed(1)}&quot; ({Math.round(inchesToCm(results.wtfInches))} cm)
                     </span>
                   </div>
                 </div>
