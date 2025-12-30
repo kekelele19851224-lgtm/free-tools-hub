@@ -23,7 +23,7 @@ export const calculators: Calculator[] = [
   },
   {
     name: "Wedding Liquor Calculator",
-    description: "Estimate the amount of alcohol needed for your wedding or event based on guest count.",
+    description: "Calculate how much beer, wine, champagne and liquor you need for your wedding. Get a shopping list with cost estimates.",
     url: "/wedding-liquor-calculator",
     category: "Lifestyle",
     type: "Calculator"
