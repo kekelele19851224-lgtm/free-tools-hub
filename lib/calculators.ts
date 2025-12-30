@@ -104,6 +104,13 @@ export const calculators: Calculator[] = [
     url: "/vehicle-wrap-pricing-calculator",
     category: "Finance",
     type: "Calculator"
+  },
+  {
+    name: "Balloon Mortgage Calculator",
+    description: "Calculate balloon mortgage payments, balloon payment amount, and see the full amortization schedule. Compare interest-only vs amortized payments.",
+    url: "/balloon-mortgage-calculator",
+    category: "Finance",
+    type: "Calculator"
   }
 ];
 
