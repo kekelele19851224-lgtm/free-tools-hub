@@ -62,6 +62,13 @@ export const calculators: Calculator[] = [
     url: "/yards-to-tons-calculator",
     category: "Construction",
     type: "Calculator"
+  },
+  {
+    name: "Gravel Driveway Calculator",
+    description: "Calculate how much gravel you need for your driveway in cubic yards and tons. Estimate costs for new driveways or top-up refreshes.",
+    url: "/gravel-driveway-calculator",
+    category: "Construction",
+    type: "Calculator"
   }
 ];
 
