@@ -84,7 +84,7 @@ export default function RuckingCalorieCalculator() {
   const [results, setResults] = useState<{
     totalCalories: number;
     caloriesPerHour: number;
-    caloriesPerMile: number;
+    caloriesPerDistance: number;
     distance: number;
     walkingCalories: number;
     multiplier: number;
@@ -145,17 +145,16 @@ export default function RuckingCalorieCalculator() {
     const caloriesPerHour = M_watts * 0.01433 * 60;
     
     // Calculate distance
-    let distanceMiles: number;
+    let distance: number; // in user's unit (miles or km)
     if (unitSystem === "imperial") {
       const paceMinPerMile = parseFloat(pace) || 15;
-      distanceMiles = duration_min / paceMinPerMile;
+      distance = duration_min / paceMinPerMile; // miles
     } else {
       const paceMinPerKm = parseFloat(pace) || 9;
-      const distanceKm = duration_min / paceMinPerKm;
-      distanceMiles = kmToMile(distanceKm);
+      distance = duration_min / paceMinPerKm; // km
     }
     
-    const caloriesPerMile = totalCalories / distanceMiles;
+    const caloriesPerDistance = totalCalories / distance; // per mile or per km
     
     // Calculate walking calories (no load) for comparison
     const M_walking = 1.5 * W_kg + η * W_kg * (1.5 * Math.pow(V_ms, 2) + 0.35 * V_ms * G);
@@ -179,8 +178,8 @@ export default function RuckingCalorieCalculator() {
     setResults({
       totalCalories: Math.round(totalCalories),
       caloriesPerHour: Math.round(caloriesPerHour),
-      caloriesPerMile: Math.round(caloriesPerMile),
-      distance: parseFloat(distanceMiles.toFixed(1)),
+      caloriesPerDistance: Math.round(caloriesPerDistance),
+      distance: parseFloat(distance.toFixed(1)),
       walkingCalories: Math.round(walkingCalories),
       multiplier: parseFloat(multiplier.toFixed(2)),
       intensity,
@@ -698,7 +697,7 @@ export default function RuckingCalorieCalculator() {
                     </div>
                     <div style={{ display: "flex", justifyContent: "space-between", padding: "8px 12px", backgroundColor: "white", borderRadius: "8px" }}>
                       <span style={{ color: "#6B7280" }}>Calories per {unitSystem === "imperial" ? "Mile" : "Km"}</span>
-                      <span style={{ fontWeight: "600", color: "#111827" }}>{results.caloriesPerMile} cal/{unitSystem === "imperial" ? "mi" : "km"}</span>
+                      <span style={{ fontWeight: "600", color: "#111827" }}>{results.caloriesPerDistance} cal/{unitSystem === "imperial" ? "mi" : "km"}</span>
                     </div>
                     <div style={{ display: "flex", justifyContent: "space-between", padding: "8px 12px", backgroundColor: "white", borderRadius: "8px" }}>
                       <span style={{ color: "#6B7280" }}>Distance Covered</span>
