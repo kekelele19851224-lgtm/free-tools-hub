@@ -76,8 +76,15 @@ export const calculators: Calculator[] = [
     url: "/golf-club-length-calculator",
     category: "Sports",
     type: "Calculator"
+  },
+  {
+    name: "Rucking Calorie Calculator",
+    description: "Calculate how many calories you burn rucking based on weight, pack weight, pace, and terrain. Compare with regular walking.",
+    url: "/rucking-calorie-calculator",
+    category: "Fitness",
+    type: "Calculator"
   }
 ];
 
 export const toolTypes = ["All", "Calculator", "Converter", "Counter", "Estimator"];
-export const categories = ["All", "Business", "Finance", "Education", "Lifestyle", "Home", "Construction", "Sports"];
+export const categories = ["All", "Business", "Finance", "Education", "Lifestyle", "Home", "Construction", "Sports", "Fitness"];
