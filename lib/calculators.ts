@@ -16,7 +16,7 @@ export const calculators: Calculator[] = [
   },
   {
     name: "Productivity Calculator",
-    description: "Measure and analyze your productivity score based on tasks completed and time spent.",
+    description: "Calculate productivity per hour and per employee",
     url: "/productivity-calculator",
     category: "Lifestyle",
     type: "Calculator"
