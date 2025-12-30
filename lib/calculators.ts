@@ -37,7 +37,7 @@ export const calculators: Calculator[] = [
   },
   {
     name: "Black Scholes Calculator",
-    description: "Calculate option prices using the Black-Scholes model for financial analysis.",
+    description: "Calculate option prices and Greeks using Black-Scholes model",
     url: "/black-scholes-calculator",
     category: "Finance",
     type: "Calculator"
