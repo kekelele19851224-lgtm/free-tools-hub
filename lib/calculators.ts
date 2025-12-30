@@ -83,6 +83,13 @@ export const calculators: Calculator[] = [
     url: "/rucking-calorie-calculator",
     category: "Fitness",
     type: "Calculator"
+  },
+  {
+    name: "Towing Estimate Calculator",
+    description: "Estimate towing costs by distance, vehicle type, and time. Compare prices with AAA membership to find the best option.",
+    url: "/towing-estimate-calculator",
+    category: "Finance",
+    type: "Calculator"
   }
 ];
 
