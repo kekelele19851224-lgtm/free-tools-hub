@@ -90,6 +90,13 @@ export const calculators: Calculator[] = [
     url: "/towing-estimate-calculator",
     category: "Finance",
     type: "Calculator"
+  },
+  {
+    name: "Lawn Mowing Cost Calculator",
+    description: "Calculate lawn mowing costs by size, frequency, and services. Get accurate estimates for professional lawn care.",
+    url: "/lawn-mowing-cost-calculator",
+    category: "Lifestyle",
+    type: "Calculator"
   }
 ];
 
