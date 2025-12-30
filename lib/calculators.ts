@@ -55,8 +55,15 @@ export const calculators: Calculator[] = [
     url: "/pressure-washing-calculator",
     category: "Home",
     type: "Calculator"
+  },
+  {
+    name: "Yards to Tons Calculator",
+    description: "Convert cubic yards to tons for gravel, sand, dirt, mulch, concrete and other materials. Supports bidirectional conversion.",
+    url: "/yards-to-tons-calculator",
+    category: "Construction",
+    type: "Calculator"
   }
 ];
 
 export const toolTypes = ["All", "Calculator", "Converter", "Counter", "Estimator"];
-export const categories = ["All", "Business", "Finance", "Education", "Lifestyle", "Home", "Sports"];
+export const categories = ["All", "Business", "Finance", "Education", "Lifestyle", "Home", "Construction", "Sports"];
