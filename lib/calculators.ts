@@ -4,6 +4,10 @@ export interface Calculator {
   url: string;
   category: string;
   type: string;
+  id?: string;
+  title?: string;
+  icon?: string;
+  href?: string;
 }
 
 export const calculators: Calculator[] = [
@@ -113,13 +117,17 @@ export const calculators: Calculator[] = [
     type: "Calculator"
   },
   {
+    id: "ifta-calculator",
+    title: "IFTA Calculator",
     name: "IFTA Calculator",
     description: "Calculate quarterly IFTA fuel tax by state. Enter miles and fuel purchases to see tax owed or credits due. Export results to CSV.",
     url: "/ifta-calculator",
-    category: "Finance",
+    href: "/ifta-calculator",
+    icon: "🚛",
+    category: "Auto",
     type: "Calculator"
   }
 ];
 
 export const toolTypes = ["All", "Calculator", "Converter", "Counter", "Estimator"];
-export const categories = ["All", "Business", "Finance", "Education", "Lifestyle", "Home", "Construction", "Sports", "Fitness"];
+export const categories = ["All", "Business", "Finance", "Education", "Lifestyle", "Home", "Construction", "Sports", "Fitness", "Auto"];
