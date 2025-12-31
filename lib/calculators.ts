@@ -133,7 +133,7 @@ export const calculators: Calculator[] = [
     url: "/horse-name-generator",
     href: "/horse-name-generator",
     icon: "🐴",
-    category: "generators",
+    category: "Lifestyle",
     type: "Generator"
   }
 ];
