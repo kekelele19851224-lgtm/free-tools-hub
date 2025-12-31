@@ -5,6 +5,9 @@ export const metadata: Metadata = {
   title: "Lawn Mowing Cost Calculator - Free Lawn Care Price Estimator",
   description: "Calculate lawn mowing costs by size, frequency, and services. Get accurate estimates for professional lawn care or learn how much to charge as a provider.",
   keywords: "lawn mowing cost calculator, lawn care pricing, mowing cost per acre, lawn service prices, grass cutting cost, how much to charge for lawn mowing",
+  alternates: {
+    canonical: "/lawn-mowing-cost-calculator",
+  },
   openGraph: {
     title: "Lawn Mowing Cost Calculator - Free Lawn Care Price Estimator",
     description: "Calculate lawn mowing costs by size, frequency, and services. Get accurate estimates for professional lawn care.",
@@ -15,4 +18,3 @@ export const metadata: Metadata = {
 export default function Layout({ children }: { children: React.ReactNode }) {
   return <>{children}</>;
 }
-
