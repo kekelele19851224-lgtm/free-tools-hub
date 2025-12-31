@@ -5,6 +5,10 @@ import Footer from "@/components/Footer";
 import Script from "next/script";
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://free-tools-hub.com'),
+  alternates: {
+    canonical: './',
+  },
   title: "Free Tools Hub - Free Online Calculators & Tools",
   description: "Free online calculators, converters, counters, and estimators for finance, education, business, and everyday life. Simple, accurate, and easy to use.",
 };
