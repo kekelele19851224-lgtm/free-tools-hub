@@ -126,6 +126,15 @@ export const calculators: Calculator[] = [
     icon: "🚛",
     category: "Auto",
     type: "Calculator"
+  },
+  {
+    name: "Horse Name Generator",
+    description: "Generate unique horse names using parents' names or by style",
+    url: "/horse-name-generator",
+    href: "/horse-name-generator",
+    icon: "🐴",
+    category: "generators",
+    type: "Generator"
   }
 ];
 
