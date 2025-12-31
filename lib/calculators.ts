@@ -129,7 +129,7 @@ export const calculators: Calculator[] = [
   },
   {
     name: "Horse Name Generator",
-    description: "Generate unique horse names using parents' names or by style",
+    description: "Generate unique horse names using parents' names (sire and dam), by style (classic, race, fantasy, funny, western), or random. Perfect for foals, race horses, show horses, and gaming.",
     url: "/horse-name-generator",
     href: "/horse-name-generator",
     icon: "🐴",
