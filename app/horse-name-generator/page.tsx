@@ -214,7 +214,7 @@ export default function HorseNameGenerator() {
 
   // 随机生成
   const generateRandom = (): string[] => {
-    let pool: string[] = [];
+    const pool: string[] = [];
     
     const styles = selectedStyle === "all" 
       ? ["classic", "race", "fantasy", "funny", "western", "gaming"]
@@ -304,10 +304,10 @@ export default function HorseNameGenerator() {
         {/* Title Section */}
         <div style={{ marginBottom: "32px" }}>
           <h1 style={{ fontSize: "2.5rem", fontWeight: "bold", color: "#111827", marginBottom: "12px" }}>
-            Horse Name Generator
+            Horse Name Generator & Creator
           </h1>
           <p style={{ fontSize: "1.125rem", color: "#4B5563", maxWidth: "800px" }}>
-            Generate unique horse names using parents&apos; names (sire and dam), by style, or completely random. Perfect for foals, race horses, show horses, and gaming.
+            Free horse name generator and creator tool. Generate unique horse names using parents&apos; names (sire and dam), by style, or completely random. Perfect for foals, race horses, show horses, and gaming.
           </p>
         </div>
 
