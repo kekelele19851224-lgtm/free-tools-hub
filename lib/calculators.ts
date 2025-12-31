@@ -135,6 +135,15 @@ export const calculators: Calculator[] = [
     icon: "🐴",
     category: "Lifestyle",
     type: "Generator"
+  },
+  {
+    name: "Alliteration Generator",
+    description: "Generate alliterative phrases for poetry, business names, tongue twisters, and creative writing. Choose any letter and style instantly.",
+    url: "/alliteration-generator",
+    href: "/alliteration-generator",
+    icon: "✨",
+    category: "Lifestyle",
+    type: "Generator"
   }
 ];
 
