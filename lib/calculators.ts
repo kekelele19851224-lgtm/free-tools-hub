@@ -144,6 +144,15 @@ export const calculators: Calculator[] = [
     icon: "✨",
     category: "Lifestyle",
     type: "Generator"
+  },
+  {
+    name: "Phone Number Extractor",
+    description: "Extract phone numbers from any text instantly. Supports US, UK, and international formats. Perfect for extracting contacts from emails, documents, and web content.",
+    url: "/phone-number-extractor",
+    href: "/phone-number-extractor",
+    icon: "📱",
+    category: "Lifestyle",
+    type: "Extractor"
   }
 ];
 
