@@ -160,6 +160,13 @@ export const calculators: Calculator[] = [
     url: "/1031-exchange-calculator",
     category: "Finance",
     type: "Calculator"
+  },
+  {
+    name: "Venmo Fee Calculator",
+    description: "Calculate Venmo fees for instant transfers, goods & services, credit card payments, and business transactions. See fees for any amount.",
+    url: "/venmo-fee-calculator",
+    category: "Finance",
+    type: "Calculator"
   }
 ];
 
