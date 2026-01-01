@@ -216,6 +216,13 @@ export const calculators: Calculator[] = [
     url: "/soffit-calculator",
     category: "Construction",
     type: "Calculator"
+  },
+  {
+    name: "Texas Title Insurance Calculator",
+    description: "Calculate Texas title insurance costs using official TDI rates. Get owner's and lender's policy premiums for your property.",
+    url: "/texas-title-insurance-calculator",
+    category: "Finance",
+    type: "Calculator"
   }
 ];
 
