@@ -167,6 +167,13 @@ export const calculators: Calculator[] = [
     url: "/venmo-fee-calculator",
     category: "Finance",
     type: "Calculator"
+  },
+  {
+    name: "Gutter Slope Calculator",
+    description: "Calculate the proper slope for rain gutters. Get exact drop measurements for efficient drainage and prevent water damage.",
+    url: "/gutter-slope-calculator",
+    category: "Home",
+    type: "Calculator"
   }
 ];
 
