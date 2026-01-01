@@ -209,6 +209,13 @@ export const calculators: Calculator[] = [
     url: "/river-stone-calculator",
     category: "Home",
     type: "Calculator"
+  },
+  {
+    name: "Soffit Calculator",
+    description: "Calculate how much soffit you need. Get panel counts, ventilation requirements, and cost estimates for vinyl, aluminum, or wood soffit.",
+    url: "/soffit-calculator",
+    category: "Construction",
+    type: "Calculator"
   }
 ];
 
