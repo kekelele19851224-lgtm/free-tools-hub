@@ -195,6 +195,13 @@ export const calculators: Calculator[] = [
     url: "/nvidia-stock-calculator",
     category: "Finance",
     type: "Calculator"
+  },
+  {
+    name: "Spray Foam Insulation Cost Calculator",
+    description: "Calculate spray foam insulation costs. Compare open-cell vs closed-cell foam and get estimates for attics, walls, and garages.",
+    url: "/spray-foam-insulation-cost-calculator",
+    category: "Home",
+    type: "Calculator"
   }
 ];
 
