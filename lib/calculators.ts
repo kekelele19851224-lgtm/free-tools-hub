@@ -181,6 +181,13 @@ export const calculators: Calculator[] = [
     url: "/floor-joist-calculator",
     category: "Construction",
     type: "Calculator"
+  },
+  {
+    name: "Wrongful Termination Settlement Calculator",
+    description: "Estimate your wrongful termination settlement and calculate take-home amount after attorney fees and taxes.",
+    url: "/wrongful-termination-settlement-calculator",
+    category: "Finance",
+    type: "Calculator"
   }
 ];
 
