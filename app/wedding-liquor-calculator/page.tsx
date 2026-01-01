@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import RelatedTools from "@/components/RelatedTools";
 
 // 酒吧类型配置
 const barTypes: Record<string, { 
@@ -882,45 +883,7 @@ export default function WeddingLiquorCalculator() {
               </div>
             </div>
 
-            {/* Related Tools */}
-            <div style={{ 
-              backgroundColor: "white", 
-              borderRadius: "16px", 
-              boxShadow: "0 1px 3px rgba(0,0,0,0.1)",
-              border: "1px solid #E5E7EB",
-              padding: "24px"
-            }}>
-              <h3 style={{ fontSize: "1.125rem", fontWeight: "bold", color: "#111827", marginBottom: "16px" }}>
-                Related Tools
-              </h3>
-              <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-                {[
-                  { href: "/lawn-mowing-cost-calculator", name: "Lawn Mowing Calculator", desc: "Estimate lawn care costs", icon: "🌿" },
-                  { href: "/towing-estimate-calculator", name: "Towing Estimate Calculator", desc: "Calculate tow truck costs", icon: "🚗" },
-                  { href: "/gravel-driveway-calculator", name: "Gravel Driveway Calculator", desc: "Estimate gravel costs", icon: "🛣️" }
-                ].map((tool, index) => (
-                  <Link 
-                    key={index}
-                    href={tool.href} 
-                    style={{ 
-                      display: "flex",
-                      alignItems: "center",
-                      gap: "12px",
-                      padding: "12px", 
-                      borderRadius: "12px", 
-                      border: "1px solid #E5E7EB",
-                      textDecoration: "none"
-                    }}
-                  >
-                    <span style={{ fontSize: "1.5rem" }}>{tool.icon}</span>
-                    <div>
-                      <p style={{ fontWeight: "500", color: "#111827", marginBottom: "2px" }}>{tool.name}</p>
-                      <p style={{ fontSize: "0.75rem", color: "#6B7280" }}>{tool.desc}</p>
-                    </div>
-                  </Link>
-                ))}
-              </div>
-            </div>
+            <RelatedTools currentUrl="/wedding-liquor-calculator" currentCategory="Lifestyle" />
           </div>
         </div>
 

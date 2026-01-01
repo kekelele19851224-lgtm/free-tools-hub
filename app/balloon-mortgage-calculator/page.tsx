@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import RelatedTools from "@/components/RelatedTools";
 
 // 摊销期选项
 const amortizationOptions = [
@@ -935,36 +936,7 @@ export default function BalloonMortgageCalculator() {
               border: "1px solid #E5E7EB",
               padding: "24px"
             }}>
-              <h3 style={{ fontSize: "1.125rem", fontWeight: "bold", color: "#111827", marginBottom: "16px" }}>
-                Related Tools
-              </h3>
-              <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-                {[
-                  { href: "/vehicle-wrap-pricing-calculator", name: "Vehicle Wrap Calculator", desc: "Estimate wrap costs", icon: "🚗" },
-                  { href: "/wedding-liquor-calculator", name: "Wedding Liquor Calculator", desc: "Plan wedding drinks", icon: "🍾" },
-                  { href: "/gravel-driveway-calculator", name: "Gravel Driveway Calculator", desc: "Calculate gravel needs", icon: "🛣️" }
-                ].map((tool, index) => (
-                  <Link
-                    key={index}
-                    href={tool.href}
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: "12px",
-                      padding: "12px",
-                      borderRadius: "12px",
-                      border: "1px solid #E5E7EB",
-                      textDecoration: "none"
-                    }}
-                  >
-                    <span style={{ fontSize: "1.5rem" }}>{tool.icon}</span>
-                    <div>
-                      <p style={{ fontWeight: "500", color: "#111827", marginBottom: "2px" }}>{tool.name}</p>
-                      <p style={{ fontSize: "0.75rem", color: "#6B7280" }}>{tool.desc}</p>
-                    </div>
-                  </Link>
-                ))}
-              </div>
+              <RelatedTools currentUrl="/balloon-mortgage-calculator" currentCategory="Finance" />
             </div>
           </div>
         </div>

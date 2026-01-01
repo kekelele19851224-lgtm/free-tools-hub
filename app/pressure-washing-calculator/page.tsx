@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import RelatedTools from "@/components/RelatedTools";
 
 // 区域类型定义
 type AreaType = "driveway" | "house" | "deck" | "patio" | "fence" | "roof" | "gutters" | "sidewalk";
@@ -949,41 +950,7 @@ export default function PressureWashingCalculatorPage() {
               </ul>
             </div>
 
-            <div
-              style={{
-                backgroundColor: "white",
-                borderRadius: "12px",
-                padding: "24px",
-                border: "1px solid #E5E7EB",
-              }}
-            >
-              <h3 style={{ fontSize: "1rem", fontWeight: "600", color: "#111827", marginBottom: "16px" }}>
-                Related Calculators
-              </h3>
-              <ul style={{ margin: 0, padding: 0, listStyle: "none" }}>
-                {[
-                  { name: "Productivity Calculator", href: "/productivity-calculator" },
-                  { name: "Quorum Calculator", href: "/quorum-calculator" },
-                  { name: "Black-Scholes Calculator", href: "/black-scholes-calculator" },
-                ].map((tool, i) => (
-                  <li key={i} style={{ marginBottom: "8px" }}>
-                    <a
-                      href={tool.href}
-                      style={{
-                        color: "#0891B2",
-                        textDecoration: "none",
-                        fontSize: "0.875rem",
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "8px",
-                      }}
-                    >
-                      <span>→</span> {tool.name}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            <RelatedTools currentUrl="/pressure-washing-calculator" currentCategory="Home" />
           </div>
         </div>
 

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import RelatedTools from "@/components/RelatedTools";
 
 // 字母词汇数据库
 const wordDatabase: Record<string, { adjectives: string[]; nouns: string[]; verbs: string[]; adverbs: string[] }> = {
@@ -752,40 +753,7 @@ export default function AlliterationGenerator() {
               </ul>
             </div>
 
-            {/* Related Tools */}
-            <div style={{ 
-              backgroundColor: "white", 
-              borderRadius: "16px", 
-              boxShadow: "0 1px 3px rgba(0,0,0,0.1)",
-              border: "1px solid #E5E7EB",
-              padding: "24px"
-            }}>
-              <h3 style={{ fontSize: "1.125rem", fontWeight: "bold", color: "#111827", marginBottom: "16px" }}>
-                Related Tools
-              </h3>
-              <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-                {[
-                  { href: "/horse-name-generator", name: "Horse Name Generator", desc: "Generate unique horse names" },
-                  { href: "/productivity-calculator", name: "Productivity Calculator", desc: "Measure work efficiency" },
-                  { href: "/quorum-calculator", name: "Quorum Calculator", desc: "Calculate meeting quorum" }
-                ].map((tool, index) => (
-                  <Link 
-                    key={index}
-                    href={tool.href} 
-                    style={{ 
-                      display: "block",
-                      padding: "12px", 
-                      borderRadius: "12px", 
-                      border: "1px solid #E5E7EB",
-                      textDecoration: "none"
-                    }}
-                  >
-                    <p style={{ fontWeight: "500", color: "#111827", marginBottom: "4px" }}>{tool.name}</p>
-                    <p style={{ fontSize: "0.875rem", color: "#6B7280" }}>{tool.desc}</p>
-                  </Link>
-                ))}
-              </div>
-            </div>
+            <RelatedTools currentUrl="/alliteration-generator" currentCategory="Lifestyle" />
           </div>
         </div>
 
