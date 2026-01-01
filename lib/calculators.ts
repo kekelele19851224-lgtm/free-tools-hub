@@ -202,6 +202,13 @@ export const calculators: Calculator[] = [
     url: "/spray-foam-insulation-cost-calculator",
     category: "Home",
     type: "Calculator"
+  },
+  {
+    name: "River Stone Calculator",
+    description: "Calculate how much river rock you need for landscaping. Get estimates in tons, cubic yards, and bags with cost calculations.",
+    url: "/river-stone-calculator",
+    category: "Home",
+    type: "Calculator"
   }
 ];
 
