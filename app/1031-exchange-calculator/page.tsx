@@ -629,7 +629,7 @@ export default function ExchangeCalculator() {
                         <span style={{ color: "#6B7280" }}>Net Investment Income Tax (3.8%)</span>
                         <span style={{ fontWeight: "500" }}>{formatCurrency(savingsResult.niitTax)}</span>
                       </div>
-                      <div style={{ display: "flex", justifyContent: "space-between", padding: "12px 0", backgroundColor: "#FEE2E2", margin: "-4px -12px", padding: "12px", borderRadius: "8px" }}>
+                      <div style={{ display: "flex", justifyContent: "space-between", backgroundColor: "#FEE2E2", margin: "-4px -12px", padding: "12px", borderRadius: "8px" }}>
                         <span style={{ fontWeight: "bold", color: "#991B1B" }}>Total Tax Liability</span>
                         <span style={{ fontWeight: "bold", color: "#DC2626" }}>{formatCurrency(savingsResult.totalTaxIfSold)}</span>
                       </div>
