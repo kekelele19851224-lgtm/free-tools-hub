@@ -174,6 +174,13 @@ export const calculators: Calculator[] = [
     url: "/gutter-slope-calculator",
     category: "Home",
     type: "Calculator"
+  },
+  {
+    name: "Floor Joist Calculator",
+    description: "Calculate how many floor joists you need, find the right joist size for your span, and estimate material costs with span tables.",
+    url: "/floor-joist-calculator",
+    category: "Construction",
+    type: "Calculator"
   }
 ];
 
