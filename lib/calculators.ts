@@ -188,6 +188,13 @@ export const calculators: Calculator[] = [
     url: "/wrongful-termination-settlement-calculator",
     category: "Finance",
     type: "Calculator"
+  },
+  {
+    name: "NVIDIA Stock Calculator",
+    description: "Calculate NVIDIA (NVDA) investment returns. See historical growth, current holdings value, and future projections.",
+    url: "/nvidia-stock-calculator",
+    category: "Finance",
+    type: "Calculator"
   }
 ];
 
