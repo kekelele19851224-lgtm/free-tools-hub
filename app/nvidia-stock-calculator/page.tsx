@@ -314,16 +314,7 @@ export default function NvidiaStockCalculator() {
               min="0"
               step="0.01"
             />
-            
-              href="https://www.google.com/finance/quote/NVDA:NASDAQ"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                fontSize: "0.75rem",
-                color: "#2563EB",
-                textDecoration: "underline"
-              }}
-            >
+            <a href="https://www.google.com/finance/quote/NVDA:NASDAQ" target="_blank" rel="noopener noreferrer" style={{ fontSize: "0.75rem", color: "#2563EB", textDecoration: "underline" }}>
               Check live price →
             </a>
           </div>
