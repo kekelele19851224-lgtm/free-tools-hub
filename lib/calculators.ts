@@ -153,6 +153,13 @@ export const calculators: Calculator[] = [
     icon: "📱",
     category: "Lifestyle",
     type: "Extractor"
+  },
+  {
+    name: "1031 Exchange Calculator",
+    description: "Calculate your 1031 exchange tax savings, boot amounts, and 45/180 day deadlines for real estate investments.",
+    url: "/1031-exchange-calculator",
+    category: "Finance",
+    type: "Calculator"
   }
 ];
 
