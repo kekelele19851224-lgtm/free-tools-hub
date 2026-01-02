@@ -265,6 +265,13 @@ export const calculators: Calculator[] = [
     url: "/pa-spousal-support-calculator",
     category: "Finance",
     type: "Calculator"
+  },
+  {
+    name: "House Flipping Calculator",
+    description: "Calculate fix and flip profits, ROI, and verify the 70% rule. Analyze house flipping deals with detailed cost breakdown including rehab, holding, and selling costs.",
+    url: "/house-flipping-calculator",
+    category: "Finance",
+    type: "Calculator"
   }
 ];
 
