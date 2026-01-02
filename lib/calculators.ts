@@ -258,6 +258,13 @@ export const calculators: Calculator[] = [
     url: "/pa-title-insurance-calculator",
     category: "Finance",
     type: "Calculator"
+  },
+  {
+    name: "PA Spousal Support Calculator",
+    description: "Calculate Pennsylvania spousal support and alimony pendente lite (APL) using official PA guidelines formula. Get estimates based on income with or without dependent children.",
+    url: "/pa-spousal-support-calculator",
+    category: "Finance",
+    type: "Calculator"
   }
 ];
 
