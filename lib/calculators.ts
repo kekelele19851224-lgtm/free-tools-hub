@@ -279,6 +279,13 @@ export const calculators: Calculator[] = [
     url: "/water-softener-size-calculator",
     category: "Home",
     type: "Calculator"
+  },
+  {
+    name: "Home Inspection Cost Calculator",
+    description: "Estimate home inspection costs by square footage, age, property type, and location. Add optional services like radon, mold, termite, and sewer scope inspections.",
+    url: "/home-inspection-cost-calculator",
+    category: "Home",
+    type: "Calculator"
   }
 ];
 
