@@ -537,7 +537,7 @@ export default function HomeInspectionCostCalculator() {
                         <span style={{ fontWeight: "600", color: "#0D9488" }}>+{formatCurrency(results.servicesLow)} - {formatCurrency(results.servicesHigh)}</span>
                       </div>
                     )}
-                    <div style={{ display: "flex", justifyContent: "space-between", padding: "8px 0", backgroundColor: "#CCFBF1", margin: "-4px -8px", padding: "12px 8px", borderRadius: "6px" }}>
+                    <div style={{ display: "flex", justifyContent: "space-between", backgroundColor: "#CCFBF1", margin: "-4px -8px", padding: "12px 8px", borderRadius: "6px" }}>
                       <span style={{ fontWeight: "700", color: "#0F766E" }}>TOTAL ESTIMATE</span>
                       <span style={{ fontWeight: "700", color: "#0F766E" }}>{formatCurrency(results.totalLow)} - {formatCurrency(results.totalHigh)}</span>
                     </div>
