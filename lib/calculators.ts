@@ -230,6 +230,13 @@ export const calculators: Calculator[] = [
     url: "/stripe-fees-calculator",
     category: "Finance",
     type: "Calculator"
+  },
+  {
+    name: "Pine Straw Calculator",
+    description: "Calculate how many bales of pine straw you need for landscaping. Get coverage estimates for different depths with DIY and professional installation costs.",
+    url: "/pine-straw-calculator",
+    category: "Home",
+    type: "Calculator"
   }
 ];
 
