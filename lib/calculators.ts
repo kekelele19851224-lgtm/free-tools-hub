@@ -272,6 +272,13 @@ export const calculators: Calculator[] = [
     url: "/house-flipping-calculator",
     category: "Finance",
     type: "Calculator"
+  },
+  {
+    name: "Water Softener Size Calculator",
+    description: "Calculate the right water softener grain capacity for your household. Enter family size, water hardness, and usage to find the perfect softener size with regeneration estimates.",
+    url: "/water-softener-size-calculator",
+    category: "Home",
+    type: "Calculator"
   }
 ];
 
