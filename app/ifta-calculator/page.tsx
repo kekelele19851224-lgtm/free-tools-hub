@@ -505,7 +505,7 @@ export default function IFTACalculator() {
             </h2>
 
             {/* Headers */}
-            <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr 40px", gap: "12px", marginBottom: "8px", padding: "0 4px" }}>
+            <div className="ifta-headers" style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr 40px", gap: "12px", marginBottom: "8px", padding: "0 4px" }}>
               <span style={{ fontSize: "0.75rem", fontWeight: "600", color: "#6B7280", textTransform: "uppercase" }}>State/Province</span>
               <span style={{ fontSize: "0.75rem", fontWeight: "600", color: "#6B7280", textTransform: "uppercase" }}>Miles Driven</span>
               <span style={{ fontSize: "0.75rem", fontWeight: "600", color: "#6B7280", textTransform: "uppercase" }}>Gallons Purchased</span>
@@ -514,7 +514,7 @@ export default function IFTACalculator() {
 
             {/* Entry Rows */}
             {entries.map((entry) => (
-              <div key={entry.id} style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr 40px", gap: "12px", marginBottom: "8px" }}>
+              <div key={entry.id} className="ifta-entry-row" style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr 40px", gap: "12px", marginBottom: "8px" }}>
                 <select
                   value={entry.state}
                   onChange={(e) => updateEntry(entry.id, "state", e.target.value)}
@@ -664,7 +664,7 @@ export default function IFTACalculator() {
             </h2>
 
             {/* Summary Cards */}
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: "16px", marginBottom: "32px" }}>
+            <div className="ifta-summary-cards" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: "16px", marginBottom: "32px" }}>
               <div style={{ backgroundColor: "#F3F4F6", padding: "20px", borderRadius: "12px", textAlign: "center" }}>
                 <p style={{ fontSize: "0.75rem", color: "#6B7280", marginBottom: "4px" }}>Total Miles</p>
                 <p style={{ fontSize: "1.5rem", fontWeight: "bold", color: "#111827" }}>{results.totalMiles.toLocaleString()}</p>
@@ -695,7 +695,7 @@ export default function IFTACalculator() {
 
             {/* State Breakdown Table */}
             <div style={{ overflowX: "auto" }} className="state-table">
-              <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.8rem" }}>
+              <table className="ifta-results-table" style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.8rem" }}>
                 <thead>
                   <tr style={{ backgroundColor: "#F3F4F6" }}>
                     <th style={{ padding: "12px 8px", border: "1px solid #E5E7EB", textAlign: "left" }}>State</th>

@@ -76,3 +76,51 @@ body {
     width: 100% !important;
   }
 }
+
+/* IFTA Calculator Mobile Fix */
+@media screen and (max-width: 768px) {
+  .ifta-entry-row {
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
+  }
+  
+  .ifta-entry-row > select,
+  .ifta-entry-row > input {
+    width: 100% !important;
+  }
+  
+  .ifta-entry-row .ifta-remove-btn {
+    justify-self: end;
+  }
+  
+  .ifta-headers {
+    display: none !important;
+  }
+  
+  .ifta-state-select::before {
+    content: "State: ";
+    font-weight: 500;
+  }
+  
+  .ifta-results-table {
+    font-size: 0.7rem !important;
+  }
+  
+  .ifta-results-table th,
+  .ifta-results-table td {
+    padding: 6px 4px !important;
+  }
+  
+  .ifta-summary-cards {
+    grid-template-columns: 1fr 1fr !important;
+  }
+  
+  .content-sidebar {
+    flex-direction: column !important;
+  }
+  
+  .content-sidebar > div {
+    min-width: 100% !important;
+    width: 100% !important;
+  }
+}
