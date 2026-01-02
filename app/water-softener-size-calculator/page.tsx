@@ -224,7 +224,7 @@ export default function WaterSoftenerSizeCalculator() {
           overflow: "hidden"
         }}>
           <div style={{ padding: "32px" }}>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "32px" }}>
+            <div className="calc-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "32px" }}>
               {/* Inputs */}
               <div>
                 {/* Household */}
@@ -439,7 +439,7 @@ export default function WaterSoftenerSizeCalculator() {
               </div>
 
               {/* Results */}
-              <div>
+              <div className="calc-results">
                 {/* Recommended Size */}
                 <div style={{
                   backgroundColor: "#0EA5E9",
@@ -586,7 +586,7 @@ export default function WaterSoftenerSizeCalculator() {
         </div>
 
         {/* Content + Sidebar */}
-        <div style={{ display: "flex", gap: "32px", marginBottom: "40px", flexWrap: "wrap" }}>
+        <div className="content-sidebar" style={{ display: "flex", gap: "32px", marginBottom: "40px", flexWrap: "wrap" }}>
           {/* Main Content */}
           <div style={{ flex: "2", minWidth: "400px" }}>
             {/* Water Hardness Guide */}

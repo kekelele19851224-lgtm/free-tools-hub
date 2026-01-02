@@ -700,10 +700,10 @@ export default function YardsToTonsCalculator() {
                 <p style={{ fontSize: "0.75rem", fontWeight: "600", color: "#6B7280", textTransform: "uppercase", marginBottom: "12px" }}>
                   💡 Quick Reference ({materials.find(m => m.id === selectedMaterial)?.name})
                 </p>
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "8px" }}>
+                <div className="calc-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "8px" }}>
                   {getQuickAnswers().map((item, index) => (
                     <div key={index} style={{ 
-                      backgroundColor: "white", 
+                      backgroundColor: "white",
                       padding: "8px 12px", 
                       borderRadius: "6px",
                       fontSize: "0.75rem"
@@ -774,7 +774,7 @@ export default function YardsToTonsCalculator() {
         </div>
 
         {/* Content Section - 两栏布局 */}
-        <div style={{ display: "flex", gap: "32px", marginBottom: "40px", flexWrap: "wrap" }}>
+        <div className="content-sidebar" style={{ display: "flex", gap: "32px", marginBottom: "40px", flexWrap: "wrap" }}>
           {/* Main Content - 左侧宽 */}
           <div style={{ flex: "2", minWidth: "400px" }}>
             {/* What is Yards to Tons */}

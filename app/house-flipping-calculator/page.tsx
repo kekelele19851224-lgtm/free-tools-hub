@@ -258,7 +258,7 @@ export default function HouseFlippingCalculator() {
           overflow: "hidden"
         }}>
           <div style={{ padding: "32px" }}>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "32px" }}>
+            <div className="calc-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "32px" }}>
               {/* Inputs */}
               <div>
                 {/* Deal Analysis */}
@@ -395,7 +395,7 @@ export default function HouseFlippingCalculator() {
                     💰 Financing
                   </h3>
                   
-                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px", marginBottom: "16px" }}>
+                  <div className="calc-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px", marginBottom: "16px" }}>
                     <button
                       onClick={() => setUseFinancing(false)}
                       style={{
@@ -676,7 +676,7 @@ export default function HouseFlippingCalculator() {
         </div>
 
         {/* Content + Sidebar */}
-        <div style={{ display: "flex", gap: "32px", marginBottom: "40px", flexWrap: "wrap" }}>
+        <div className="content-sidebar" style={{ display: "flex", gap: "32px", marginBottom: "40px", flexWrap: "wrap" }}>
           {/* Main Content */}
           <div style={{ flex: "2", minWidth: "400px" }}>
             {/* 70% Rule Explained */}

@@ -200,7 +200,7 @@ export default function GutterSlopeCalculator() {
           padding: "32px",
           marginBottom: "40px"
         }}>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "32px" }}>
+          <div className="calc-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "32px" }}>
             {/* Left - Inputs */}
             <div style={{ backgroundColor: "#F9FAFB", padding: "24px", borderRadius: "12px" }}>
               <h3 style={{ fontWeight: "600", color: "#111827", marginBottom: "20px", fontSize: "1.1rem" }}>
@@ -410,7 +410,7 @@ export default function GutterSlopeCalculator() {
             </div>
 
             {/* Right - Results */}
-            <div style={{ backgroundColor: "#F0FDF4", padding: "24px", borderRadius: "12px", border: "2px solid #BBF7D0" }}>
+            <div className="calc-results" style={{ backgroundColor: "#F0FDF4", padding: "24px", borderRadius: "12px", border: "2px solid #BBF7D0" }}>
               <h3 style={{ fontWeight: "600", color: "#166534", marginBottom: "20px", fontSize: "1.1rem" }}>
                 📊 Slope Results
               </h3>
@@ -564,7 +564,7 @@ export default function GutterSlopeCalculator() {
         </div>
 
         {/* Content Section */}
-        <div style={{ display: "flex", gap: "32px", marginBottom: "40px", flexWrap: "wrap" }}>
+        <div className="content-sidebar" style={{ display: "flex", gap: "32px", marginBottom: "40px", flexWrap: "wrap" }}>
           {/* Main Content */}
           <div style={{ flex: "2", minWidth: "400px" }}>
             {/* What is Gutter Slope */}

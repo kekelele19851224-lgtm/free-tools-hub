@@ -861,7 +861,7 @@ export default function GravelDrivewayCalculator() {
         </div>
 
         {/* Content Section - 两栏布局 */}
-        <div style={{ display: "flex", gap: "32px", marginBottom: "40px", flexWrap: "wrap" }}>
+        <div className="content-sidebar" style={{ display: "flex", gap: "32px", marginBottom: "40px", flexWrap: "wrap" }}>
           {/* Main Content - 左侧宽 */}
           <div style={{ flex: "2", minWidth: "400px" }}>
             {/* What is Gravel Driveway */}

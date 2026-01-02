@@ -304,7 +304,7 @@ export default function WrongfulTerminationCalculator() {
           <div style={{ padding: "32px" }}>
             {/* Tab 1: Settlement Estimator */}
             {activeTab === "estimator" && (
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "32px" }}>
+              <div className="calc-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "32px" }}>
                 {/* Inputs */}
                 <div style={{ backgroundColor: "#F9FAFB", padding: "24px", borderRadius: "12px" }}>
                   <h3 style={{ fontWeight: "600", color: "#111827", marginBottom: "20px", fontSize: "1.1rem" }}>
@@ -493,9 +493,9 @@ export default function WrongfulTerminationCalculator() {
                 </div>
 
                 {/* Results */}
-                <div style={{ backgroundColor: "#F5F3FF", padding: "24px", borderRadius: "12px", border: "2px solid #DDD6FE" }}>
+                <div className="calc-results" style={{ backgroundColor: "#F5F3FF", padding: "24px", borderRadius: "12px", border: "2px solid #DDD6FE" }}>
                   <h3 style={{ fontWeight: "600", color: "#5B21B6", marginBottom: "20px", fontSize: "1.1rem" }}>
-                    💰 Estimated Settlement Range
+                    Settlement Estimate
                   </h3>
 
                   {/* Main Result */}
@@ -560,7 +560,7 @@ export default function WrongfulTerminationCalculator() {
 
             {/* Tab 2: Take-Home Calculator */}
             {activeTab === "takehome" && (
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "32px" }}>
+              <div className="calc-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "32px" }}>
                 {/* Inputs */}
                 <div style={{ backgroundColor: "#F9FAFB", padding: "24px", borderRadius: "12px" }}>
                   <h3 style={{ fontWeight: "600", color: "#111827", marginBottom: "20px", fontSize: "1.1rem" }}>
@@ -709,9 +709,9 @@ export default function WrongfulTerminationCalculator() {
                 </div>
 
                 {/* Results */}
-                <div style={{ backgroundColor: "#ECFDF5", padding: "24px", borderRadius: "12px", border: "2px solid #A7F3D0" }}>
+                <div className="calc-results" style={{ backgroundColor: "#ECFDF5", padding: "24px", borderRadius: "12px", border: "2px solid #A7F3D0" }}>
                   <h3 style={{ fontWeight: "600", color: "#065F46", marginBottom: "20px", fontSize: "1.1rem" }}>
-                    💵 What You&apos;ll Take Home
+                    Take-Home Amount
                   </h3>
 
                   {/* Main Result */}
@@ -807,7 +807,7 @@ export default function WrongfulTerminationCalculator() {
         </div>
 
         {/* Content + Sidebar */}
-        <div style={{ display: "flex", gap: "32px", marginBottom: "40px", flexWrap: "wrap" }}>
+        <div className="content-sidebar" style={{ display: "flex", gap: "32px", marginBottom: "40px", flexWrap: "wrap" }}>
           {/* Main Content */}
           <div style={{ flex: "2", minWidth: "400px" }}>
             {/* Factors Affecting Settlement */}

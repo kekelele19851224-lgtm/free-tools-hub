@@ -308,7 +308,7 @@ export default function ProductivityCalculator() {
                 {/* Additional Metrics */}
                 {productivityPerHour !== null && (
                   <div style={{ marginTop: "24px", paddingTop: "24px", borderTop: "1px solid #A7F3D0" }}>
-                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }}>
+                    <div className="calc-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }}>
                       <div style={{ backgroundColor: "white", borderRadius: "8px", padding: "16px" }}>
                         <p style={{ color: "#6B7280", fontSize: "0.75rem", marginBottom: "4px" }}>Per Employee</p>
                         <p style={{ fontWeight: "bold", color: "#111827", fontSize: "1.25rem" }}>
@@ -339,7 +339,7 @@ export default function ProductivityCalculator() {
         </div>
 
         {/* Content Section - 两栏布局 */}
-        <div style={{ display: "flex", gap: "32px", marginBottom: "40px", flexWrap: "wrap" }}>
+        <div className="content-sidebar" style={{ display: "flex", gap: "32px", marginBottom: "40px", flexWrap: "wrap" }}>
           {/* Main Content - 左侧宽 */}
           <div style={{ flex: "2", minWidth: "400px" }}>
             {/* What is Productivity */}

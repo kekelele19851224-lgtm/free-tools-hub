@@ -280,7 +280,7 @@ export default function SoffitCalculator() {
           <div style={{ padding: "32px" }}>
             {/* Tab 1: Panel Calculator */}
             {activeTab === "panels" && (
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "32px" }}>
+              <div className="calc-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "32px" }}>
                 {/* Inputs */}
                 <div style={{ backgroundColor: "#F9FAFB", padding: "24px", borderRadius: "12px" }}>
                   <h3 style={{ fontWeight: "600", color: "#111827", marginBottom: "20px", fontSize: "1.1rem" }}>
@@ -403,7 +403,7 @@ export default function SoffitCalculator() {
                 </div>
 
                 {/* Results */}
-                <div style={{ backgroundColor: "#EFF6FF", padding: "24px", borderRadius: "12px", border: "2px solid #BFDBFE" }}>
+                <div className="calc-results" style={{ backgroundColor: "#EFF6FF", padding: "24px", borderRadius: "12px", border: "2px solid #BFDBFE" }}>
                   <h3 style={{ fontWeight: "600", color: "#1E40AF", marginBottom: "20px", fontSize: "1.1rem" }}>
                     📦 Materials Needed
                   </h3>
@@ -457,7 +457,7 @@ export default function SoffitCalculator() {
 
             {/* Tab 2: Vent Calculator */}
             {activeTab === "vents" && (
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "32px" }}>
+              <div className="calc-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "32px" }}>
                 {/* Inputs */}
                 <div style={{ backgroundColor: "#F9FAFB", padding: "24px", borderRadius: "12px" }}>
                   <h3 style={{ fontWeight: "600", color: "#111827", marginBottom: "20px", fontSize: "1.1rem" }}>
@@ -551,7 +551,7 @@ export default function SoffitCalculator() {
                 </div>
 
                 {/* Results */}
-                <div style={{ backgroundColor: "#ECFDF5", padding: "24px", borderRadius: "12px", border: "2px solid #A7F3D0" }}>
+                <div className="calc-results" style={{ backgroundColor: "#ECFDF5", padding: "24px", borderRadius: "12px", border: "2px solid #A7F3D0" }}>
                   <h3 style={{ fontWeight: "600", color: "#065F46", marginBottom: "20px", fontSize: "1.1rem" }}>
                     ✅ Ventilation Needed
                   </h3>
@@ -600,7 +600,7 @@ export default function SoffitCalculator() {
 
             {/* Tab 3: Cost Estimator */}
             {activeTab === "cost" && (
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "32px" }}>
+              <div className="calc-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "32px" }}>
                 {/* Inputs */}
                 <div style={{ backgroundColor: "#F9FAFB", padding: "24px", borderRadius: "12px" }}>
                   <h3 style={{ fontWeight: "600", color: "#111827", marginBottom: "20px", fontSize: "1.1rem" }}>
@@ -685,7 +685,7 @@ export default function SoffitCalculator() {
                 </div>
 
                 {/* Results */}
-                <div style={{ backgroundColor: "#FEF3C7", padding: "24px", borderRadius: "12px", border: "2px solid #FDE68A" }}>
+                <div className="calc-results" style={{ backgroundColor: "#FEF3C7", padding: "24px", borderRadius: "12px", border: "2px solid #FCD34D" }}>
                   <h3 style={{ fontWeight: "600", color: "#92400E", marginBottom: "20px", fontSize: "1.1rem" }}>
                     💵 Estimated Cost
                   </h3>
@@ -780,7 +780,7 @@ export default function SoffitCalculator() {
         </div>
 
         {/* Content + Sidebar */}
-        <div style={{ display: "flex", gap: "32px", marginBottom: "40px", flexWrap: "wrap" }}>
+        <div className="content-sidebar" style={{ display: "flex", gap: "32px", marginBottom: "40px", flexWrap: "wrap" }}>
           {/* Main Content */}
           <div style={{ flex: "2", minWidth: "400px" }}>
             {/* How to Measure */}

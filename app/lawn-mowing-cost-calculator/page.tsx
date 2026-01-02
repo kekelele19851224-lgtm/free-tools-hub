@@ -672,7 +672,7 @@ export default function LawnMowingCostCalculator() {
                   <p style={{ fontSize: "0.75rem", fontWeight: "600", color: "#92400E", textTransform: "uppercase", marginBottom: "12px" }}>
                     🏠 DIY vs Professional
                   </p>
-                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px" }}>
+                  <div className="calc-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px" }}>
                     <div style={{ backgroundColor: "white", padding: "12px", borderRadius: "8px" }}>
                       <p style={{ fontWeight: "600", color: "#111827", marginBottom: "4px" }}>DIY</p>
                       <p style={{ fontSize: "0.75rem", color: "#6B7280" }}>Year 1: ~$400-800</p>
@@ -724,7 +724,7 @@ export default function LawnMowingCostCalculator() {
         </div>
 
         {/* Content Section - 两栏布局 */}
-        <div style={{ display: "flex", gap: "32px", marginBottom: "40px", flexWrap: "wrap" }}>
+        <div className="content-sidebar" style={{ display: "flex", gap: "32px", marginBottom: "40px", flexWrap: "wrap" }}>
           {/* Main Content - 左侧宽 */}
           <div style={{ flex: "2", minWidth: "400px" }}>
             {/* How Costs Are Calculated */}

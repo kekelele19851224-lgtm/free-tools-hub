@@ -589,7 +589,7 @@ export default function ExchangeCalculator() {
 
               {/* Tax Savings Results */}
               {savingsResult && (
-                <div style={{ marginTop: "32px", borderTop: "1px solid #E5E7EB", paddingTop: "32px" }}>
+                <div className="calc-results" style={{ marginTop: "32px", borderTop: "1px solid #E5E7EB", paddingTop: "32px" }}>
                   <h3 style={{ fontSize: "1.25rem", fontWeight: "bold", color: "#111827", marginBottom: "20px" }}>
                     📊 Tax Analysis Results
                   </h3>
@@ -644,7 +644,7 @@ export default function ExchangeCalculator() {
           {/* Boot Calculator Tab */}
           {activeTab === "boot" && (
             <div>
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "32px", marginBottom: "24px" }}>
+              <div className="calc-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "32px", marginBottom: "24px" }}>
                 {/* Relinquished Property */}
                 <div style={{ backgroundColor: "#FEF3C7", padding: "20px", borderRadius: "12px" }}>
                   <h3 style={{ fontWeight: "600", color: "#92400E", marginBottom: "16px" }}>🏠 Relinquished Property (Selling)</h3>
@@ -989,7 +989,7 @@ export default function ExchangeCalculator() {
         </div>
 
         {/* Content Section */}
-        <div style={{ display: "flex", gap: "32px", marginBottom: "40px", flexWrap: "wrap" }}>
+        <div className="content-sidebar" style={{ display: "flex", gap: "32px", marginBottom: "40px", flexWrap: "wrap" }}>
           {/* Main Content */}
           <div style={{ flex: "2", minWidth: "400px" }}>
             {/* How 1031 Exchange Works */}

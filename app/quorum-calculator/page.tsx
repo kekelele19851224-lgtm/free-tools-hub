@@ -302,7 +302,7 @@ export default function QuorumCalculator() {
                 {/* Quick Info */}
                 {result !== null && (
                   <div style={{ marginTop: "24px", paddingTop: "24px", borderTop: "1px solid #BFDBFE" }}>
-                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }}>
+                    <div className="calc-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }}>
                       <div style={{ backgroundColor: "white", borderRadius: "8px", padding: "12px" }}>
                         <p style={{ color: "#6B7280", fontSize: "0.875rem" }}>Quorum Type</p>
                         <p style={{ fontWeight: "600", color: "#111827" }}>
@@ -325,7 +325,7 @@ export default function QuorumCalculator() {
         </div>
 
         {/* Content Section - 两栏布局 */}
-        <div style={{ display: "flex", gap: "32px", marginBottom: "40px", flexWrap: "wrap" }}>
+        <div className="content-sidebar" style={{ display: "flex", gap: "32px", marginBottom: "40px", flexWrap: "wrap" }}>
           {/* Main Content - 左侧宽 */}
           <div style={{ flex: "2", minWidth: "400px" }}>
             {/* What is Quorum */}

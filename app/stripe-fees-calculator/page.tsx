@@ -293,7 +293,7 @@ export default function StripeFeeCalculator() {
           </div>
 
           <div style={{ padding: "32px" }}>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "32px" }}>
+            <div className="calc-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "32px" }}>
               {/* Inputs */}
               <div style={{ backgroundColor: "#F9FAFB", padding: "24px", borderRadius: "12px" }}>
                 <h3 style={{ fontWeight: "600", color: "#111827", marginBottom: "20px", fontSize: "1.1rem" }}>
@@ -398,7 +398,7 @@ export default function StripeFeeCalculator() {
               </div>
 
               {/* Results */}
-              <div style={{ backgroundColor: "#F5F3FF", padding: "24px", borderRadius: "12px", border: "2px solid #DDD6FE" }}>
+              <div className="calc-results" style={{ backgroundColor: "#F5F3FF", padding: "24px", borderRadius: "12px", border: "2px solid #DDD6FE" }}>
                 <h3 style={{ fontWeight: "600", color: "#5B21B6", marginBottom: "20px", fontSize: "1.1rem" }}>
                   📊 Fee Breakdown
                 </h3>
@@ -562,7 +562,7 @@ export default function StripeFeeCalculator() {
         </div>
 
         {/* Content + Sidebar */}
-        <div style={{ display: "flex", gap: "32px", marginBottom: "40px", flexWrap: "wrap" }}>
+        <div className="content-sidebar" style={{ display: "flex", gap: "32px", marginBottom: "40px", flexWrap: "wrap" }}>
           {/* Main Content */}
           <div style={{ flex: "2", minWidth: "400px" }}>
             {/* How Fees Work */}

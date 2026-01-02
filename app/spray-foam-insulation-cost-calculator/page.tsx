@@ -375,7 +375,7 @@ export default function SprayFoamCalculator() {
                 </div>
 
                 {/* Results - Side by Side Comparison */}
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "24px" }}>
+                <div className="calc-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "24px" }}>
                   {/* Open Cell */}
                   <div style={{
                     backgroundColor: "#ECFDF5",

@@ -313,7 +313,7 @@ export default function FloorJoistCalculator() {
           <div style={{ padding: "32px" }}>
             {/* Tab 1: Joist Count */}
             {activeTab === "count" && (
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "32px" }}>
+              <div className="calc-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "32px" }}>
                 {/* Inputs */}
                 <div style={{ backgroundColor: "#F9FAFB", padding: "24px", borderRadius: "12px" }}>
                   <h3 style={{ fontWeight: "600", color: "#111827", marginBottom: "20px", fontSize: "1.1rem" }}>
@@ -403,7 +403,7 @@ export default function FloorJoistCalculator() {
                 </div>
 
                 {/* Results */}
-                <div style={{ backgroundColor: "#F0FDF4", padding: "24px", borderRadius: "12px", border: "2px solid #BBF7D0" }}>
+                <div className="calc-results" style={{ backgroundColor: "#F0FDF4", padding: "24px", borderRadius: "12px", border: "2px solid #BBF7D0" }}>
                   <h3 style={{ fontWeight: "600", color: "#166534", marginBottom: "20px", fontSize: "1.1rem" }}>
                     📊 Results
                   </h3>
@@ -456,7 +456,7 @@ export default function FloorJoistCalculator() {
 
             {/* Tab 2: Span Calculator */}
             {activeTab === "span" && (
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "32px" }}>
+              <div className="calc-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "32px" }}>
                 {/* Inputs */}
                 <div style={{ backgroundColor: "#F9FAFB", padding: "24px", borderRadius: "12px" }}>
                   <h3 style={{ fontWeight: "600", color: "#111827", marginBottom: "20px", fontSize: "1.1rem" }}>
@@ -566,7 +566,7 @@ export default function FloorJoistCalculator() {
                 </div>
 
                 {/* Results */}
-                <div style={{ backgroundColor: "#EFF6FF", padding: "24px", borderRadius: "12px", border: "2px solid #BFDBFE" }}>
+                <div className="calc-results" style={{ backgroundColor: "#EFF6FF", padding: "24px", borderRadius: "12px", border: "2px solid #BFDBFE" }}>
                   <h3 style={{ fontWeight: "600", color: "#1E40AF", marginBottom: "20px", fontSize: "1.1rem" }}>
                     ✅ Recommended Size
                   </h3>
@@ -623,7 +623,7 @@ export default function FloorJoistCalculator() {
 
             {/* Tab 3: Cost Estimator */}
             {activeTab === "cost" && (
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "32px" }}>
+              <div className="calc-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "32px" }}>
                 {/* Inputs */}
                 <div style={{ backgroundColor: "#F9FAFB", padding: "24px", borderRadius: "12px" }}>
                   <h3 style={{ fontWeight: "600", color: "#111827", marginBottom: "20px", fontSize: "1.1rem" }}>
@@ -747,7 +747,7 @@ export default function FloorJoistCalculator() {
                 </div>
 
                 {/* Results */}
-                <div style={{ backgroundColor: "#FEF3C7", padding: "24px", borderRadius: "12px", border: "2px solid #FDE68A" }}>
+                <div className="calc-results" style={{ backgroundColor: "#FEF3C7", padding: "24px", borderRadius: "12px", border: "2px solid #FDE68A" }}>
                   <h3 style={{ fontWeight: "600", color: "#92400E", marginBottom: "20px", fontSize: "1.1rem" }}>
                     💰 Cost Estimate
                   </h3>
@@ -835,7 +835,7 @@ export default function FloorJoistCalculator() {
         </div>
 
         {/* Content + Sidebar */}
-        <div style={{ display: "flex", gap: "32px", marginBottom: "40px", flexWrap: "wrap" }}>
+        <div className="content-sidebar" style={{ display: "flex", gap: "32px", marginBottom: "40px", flexWrap: "wrap" }}>
           {/* Main Content */}
           <div style={{ flex: "2", minWidth: "400px" }}>
             {/* How to Calculate */}

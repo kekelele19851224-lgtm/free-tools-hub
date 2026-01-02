@@ -242,7 +242,7 @@ export default function PineStrawCalculator() {
           overflow: "hidden"
         }}>
           <div style={{ padding: "32px" }}>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "32px" }}>
+            <div className="calc-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "32px" }}>
               {/* Inputs */}
               <div style={{ backgroundColor: "#F9FAFB", padding: "24px", borderRadius: "12px" }}>
                 <h3 style={{ fontWeight: "600", color: "#111827", marginBottom: "20px", fontSize: "1.1rem" }}>
@@ -292,7 +292,7 @@ export default function PineStrawCalculator() {
 
                 {/* Dimension Inputs */}
                 {inputMode === "dimensions" ? (
-                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px", marginBottom: "20px" }}>
+                  <div className="calc-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px", marginBottom: "20px" }}>
                     <div>
                       <label style={{ display: "block", fontSize: "0.875rem", fontWeight: "500", color: "#374151", marginBottom: "6px" }}>
                         Length (ft)
@@ -415,7 +415,7 @@ export default function PineStrawCalculator() {
                   <label style={{ display: "block", fontSize: "0.875rem", fontWeight: "500", color: "#374151", marginBottom: "8px" }}>
                     Pine Straw Type
                   </label>
-                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px" }}>
+                  <div className="calc-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px" }}>
                     {(Object.keys(pineTypes) as Array<keyof typeof pineTypes>).map((key) => (
                       <button
                         key={key}
@@ -593,7 +593,7 @@ export default function PineStrawCalculator() {
         </div>
 
         {/* Content + Sidebar */}
-        <div style={{ display: "flex", gap: "32px", marginBottom: "40px", flexWrap: "wrap" }}>
+        <div className="content-sidebar" style={{ display: "flex", gap: "32px", marginBottom: "40px", flexWrap: "wrap" }}>
           {/* Main Content */}
           <div style={{ flex: "2", minWidth: "400px" }}>
             {/* How to Calculate */}
@@ -651,7 +651,7 @@ export default function PineStrawCalculator() {
               <h2 style={{ fontSize: "1.5rem", fontWeight: "bold", color: "#111827", marginBottom: "16px" }}>
                 🌲 Slash vs Long Leaf Pine Straw
               </h2>
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }}>
+              <div className="calc-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }}>
                 <div style={{ backgroundColor: "#FEF3C7", padding: "20px", borderRadius: "12px" }}>
                   <h4 style={{ fontWeight: "600", color: "#92400E", marginBottom: "12px" }}>Slash Pine</h4>
                   <ul style={{ fontSize: "0.875rem", color: "#92400E", paddingLeft: "16px", margin: 0 }}>

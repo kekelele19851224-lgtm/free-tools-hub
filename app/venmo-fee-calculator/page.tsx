@@ -250,7 +250,7 @@ export default function VenmoFeeCalculator() {
 
           {/* Instant Transfer Tab */}
           {activeTab === "instant" && (
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "32px" }}>
+            <div className="calc-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "32px" }}>
               {/* Left - Input */}
               <div style={{ backgroundColor: "#F9FAFB", padding: "24px", borderRadius: "12px" }}>
                 <h3 style={{ fontWeight: "600", color: "#111827", marginBottom: "20px", fontSize: "1.1rem" }}>
@@ -316,7 +316,7 @@ export default function VenmoFeeCalculator() {
 
           {/* Goods & Services Tab */}
           {activeTab === "goods" && (
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "32px" }}>
+            <div className="calc-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "32px" }}>
               {/* Left - Input */}
               <div style={{ backgroundColor: "#F9FAFB", padding: "24px", borderRadius: "12px" }}>
                 <h3 style={{ fontWeight: "600", color: "#111827", marginBottom: "20px", fontSize: "1.1rem" }}>
@@ -417,7 +417,7 @@ export default function VenmoFeeCalculator() {
 
           {/* Credit Card Tab */}
           {activeTab === "credit" && (
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "32px" }}>
+            <div className="calc-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "32px" }}>
               {/* Left - Input */}
               <div style={{ backgroundColor: "#F9FAFB", padding: "24px", borderRadius: "12px" }}>
                 <h3 style={{ fontWeight: "600", color: "#111827", marginBottom: "20px", fontSize: "1.1rem" }}>
@@ -481,7 +481,7 @@ export default function VenmoFeeCalculator() {
 
           {/* Business Tab */}
           {activeTab === "business" && (
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "32px" }}>
+            <div className="calc-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "32px" }}>
               {/* Left - Input */}
               <div style={{ backgroundColor: "#F9FAFB", padding: "24px", borderRadius: "12px" }}>
                 <h3 style={{ fontWeight: "600", color: "#111827", marginBottom: "20px", fontSize: "1.1rem" }}>
@@ -640,7 +640,7 @@ export default function VenmoFeeCalculator() {
         </div>
 
         {/* Content Section */}
-        <div style={{ display: "flex", gap: "32px", marginBottom: "40px", flexWrap: "wrap" }}>
+        <div className="content-sidebar" style={{ display: "flex", gap: "32px", marginBottom: "40px", flexWrap: "wrap" }}>
           {/* Main Content */}
           <div style={{ flex: "2", minWidth: "400px" }}>
             {/* Venmo Fee Structure */}

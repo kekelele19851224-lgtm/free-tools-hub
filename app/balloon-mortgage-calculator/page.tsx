@@ -609,7 +609,7 @@ export default function BalloonMortgageCalculator() {
                   <p style={{ fontSize: "0.75rem", fontWeight: "600", color: "#065F46", textTransform: "uppercase", marginBottom: "12px" }}>
                     📈 vs 30-Year Fixed Mortgage
                   </p>
-                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px" }}>
+                  <div className="calc-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px" }}>
                     <div style={{ backgroundColor: "white", padding: "12px", borderRadius: "8px", textAlign: "center" }}>
                       <p style={{ fontSize: "0.7rem", color: "#6B7280", marginBottom: "4px" }}>Balloon Monthly</p>
                       <p style={{ fontSize: "1.25rem", fontWeight: "bold", color: "#7C3AED" }}>{formatCurrency(results.monthlyPayment)}</p>
@@ -760,7 +760,7 @@ export default function BalloonMortgageCalculator() {
         </div>
 
         {/* Content Section */}
-        <div style={{ display: "flex", gap: "32px", marginBottom: "40px", flexWrap: "wrap" }}>
+        <div className="content-sidebar" style={{ display: "flex", gap: "32px", marginBottom: "40px", flexWrap: "wrap" }}>
           {/* Main Content */}
           <div style={{ flex: "2", minWidth: "400px" }}>
             {/* How Balloon Mortgages Work */}

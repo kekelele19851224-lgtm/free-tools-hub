@@ -446,9 +446,9 @@ export default function BlackScholesCalculator() {
             </div>
 
             {/* Right: Result Section */}
-            <div style={{ flex: "1", minWidth: "300px" }}>
+            <div className="calc-results" style={{ flex: "1", minWidth: "300px" }}>
               {/* Option Prices */}
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px", marginBottom: "24px" }}>
+              <div className="calc-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px", marginBottom: "24px" }}>
                 {/* Call Option */}
                 <div style={{ 
                   background: "linear-gradient(135deg, #ECFDF5 0%, #D1FAE5 100%)", 
@@ -581,7 +581,7 @@ export default function BlackScholesCalculator() {
         </div>
 
         {/* Content Section - 两栏布局 */}
-        <div style={{ display: "flex", gap: "32px", marginBottom: "40px", flexWrap: "wrap" }}>
+        <div className="content-sidebar" style={{ display: "flex", gap: "32px", marginBottom: "40px", flexWrap: "wrap" }}>
           {/* Main Content - 左侧宽 */}
           <div style={{ flex: "2", minWidth: "400px" }}>
             {/* What is Black-Scholes */}
