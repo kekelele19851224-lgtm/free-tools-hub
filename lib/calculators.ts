@@ -244,6 +244,13 @@ export const calculators: Calculator[] = [
     url: "/land-clearing-cost-calculator",
     category: "Construction",
     type: "Calculator"
+  },
+  {
+    name: "Retaining Wall Cost Calculator",
+    description: "Estimate retaining wall costs by dimensions, material type, and installation. Compare DIY vs professional pricing for concrete, stone, wood, and brick walls.",
+    url: "/retaining-wall-cost-calculator",
+    category: "Construction",
+    type: "Calculator"
   }
 ];
 
