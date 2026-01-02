@@ -251,6 +251,13 @@ export const calculators: Calculator[] = [
     url: "/retaining-wall-cost-calculator",
     category: "Construction",
     type: "Calculator"
+  },
+  {
+    name: "PA Title Insurance Calculator",
+    description: "Calculate Pennsylvania title insurance costs using official TIRBOP rates. Get accurate estimates for home purchases and refinances with lender endorsement fees.",
+    url: "/pa-title-insurance-calculator",
+    category: "Finance",
+    type: "Calculator"
   }
 ];
 
