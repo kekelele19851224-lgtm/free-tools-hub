@@ -237,6 +237,13 @@ export const calculators: Calculator[] = [
     url: "/pine-straw-calculator",
     category: "Home",
     type: "Calculator"
+  },
+  {
+    name: "Land Clearing Cost Calculator",
+    description: "Estimate land clearing costs by acre, vegetation type, and terrain. Get pricing for brush removal, tree clearing, stumps, and site preparation.",
+    url: "/land-clearing-cost-calculator",
+    category: "Construction",
+    type: "Calculator"
   }
 ];
 
