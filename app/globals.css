@@ -78,6 +78,16 @@ body {
     max-width: 100% !important;
   }
   
+  /* Fix inner flex layouts */
+  .calc-grid input[type="number"],
+  .calc-grid select {
+    min-width: 0 !important;
+  }
+  
+  .calc-grid > div > div {
+    flex-wrap: wrap !important;
+  }
+  
   .calc-results {
     order: -1 !important;
     width: 100% !important;
