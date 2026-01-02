@@ -243,7 +243,7 @@ export default function StripeFeeCalculator() {
           <span style={{ fontSize: "1.5rem" }}>ℹ️</span>
           <div>
             <p style={{ fontWeight: "600", color: "#5B21B6", margin: "0 0 4px 0" }}>
-              Stripe Standard Rates (2024)
+              Stripe Standard Rates (2025)
             </p>
             <p style={{ fontSize: "0.875rem", color: "#6D28D9", margin: 0 }}>
               Domestic: 2.9% + $0.30 | International: 3.9% + $0.30 | ACH: 0.8% (max $5)
@@ -734,7 +734,7 @@ export default function StripeFeeCalculator() {
         {/* Disclaimer */}
         <div style={{ marginTop: "24px", padding: "16px", backgroundColor: "#F3F4F6", borderRadius: "8px" }}>
           <p style={{ fontSize: "0.75rem", color: "#6B7280", textAlign: "center", margin: 0 }}>
-            💳 <strong>Disclaimer:</strong> This calculator uses Stripe&apos;s published rates as of 2024. Actual fees may vary based on your account type, negotiated rates, or specific payment methods. Always verify current rates on <a href="https://stripe.com/pricing" target="_blank" rel="noopener noreferrer" style={{ color: "#635BFF" }}>Stripe&apos;s pricing page</a>. This tool is for informational purposes only.
+            💳 <strong>Disclaimer:</strong> This calculator uses Stripe&apos;s published rates as of 2025. Actual fees may vary based on your account type, negotiated rates, or specific payment methods. Always verify current rates on <a href="https://stripe.com/pricing" target="_blank" rel="noopener noreferrer" style={{ color: "#635BFF" }}>Stripe&apos;s pricing page</a>. This tool is for informational purposes only.
           </p>
         </div>
       </div>
