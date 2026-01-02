@@ -480,7 +480,7 @@ export default function RiverStoneCalculator() {
 
             {/* Tab 2: Coverage Calculator */}
             {activeTab === "coverage" && (
-              <div className="calc-grid river-stone-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "32px" }}>
+              <div className="calc-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "32px" }}>
                 {/* Inputs */}
                 <div style={{ backgroundColor: "#F9FAFB", padding: "24px", borderRadius: "12px" }}>
                   <h3 style={{ fontWeight: "600", color: "#111827", marginBottom: "20px", fontSize: "1.1rem" }}>
@@ -574,7 +574,7 @@ export default function RiverStoneCalculator() {
                 </div>
 
                 {/* Results */}
-                <div className="calc-results river-stone-results" style={{ backgroundColor: "#ECFDF5", padding: "24px", borderRadius: "12px", border: "2px solid #A7F3D0" }}>
+                <div className="calc-results" style={{ backgroundColor: "#ECFDF5", padding: "24px", borderRadius: "12px", border: "2px solid #A7F3D0" }}>
                   <h3 style={{ fontWeight: "600", color: "#065F46", marginBottom: "20px", fontSize: "1.1rem" }}>
                     ✅ Coverage Result
                   </h3>
