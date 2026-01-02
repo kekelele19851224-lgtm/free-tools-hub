@@ -252,7 +252,7 @@ export default function NvidiaStockCalculator() {
           <h2 style={{ fontSize: "1.25rem", fontWeight: "600", marginBottom: "20px", color: "#76B900" }}>
             💰 If You Invested $1,000 in NVIDIA...
           </h2>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "16px" }}>
+          <div className="nvidia-cards" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "16px" }}>
             {quickStats.map((stat) => (
               <div key={stat.years} style={{
                 backgroundColor: "#1a1a1a",
@@ -361,7 +361,7 @@ export default function NvidiaStockCalculator() {
           <div style={{ padding: "32px" }}>
             {/* Tab 1: Historical Return */}
             {activeTab === "historical" && (
-              <div className="calc-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "32px" }}>
+              <div className="calc-grid nvidia-hero-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "32px" }}>
                 {/* Inputs */}
                 <div style={{ backgroundColor: "#F9FAFB", padding: "24px", borderRadius: "12px" }}>
                   <h3 style={{ fontWeight: "600", color: "#111827", marginBottom: "20px", fontSize: "1.1rem" }}>
@@ -488,7 +488,7 @@ export default function NvidiaStockCalculator() {
 
             {/* Tab 2: Current Holdings */}
             {activeTab === "current" && (
-              <div className="calc-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "32px" }}>
+              <div className="calc-grid nvidia-hero-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "32px" }}>
                 {/* Inputs */}
                 <div style={{ backgroundColor: "#F9FAFB", padding: "24px", borderRadius: "12px" }}>
                   <h3 style={{ fontWeight: "600", color: "#111827", marginBottom: "20px", fontSize: "1.1rem" }}>
@@ -606,7 +606,7 @@ export default function NvidiaStockCalculator() {
 
             {/* Tab 3: Future Projection */}
             {activeTab === "future" && (
-              <div className="calc-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "32px" }}>
+              <div className="calc-grid nvidia-hero-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "32px" }}>
                 {/* Inputs */}
                 <div style={{ backgroundColor: "#F9FAFB", padding: "24px", borderRadius: "12px" }}>
                   <h3 style={{ fontWeight: "600", color: "#111827", marginBottom: "20px", fontSize: "1.1rem" }}>

@@ -6,7 +6,58 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 }
 
-/* Mobile Responsive Calculator Fix */
+@media screen and (max-width: 768px) {
+  .ifta-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .ifta-results {
+    order: -1;
+  }
+  .state-table {
+    overflow-x: auto;
+  }
+  .state-table table {
+    min-width: 500px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .nvidia-hero-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .nvidia-cards {
+    grid-template-columns: 1fr !important;
+  }
+  .nvidia-cards > div {
+    min-width: 100% !important;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .river-stone-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .river-stone-results {
+    order: -1;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .pressure-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .pressure-results {
+    order: -1;
+  }
+  .pressure-content-sidebar {
+    flex-direction: column !important;
+    grid-template-columns: 1fr !important;
+  }
+  .pressure-content-sidebar > div {
+    min-width: 100% !important;
+  }
+}
+
 @media screen and (max-width: 768px) {
   .calc-grid {
     grid-template-columns: 1fr !important;

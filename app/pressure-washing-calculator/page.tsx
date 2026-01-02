@@ -324,7 +324,7 @@ export default function PressureWashingCalculatorPage() {
       {/* Main Content */}
       <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "40px 20px" }}>
         {/* Calculator Section */}
-        <div className="calc-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "32px", marginBottom: "60px" }}>
+        <div className="calc-grid pressure-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "32px", marginBottom: "60px" }}>
           {/* Left: Input */}
           <div
             style={{
@@ -631,7 +631,7 @@ export default function PressureWashingCalculatorPage() {
 
           {/* Right: Results */}
           <div
-            className="calc-results"
+            className="calc-results pressure-results"
             style={{
               backgroundColor: "white",
               borderRadius: "16px",
@@ -832,7 +832,7 @@ export default function PressureWashingCalculatorPage() {
         </div>
 
         {/* Content Section */}
-        <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr", gap: "40px", marginBottom: "60px" }}>
+        <div className="pressure-content-sidebar" style={{ display: "grid", gridTemplateColumns: "2fr 1fr", gap: "40px", marginBottom: "60px" }}>
           {/* Main Content */}
           <div>
             {/* What is Pressure Washing */}

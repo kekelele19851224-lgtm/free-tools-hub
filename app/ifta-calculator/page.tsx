@@ -651,7 +651,7 @@ export default function IFTACalculator() {
 
         {/* Results Section */}
         {results && (
-          <div style={{
+          <div className="ifta-results" style={{
             backgroundColor: "white",
             borderRadius: "16px",
             boxShadow: "0 1px 3px rgba(0,0,0,0.1)",
@@ -694,7 +694,7 @@ export default function IFTACalculator() {
             </div>
 
             {/* State Breakdown Table */}
-            <div style={{ overflowX: "auto" }}>
+            <div style={{ overflowX: "auto" }} className="state-table">
               <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.8rem" }}>
                 <thead>
                   <tr style={{ backgroundColor: "#F3F4F6" }}>
