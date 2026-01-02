@@ -4,8 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import RelatedTools from "@/components/RelatedTools";
 
-// Stripe Fee Rates (2024)
-const feeRates = {
+const feeRates: Record<string, { percent: number; fixed: number; maxFee?: number; label: string; description: string }> = {
   domestic: { percent: 2.9, fixed: 0.30, label: "Domestic Card", description: "US-issued cards" },
   international: { percent: 3.9, fixed: 0.30, label: "International Card", description: "Non-US cards (+1%)" },
   ach: { percent: 0.8, fixed: 0, maxFee: 5.00, label: "ACH / Bank Transfer", description: "0.8% capped at $5" },
