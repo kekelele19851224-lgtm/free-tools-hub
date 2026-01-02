@@ -292,7 +292,7 @@ export default function HomeInspectionCostCalculator() {
           overflow: "hidden"
         }}>
           <div style={{ padding: "32px" }}>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "32px" }}>
+            <div className="calc-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "32px" }}>
               {/* Inputs */}
               <div>
                 {/* Property Details */}
@@ -488,7 +488,7 @@ export default function HomeInspectionCostCalculator() {
               </div>
 
               {/* Results */}
-              <div>
+              <div className="calc-results">
                 {/* Total Estimate */}
                 <div style={{
                   backgroundColor: "#0D9488",
@@ -641,7 +641,7 @@ export default function HomeInspectionCostCalculator() {
         </div>
 
         {/* Content + Sidebar */}
-        <div style={{ display: "flex", gap: "32px", marginBottom: "40px", flexWrap: "wrap" }}>
+        <div className="content-sidebar" style={{ display: "flex", gap: "32px", marginBottom: "40px", flexWrap: "wrap" }}>
           {/* Main Content */}
           <div style={{ flex: "2", minWidth: "400px" }}>
             {/* What's Included */}

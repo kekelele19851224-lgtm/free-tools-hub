@@ -5,3 +5,23 @@ body {
   color: #111827;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 }
+
+/* Mobile Responsive Calculator Fix */
+@media screen and (max-width: 768px) {
+  .calc-grid {
+    grid-template-columns: 1fr !important;
+  }
+  
+  .calc-results {
+    order: -1;
+  }
+  
+  .content-sidebar {
+    flex-direction: column !important;
+  }
+  
+  .content-sidebar > div {
+    min-width: 100% !important;
+    width: 100% !important;
+  }
+}
