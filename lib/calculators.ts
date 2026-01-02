@@ -223,6 +223,13 @@ export const calculators: Calculator[] = [
     url: "/texas-title-insurance-calculator",
     category: "Finance",
     type: "Calculator"
+  },
+  {
+    name: "Stripe Fees Calculator",
+    description: "Calculate Stripe processing fees instantly. See what you'll receive after fees or reverse calculate what to charge customers. Supports domestic, international cards & ACH.",
+    url: "/stripe-fees-calculator",
+    category: "Finance",
+    type: "Calculator"
   }
 ];
 
