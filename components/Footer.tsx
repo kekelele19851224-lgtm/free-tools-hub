@@ -1,37 +1,77 @@
-import Link from "next/link";
-
-export default function Header() {
-  return (
-    <header className="bg-white border-b border-gray-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          {/* Logo */}
-          <Link href="/" className="flex items-center">
-            <span className="text-2xl font-bold text-blue-600">Free</span>
-            <span className="text-2xl font-bold text-gray-800">ToolsHub</span>
-          </Link>
-
-          {/* Navigation */}
-          <nav className="hidden md:flex space-x-8">
-            <Link href="/" className="text-gray-600 hover:text-blue-600 transition-colors">
-              Home
-            </Link>
-            <Link href="#tools" className="text-gray-600 hover:text-blue-600 transition-colors">
-              Tools
-            </Link>
-            <Link href="/about" className="text-gray-600 hover:text-blue-600 transition-colors">
-              About
-            </Link>
-          </nav>
-
-          {/* Mobile menu button */}
-          <button className="md:hidden p-2 rounded-md text-gray-600 hover:text-blue-600">
-            <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-          </button>
-        </div>
-      </div>
-    </header>
-  );
-}
+ "use client";
+ 
+ import Link from "next/link";
+ 
+ export default function Footer() { 
+   return ( 
+     <footer style={{ 
+       backgroundColor: "#111827", 
+       color: "white", 
+       padding: "48px 24px 24px", 
+       marginTop: "64px" 
+     }}> 
+       <div style={{ 
+         maxWidth: "1200px", 
+         margin: "0 auto" 
+       }}> 
+         {/* Top Section */} 
+         <div style={{ 
+           display: "grid", 
+           gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", 
+           gap: "32px", 
+           marginBottom: "32px" 
+         }}> 
+           {/* Brand */} 
+           <div> 
+             <h3 style={{ fontSize: "1.25rem", fontWeight: "bold", marginBottom: "12px" }}> 
+               🛠️ FreeToolsHub 
+             </h3> 
+             <p style={{ color: "#9CA3AF", fontSize: "0.875rem", lineHeight: "1.6" }}> 
+               Free online calculators and tools for financial, home, real estate, and legal calculations. 
+             </p> 
+           </div> 
+ 
+           {/* Quick Links */} 
+           <div> 
+             <h4 style={{ fontSize: "1rem", fontWeight: "600", marginBottom: "12px" }}>Quick Links</h4> 
+             <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}> 
+               <Link href="/" style={{ color: "#9CA3AF", textDecoration: "none", fontSize: "0.875rem" }}>Home</Link> 
+               <Link href="/about" style={{ color: "#9CA3AF", textDecoration: "none", fontSize: "0.875rem" }}>About Us</Link> 
+               <Link href="/contact" style={{ color: "#9CA3AF", textDecoration: "none", fontSize: "0.875rem" }}>Contact</Link> 
+             </div> 
+           </div> 
+ 
+           {/* Legal */} 
+           <div> 
+             <h4 style={{ fontSize: "1rem", fontWeight: "600", marginBottom: "12px" }}>Legal</h4> 
+             <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}> 
+               <Link href="/privacy-policy" style={{ color: "#9CA3AF", textDecoration: "none", fontSize: "0.875rem" }}>Privacy Policy</Link> 
+               <Link href="/terms" style={{ color: "#9CA3AF", textDecoration: "none", fontSize: "0.875rem" }}>Terms of Service</Link> 
+             </div> 
+           </div> 
+ 
+           {/* Contact */} 
+           <div> 
+             <h4 style={{ fontSize: "1rem", fontWeight: "600", marginBottom: "12px" }}>Contact</h4> 
+             <p style={{ color: "#9CA3AF", fontSize: "0.875rem" }}> 
+               <a href="mailto:contact@free-tools-hub.com" style={{ color: "#9CA3AF", textDecoration: "none" }}> 
+                 contact@free-tools-hub.com 
+               </a> 
+             </p> 
+           </div> 
+         </div> 
+ 
+         {/* Bottom Section */} 
+         <div style={{ 
+           borderTop: "1px solid #374151", 
+           paddingTop: "24px", 
+           textAlign: "center" 
+         }}> 
+           <p style={{ color: "#6B7280", fontSize: "0.875rem" }}> 
+             © {new Date().getFullYear()} FreeToolsHub. All rights reserved. 
+           </p> 
+         </div> 
+       </div> 
+     </footer> 
+   ); 
+ } 

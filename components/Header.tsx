@@ -31,8 +31,8 @@
          {/* Desktop Navigation */} 
          <nav style={{ display: "flex", gap: "24px" }} className="desktop-nav"> 
            <Link href="/" style={{ color: "#6B7280", textDecoration: "none" }}>Home</Link> 
-           <Link href="/#categories" style={{ color: "#6B7280", textDecoration: "none" }}>Categories</Link> 
-           <Link href="/#all-tools" style={{ color: "#6B7280", textDecoration: "none" }}>All Tools</Link> 
+           <Link href="/about" style={{ color: "#6B7280", textDecoration: "none" }}>About</Link> 
+           <Link href="/contact" style={{ color: "#6B7280", textDecoration: "none" }}>Contact</Link> 
          </nav> 
  
          {/* Mobile Menu Button */} 
@@ -75,18 +75,18 @@
              Home 
            </Link> 
            <Link 
-             href="/#categories" 
+             href="/about" 
              style={{ color: "#374151", textDecoration: "none", padding: "12px 0", borderBottom: "1px solid #F3F4F6" }} 
              onClick={() => setIsMenuOpen(false)} 
            > 
-             Categories 
+             About 
            </Link> 
            <Link 
-             href="/#all-tools" 
+             href="/contact" 
              style={{ color: "#374151", textDecoration: "none", padding: "12px 0" }} 
              onClick={() => setIsMenuOpen(false)} 
            > 
-             All Tools 
+             Contact 
            </Link> 
          </div> 
        )} 
