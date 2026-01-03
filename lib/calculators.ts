@@ -331,7 +331,7 @@ export const calculators: Calculator[] = [
   },
   {
     name: "Landscaping Cost Calculator",
-    description: "Estimate lawn, mulch, plants, patio and hardscaping costs for your yard project",
+    description: "Estimate lawn, sod, patio, and hardscaping costs. Quick estimates or detailed breakdowns by project.",
     url: "/landscaping-cost-calculator",
     category: "Home",
     type: "Calculator"
