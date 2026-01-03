@@ -307,6 +307,13 @@ export const calculators: Calculator[] = [
     url: "/neck-injury-settlement-calculator",
     category: "Finance",
     type: "Calculator"
+  },
+  {
+    name: "Lens Thickness Calculator",
+    description: "Calculate lens thickness and compare lens index options for your prescription.",
+    url: "/lens-thickness-calculator",
+    category: "Lifestyle",
+    type: "Calculator"
   }
 ];
 
