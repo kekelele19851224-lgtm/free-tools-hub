@@ -314,6 +314,13 @@ export const calculators: Calculator[] = [
     url: "/lens-thickness-calculator",
     category: "Lifestyle",
     type: "Calculator"
+  },
+  {
+    name: "Deck Joist Span Calculator",
+    description: "Calculate deck joist spans by species, grade, joist size, and spacing. IRC 2024 code compliant guidance.",
+    url: "/deck-joist-span-calculator",
+    category: "Home",
+    type: "Calculator"
   }
 ];
 
