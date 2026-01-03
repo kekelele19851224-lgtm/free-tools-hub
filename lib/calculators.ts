@@ -293,6 +293,13 @@ export const calculators: Calculator[] = [
     url: "/salt-pool-calculator",
     category: "Home",
     type: "Calculator"
+  },
+  {
+    name: "Hurricane Impact Windows Cost Calculator",
+    description: "Estimate hurricane impact window costs by size, frame material, and glass type. Get instant pricing for material and installation.",
+    url: "/hurricane-impact-windows-cost-calculator",
+    category: "Home",
+    type: "Calculator"
   }
 ];
 
