@@ -73,10 +73,30 @@ export default function RelatedTools({
     (tool) => tool.category !== currentCategory && tool.url !== currentUrl
   );
 
+  // 基于 URL 生成确定性的偏移量，让不同页面显示不同的相关工具
+  const getOffset = (url: string, arrayLength: number): number => {
+    let hash = 0;
+    for (let i = 0; i < url.length; i++) {
+      hash = ((hash << 5) - hash) + url.charCodeAt(i);
+      hash = hash & hash;
+    }
+    return Math.abs(hash) % Math.max(1, arrayLength);
+  };
+
+  const rotateArray = <T,>(arr: T[], offset: number): T[] => {
+    if (arr.length === 0) return arr;
+    const normalizedOffset = offset % arr.length;
+    return [...arr.slice(normalizedOffset), ...arr.slice(0, normalizedOffset)];
+  };
+
+  const offset = getOffset(currentUrl, sameCategoryTools.length);
+  const rotatedSameCategory = rotateArray(sameCategoryTools, offset);
+  const rotatedOther = rotateArray(otherTools, offset);
+
   // 优先同类别，不够则从其他类别补充
   const relatedTools = [
-    ...sameCategoryTools.slice(0, maxTools),
-    ...otherTools.slice(0, Math.max(0, maxTools - sameCategoryTools.length))
+    ...rotatedSameCategory.slice(0, maxTools),
+    ...rotatedOther.slice(0, Math.max(0, maxTools - rotatedSameCategory.length))
   ].slice(0, maxTools);
 
   if (relatedTools.length === 0) return null;
