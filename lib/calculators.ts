@@ -300,6 +300,13 @@ export const calculators: Calculator[] = [
     url: "/hurricane-impact-windows-cost-calculator",
     category: "Home",
     type: "Calculator"
+  },
+  {
+    name: "Neck Injury Settlement Calculator",
+    description: "Estimate your neck injury settlement based on medical expenses, lost wages, and pain & suffering. Calculate take-home after attorney fees.",
+    url: "/neck-injury-settlement-calculator",
+    category: "Finance",
+    type: "Calculator"
   }
 ];
 
