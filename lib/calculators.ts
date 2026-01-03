@@ -335,6 +335,13 @@ export const calculators: Calculator[] = [
     url: "/landscaping-cost-calculator",
     category: "Home",
     type: "Calculator"
+  },
+  {
+    name: "Scrap Car Value Calculator",
+    description: "Estimate your junk car's scrap value by weight, condition, and location. Calculate metal value plus parts like catalytic converters, engines, and transmissions.",
+    url: "/scrap-car-value-calculator",
+    category: "Auto",
+    type: "Calculator"
   }
 ];
 
