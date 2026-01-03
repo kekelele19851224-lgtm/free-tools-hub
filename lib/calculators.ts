@@ -328,6 +328,13 @@ export const calculators: Calculator[] = [
     url: "/fencing-cost-calculator",
     category: "Home",
     type: "Calculator"
+  },
+  {
+    name: "Landscaping Cost Calculator",
+    description: "Estimate lawn, mulch, plants, patio and hardscaping costs for your yard project",
+    url: "/landscaping-cost-calculator",
+    category: "Home",
+    type: "Calculator"
   }
 ];
 
