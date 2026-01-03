@@ -1,8 +1,8 @@
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Pressure Washing Estimate Calculator - Free Online Tool | FreeToolsHub',
-  description: 'Estimate pressure washing costs by surface and area. Get per‑square‑foot pricing for houses, driveways, decks and more, with material notes to plan a thorough professional cleaning.',
+  title: 'Pressure Washing Cost Calculator - Driveway, House & Deck | FreeToolsHub',
+  description: 'Free pressure washing cost calculator for driveways, houses, decks and more. Get instant estimates per square foot. Calculate pressure washing driveway cost and other surfaces.',
   alternates: {
     canonical: '/pressure-washing-calculator',
   },

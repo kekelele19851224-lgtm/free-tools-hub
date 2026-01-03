@@ -1,8 +1,8 @@
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Rucking Calorie Calculator - Free Online Tool | FreeToolsHub',
-  description: 'Estimate calories burned rucking using body weight, pack weight, pace, and terrain. Compare against regular walking to plan training loads and track energy expenditure accurately.',
+  title: 'Rucking Calorie Calculator | Ruck Calorie Calculator | FreeToolsHub',
+  description: 'Free ruck calorie calculator to estimate calories burned while rucking. Calculate based on body weight, pack weight, distance, pace and terrain. Compare with regular walking.',
   alternates: {
     canonical: '/rucking-calorie-calculator',
   },

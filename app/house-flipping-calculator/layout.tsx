@@ -1,8 +1,8 @@
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'House Flipping Calculator - 70% Rule, ROI & Profit Analysis | FreeToolsHub',
-  description: 'Free house flipping calculator to analyze fix and flip deals. Calculate profit, ROI, verify the 70% rule, and get detailed cost breakdown including rehab, holding, and selling costs.',
+  title: 'House Flipping Calculator | Flip Calculator - ROI & Profit | FreeToolsHub',
+  description: 'Free house flip calculator to analyze fix and flip deals. Calculate ROI, net profit, rehab costs, and verify the 70% rule. Best flip calculator for real estate investors.',
   alternates: {
     canonical: '/house-flipping-calculator',
   },
