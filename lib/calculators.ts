@@ -286,6 +286,13 @@ export const calculators: Calculator[] = [
     url: "/home-inspection-cost-calculator",
     category: "Home",
     type: "Calculator"
+  },
+  {
+    name: "Salt Pool Calculator",
+    description: "Calculate how much salt your pool needs. Get results in pounds, kilograms, and bags with pool volume calculator.",
+    url: "/salt-pool-calculator",
+    category: "Home",
+    type: "Calculator"
   }
 ];
 
