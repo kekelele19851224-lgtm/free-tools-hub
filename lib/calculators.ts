@@ -321,6 +321,13 @@ export const calculators: Calculator[] = [
     url: "/deck-joist-span-calculator",
     category: "Home",
     type: "Calculator"
+  },
+  {
+    name: "Fencing Cost Calculator",
+    description: "Estimate fencing costs by material (wood, vinyl, chain link, aluminum), height, and length. Compare DIY vs professional installation.",
+    url: "/fencing-cost-calculator",
+    category: "Home",
+    type: "Calculator"
   }
 ];
 
