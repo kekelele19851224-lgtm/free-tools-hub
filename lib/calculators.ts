@@ -356,6 +356,13 @@ export const calculators: Calculator[] = [
     url: "/il-spousal-support-calculator",
     category: "Finance",
     type: "Calculator"
+  },
+  {
+    name: "Mayan Calendar Gender Calculator",
+    description: "Predict your baby's gender using the ancient Mayan calendar method. Find out if it's a boy or girl with our free 2025 predictor.",
+    url: "/mayan-calendar-gender-calculator",
+    category: "Lifestyle",
+    type: "Calculator"
   }
 ];
 
