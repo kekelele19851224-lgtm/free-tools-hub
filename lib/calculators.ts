@@ -384,6 +384,13 @@ export const calculators: Calculator[] = [
     url: "/tire-gear-ratio-calculator",
     category: "Auto",
     type: "Calculator"
+  },
+  {
+    name: "Vinyl Wrap Calculator",
+    description: "Calculate how much vinyl wrap you need for your car by vehicle size or specific parts. Includes size chart and cost estimates.",
+    url: "/vinyl-wrap-calculator",
+    category: "Auto",
+    type: "Calculator"
   }
 ];
 
