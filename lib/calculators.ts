@@ -391,6 +391,13 @@ export const calculators: Calculator[] = [
     url: "/vinyl-wrap-calculator",
     category: "Auto",
     type: "Calculator"
+  },
+  {
+    name: "Feng Shui Bedroom Layout Generator",
+    description: "Generate optimal bed placement for your bedroom based on feng shui principles. Find the command position and avoid bad feng shui.",
+    url: "/feng-shui-bedroom-layout-generator",
+    category: "Lifestyle",
+    type: "Generator"
   }
 ];
 
