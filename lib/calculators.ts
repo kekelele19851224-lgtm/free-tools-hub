@@ -363,6 +363,13 @@ export const calculators: Calculator[] = [
     url: "/mayan-calendar-gender-calculator",
     category: "Lifestyle",
     type: "Calculator"
+  },
+  {
+    name: "New Mexico Mortgage Calculator",
+    description: "Calculate your monthly mortgage payment in New Mexico with county property tax rates. See PITI breakdown including principal, interest, taxes, and insurance.",
+    url: "/mortgage-calculator-new-mexico",
+    category: "Finance",
+    type: "Calculator"
   }
 ];
 
