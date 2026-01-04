@@ -321,7 +321,7 @@ export default function MayanCalendarGenderCalculator() {
 
         {/* Mayan Gender Chart 2025 */}
         <div style={{ backgroundColor: "white", borderRadius: "16px", boxShadow: "0 1px 3px rgba(0,0,0,0.1)", border: "1px solid #E5E7EB", padding: "32px", marginBottom: "40px" }}>
-          <h2 style={{ fontSize: "1.5rem", fontWeight: "bold", color: "#111827", marginBottom: "8px" }}>📊 Mayan Gender Prediction Chart 2025</h2>
+          <h2 style={{ fontSize: "1.5rem", fontWeight: "bold", color: "#111827", marginBottom: "8px" }}>📊 Mayan Gender Prediction Chart 2026</h2>
           <p style={{ color: "#6B7280", marginBottom: "20px", fontSize: "0.9rem" }}>Find your age on the left, conception month on top. <span style={{ color: "#EC4899", fontWeight: "600" }}>Pink = Girl</span>, <span style={{ color: "#3B82F6", fontWeight: "600" }}>Blue = Boy</span></p>
           <div style={{ overflowX: "auto" }}>
             <table style={{ width: "100%", borderCollapse: "collapse", minWidth: "700px", fontSize: "0.85rem" }}>
