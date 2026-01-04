@@ -926,6 +926,62 @@ export default function PressureWashingCalculatorPage() {
                 ))}
               </div>
             </section>
+
+            {/* Driveway Pressure Washing Cost */}
+            <section style={{ marginBottom: "40px" }}>
+              <h2 style={{ fontSize: "1.5rem", fontWeight: "bold", color: "#111827", marginBottom: "16px" }}>
+                Driveway Pressure Washing Cost
+              </h2>
+              <p style={{ color: "#4B5563", lineHeight: "1.7", marginBottom: "16px" }}>
+                The average <strong>driveway pressure washing cost</strong> ranges from <strong>$100 to $250</strong> for a standard residential driveway (400-600 square feet). Most contractors charge between <strong>$0.20 and $0.40 per square foot</strong>, with the final price depending on driveway size, material, and condition.
+              </p>
+              
+              <div style={{ overflowX: "auto", marginBottom: "16px" }}>
+                <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.875rem" }}>
+                  <thead>
+                    <tr style={{ backgroundColor: "#F3F4F6" }}>
+                      <th style={{ padding: "12px 16px", textAlign: "left", fontWeight: "600", borderBottom: "2px solid #E5E7EB" }}>
+                        Driveway Size
+                      </th>
+                      <th style={{ padding: "12px 16px", textAlign: "center", fontWeight: "600", borderBottom: "2px solid #E5E7EB" }}>
+                        Square Feet
+                      </th>
+                      <th style={{ padding: "12px 16px", textAlign: "center", fontWeight: "600", borderBottom: "2px solid #E5E7EB" }}>
+                        Estimated Cost
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {[
+                      { size: "Single Car", sqft: "200-300", cost: "$50 - $100" },
+                      { size: "Double Car", sqft: "400-600", cost: "$100 - $200" },
+                      { size: "Triple Car", sqft: "600-800", cost: "$150 - $280" },
+                      { size: "Large/Circular", sqft: "800-1,200", cost: "$200 - $400" },
+                    ].map((row, i) => (
+                      <tr key={i} style={{ backgroundColor: i % 2 === 0 ? "white" : "#F9FAFB" }}>
+                        <td style={{ padding: "12px 16px", borderBottom: "1px solid #E5E7EB", fontWeight: "500" }}>
+                          {row.size}
+                        </td>
+                        <td style={{ padding: "12px 16px", textAlign: "center", borderBottom: "1px solid #E5E7EB" }}>
+                          {row.sqft}
+                        </td>
+                        <td style={{ padding: "12px 16px", textAlign: "center", borderBottom: "1px solid #E5E7EB", color: "#0891B2", fontWeight: "600" }}>
+                          {row.cost}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+
+              <p style={{ color: "#4B5563", lineHeight: "1.7", marginBottom: "16px" }}>
+                <strong>Driveway material</strong> significantly impacts the cost. Concrete driveways are the most affordable to clean, while brick pavers and stamped concrete require more care and may cost 20-30% more. Asphalt driveways need lower pressure settings to avoid damage.
+              </p>
+              
+              <p style={{ color: "#4B5563", lineHeight: "1.7" }}>
+                For heavily stained driveways with oil spots, mold, or years of buildup, expect to pay an additional 25-50% for degreasing treatments and extra cleaning time.
+              </p>
+            </section>
           </div>
 
           {/* Sidebar */}
@@ -962,6 +1018,14 @@ export default function PressureWashingCalculatorPage() {
           </h2>
           <div style={{ display: "grid", gap: "16px" }}>
             {[
+              {
+                q: "How much does it cost to pressure wash a driveway?",
+                a: "Pressure washing a driveway typically costs $100 to $250 for a standard double-car driveway (400-600 sq ft). The price varies based on driveway size, material (concrete, asphalt, pavers), and level of staining. Most contractors charge $0.20 to $0.40 per square foot, with heavily soiled driveways costing more due to additional cleaning time and degreasing treatments.",
+              },
+              {
+                q: "Is pressure washing a driveway worth it?",
+                a: "Yes, pressure washing your driveway is worth it for several reasons: it improves curb appeal and can increase home value by 5-10%, removes slippery mold and algae for safety, prevents permanent staining, and extends the life of your driveway surface. Professional cleaning every 1-2 years is recommended for most driveways.",
+              },
               {
                 q: "How much does it cost to pressure wash a 2,000 sq ft house?",
                 a: "For a typical 2,000 square foot house, expect to pay between $200 and $600 for professional pressure washing. One-story homes are on the lower end, while two-story homes with difficult-to-reach areas can cost more. The price also varies based on siding material and level of dirt buildup.",
