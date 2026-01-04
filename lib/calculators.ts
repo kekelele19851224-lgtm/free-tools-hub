@@ -349,6 +349,13 @@ export const calculators: Calculator[] = [
     url: "/crusher-run-calculator",
     category: "Construction",
     type: "Calculator"
+  },
+  {
+    name: "IL Spousal Support Calculator",
+    description: "Calculate Illinois maintenance (alimony) payments using the 2025 statutory formula with duration chart based on marriage length.",
+    url: "/il-spousal-support-calculator",
+    category: "Finance",
+    type: "Calculator"
   }
 ];
 
