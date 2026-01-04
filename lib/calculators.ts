@@ -342,6 +342,13 @@ export const calculators: Calculator[] = [
     url: "/scrap-car-value-calculator",
     category: "Auto",
     type: "Calculator"
+  },
+  {
+    name: "Crusher Run Calculator",
+    description: "Calculate how much crusher run you need in tons and cubic yards. Get coverage charts and 2025 pricing for driveways and patios.",
+    url: "/crusher-run-calculator",
+    category: "Construction",
+    type: "Calculator"
   }
 ];
 
