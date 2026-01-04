@@ -377,6 +377,13 @@ export const calculators: Calculator[] = [
     url: "/pool-pump-size-calculator",
     category: "Home",
     type: "Calculator"
+  },
+  {
+    name: "Tire Gear Ratio Calculator",
+    description: "Calculate engine RPM, vehicle speed, or gear ratio. Compare tire sizes to see effects on speedometer and effective gear ratio.",
+    url: "/tire-gear-ratio-calculator",
+    category: "Auto",
+    type: "Calculator"
   }
 ];
 
