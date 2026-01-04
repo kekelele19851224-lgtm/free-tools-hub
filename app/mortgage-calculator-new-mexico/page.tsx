@@ -247,7 +247,7 @@ export default function MortgageCalculatorNewMexico() {
           <div style={{ display: "flex", alignItems: "flex-start", gap: "12px" }}>
             <span style={{ fontSize: "1.5rem" }}>📊</span>
             <div>
-              <p style={{ fontWeight: "600", color: "#1E40AF", margin: "0 0 4px 0" }}>New Mexico Averages (2026)</p>
+              <p style={{ fontWeight: "600", color: "#1E40AF", margin: "0 0 4px 0" }}>New Mexico Averages</p>
               <p style={{ color: "#1E40AF", margin: 0, fontSize: "0.95rem" }}>
                 <strong>Median Home:</strong> $375,000 • <strong>Property Tax:</strong> 0.61% (state avg) • <strong>Insurance:</strong> $1,730/year
               </p>
@@ -675,7 +675,7 @@ export default function MortgageCalculatorNewMexico() {
         {/* Disclaimer */}
         <div style={{ padding: "16px", backgroundColor: "#F3F4F6", borderRadius: "8px" }}>
           <p style={{ fontSize: "0.75rem", color: "#6B7280", textAlign: "center", margin: 0 }}>
-            🏠 <strong>Disclaimer:</strong> This calculator provides estimates for informational purposes only. Actual mortgage payments may vary based on lender requirements, credit score, and other factors. Property tax rates are approximate and may change. Consult with a licensed mortgage professional for accurate quotes. Data reflects 2026 New Mexico averages.
+            🏠 <strong>Disclaimer:</strong> This calculator provides estimates for informational purposes only. Actual mortgage payments may vary based on lender requirements, credit score, and other factors. Property tax rates are approximate and may change. Consult with a licensed mortgage professional for accurate quotes. Data reflects latest available New Mexico averages.
           </p>
         </div>
       </div>
