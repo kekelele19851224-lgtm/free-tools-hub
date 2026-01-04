@@ -370,6 +370,13 @@ export const calculators: Calculator[] = [
     url: "/mortgage-calculator-new-mexico",
     category: "Finance",
     type: "Calculator"
+  },
+  {
+    name: "Pool Pump Size Calculator",
+    description: "Calculate the right pool pump horsepower (HP) based on your pool volume, GPM requirements, and turnover rate. Includes sizing chart.",
+    url: "/pool-pump-size-calculator",
+    category: "Home",
+    type: "Calculator"
   }
 ];
 
