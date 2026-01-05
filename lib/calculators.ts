@@ -419,6 +419,13 @@ export const calculators: Calculator[] = [
     url: "/sonnet-generator",
     category: "Lifestyle",
     type: "Generator"
+  },
+  {
+    name: "Supplement Facts Label Generator",
+    description: "Free supplement facts label generator for dietary supplements. Create FDA-style labels with vitamins and minerals. Plus funny nutrition facts labels for gifts.",
+    url: "/supplement-facts-label-generator",
+    category: "Lifestyle",
+    type: "Generator"
   }
 ];
 
