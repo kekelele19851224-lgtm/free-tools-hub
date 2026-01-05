@@ -405,6 +405,13 @@ export const calculators: Calculator[] = [
     url: "/human-design-generator-test",
     category: "Lifestyle",
     type: "Calculator"
+  },
+  {
+    name: "Two Word Ambigram Generator",
+    description: "Free two word ambigram generator for tattoos and logos. Create designs that read differently when rotated 180°. Analyze letter compatibility.",
+    url: "/two-word-ambigram-generator",
+    category: "Lifestyle",
+    type: "Generator"
   }
 ];
 
