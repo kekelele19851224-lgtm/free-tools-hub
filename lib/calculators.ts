@@ -412,6 +412,13 @@ export const calculators: Calculator[] = [
     url: "/two-word-ambigram-generator",
     category: "Lifestyle",
     type: "Generator"
+  },
+  {
+    name: "Sonnet Generator",
+    description: "Free sonnet generator with iambic pentameter. Create Shakespearean, Petrarchan, and Spenserian sonnets. Check your poem structure and rhyme scheme.",
+    url: "/sonnet-generator",
+    category: "Lifestyle",
+    type: "Generator"
   }
 ];
 
