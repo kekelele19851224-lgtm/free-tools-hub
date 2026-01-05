@@ -433,6 +433,13 @@ export const calculators: Calculator[] = [
     url: "/poem-title-generator",
     category: "Lifestyle",
     type: "Generator"
+  },
+  {
+    name: "Ranch Brand Generator",
+    description: "Free ranch brand generator to create custom cattle brands and ranch logos. Design with traditional Western symbols, download PNG or SVG.",
+    url: "/ranch-brand-generator",
+    category: "Lifestyle",
+    type: "Generator"
   }
 ];
 
