@@ -447,6 +447,13 @@ export const calculators: Calculator[] = [
     url: "/music-artist-name-generator",
     category: "Lifestyle",
     type: "Generator"
+  },
+  {
+    name: "Amps to kW Converter",
+    description: "Free amps to kilowatts converter for DC, single-phase AC, and three-phase AC circuits. Calculate power with reference tables and formulas.",
+    url: "/amps-to-kw-converter",
+    category: "Converter",
+    type: "Converter"
   }
 ];
 
