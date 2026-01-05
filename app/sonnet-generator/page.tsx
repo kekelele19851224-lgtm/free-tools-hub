@@ -887,29 +887,11 @@ export default function SonnetGenerator() {
                   </div>
                 </div>
 
-                {/* Type Selection */}
-                <div style={{ marginBottom: "20px" }}>
-                  <label style={{ display: "block", fontSize: "0.9rem", color: "#374151", marginBottom: "10px", fontWeight: "600" }}>
-                    Sonnet Type
-                  </label>
-                  <select
-                    value={selectedType}
-                    onChange={(e) => setSelectedType(e.target.value)}
-                    style={{
-                      width: "100%",
-                      padding: "12px",
-                      borderRadius: "8px",
-                      border: "1px solid #E5E7EB",
-                      fontSize: "1rem",
-                      backgroundColor: "white"
-                    }}
-                  >
-                    {sonnetTypes.map((type) => (
-                      <option key={type.id} value={type.id}>
-                        {type.name} ({type.rhymeScheme})
-                      </option>
-                    ))}
-                  </select>
+                {/* Sonnet Type Info */}
+                <div style={{ marginBottom: "20px", padding: "12px", backgroundColor: "#F5F3FF", borderRadius: "8px" }}>
+                  <p style={{ margin: 0, fontSize: "0.9rem", color: "#6D28D9" }}>
+                    <strong>Format:</strong> Shakespearean Sonnet (ABAB CDCD EFEF GG)
+                  </p>
                 </div>
 
                 {/* Generate Button */}
@@ -954,7 +936,7 @@ export default function SonnetGenerator() {
                     {/* Rhyme Scheme Display */}
                     <div style={{ marginBottom: "16px", padding: "12px", backgroundColor: "#F5F3FF", borderRadius: "8px" }}>
                       <p style={{ margin: 0, fontSize: "0.85rem", color: "#6D28D9" }}>
-                        <strong>Rhyme Scheme:</strong> {getRhymeScheme(selectedType)}
+                        <strong>Rhyme Scheme:</strong> ABAB CDCD EFEF GG
                       </p>
                     </div>
                     
