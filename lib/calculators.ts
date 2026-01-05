@@ -398,6 +398,13 @@ export const calculators: Calculator[] = [
     url: "/feng-shui-bedroom-layout-generator",
     category: "Lifestyle",
     type: "Generator"
+  },
+  {
+    name: "Human Design Generator Test",
+    description: "Take our free Human Design Generator test to discover if you're a Generator type. Get career matches and daily strategy tips.",
+    url: "/human-design-generator-test",
+    category: "Lifestyle",
+    type: "Calculator"
   }
 ];
 
