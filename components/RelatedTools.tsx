@@ -109,6 +109,37 @@ export default function RelatedTools({
       border: "1px solid #E5E7EB",
       padding: "24px"
     }}>
+      {/* Bookmark Reminder */}
+      <div style={{ 
+        backgroundColor: "#FEF3C7", 
+        borderRadius: "10px", 
+        padding: "14px", 
+        marginBottom: "20px", 
+        border: "1px solid #FCD34D", 
+        display: "flex", 
+        alignItems: "flex-start", 
+        gap: "10px" 
+      }}>
+        <span style={{ fontSize: "1.2rem", flexShrink: 0 }}>⭐</span> 
+        <div> 
+          <p style={{ 
+            margin: 0, 
+            fontSize: "0.875rem", 
+            color: "#92400E", 
+            fontWeight: "600" 
+          }}> 
+            Bookmark this page 
+          </p> 
+          <p style={{ 
+            margin: "4px 0 0 0", 
+            fontSize: "0.8rem", 
+            color: "#B45309", 
+            lineHeight: "1.4" 
+          }}> 
+            Press <strong>Ctrl+D</strong> (⌘+D on Mac) for quick access next time. 
+          </p> 
+        </div> 
+      </div>
       <h3 style={{ fontSize: "1.125rem", fontWeight: "bold", color: "#111827", marginBottom: "16px" }}>
         Related Tools
       </h3>
