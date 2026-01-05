@@ -454,6 +454,13 @@ export const calculators: Calculator[] = [
     url: "/amps-to-kw-converter",
     category: "Converter",
     type: "Converter"
+  },
+  {
+    name: "Dumbbell to Barbell Converter",
+    description: "Free dumbbell to barbell converter calculator. Estimate your barbell bench press weight from dumbbell weights with conversion charts and strength standards.",
+    url: "/dumbbell-to-barbell-converter",
+    category: "Fitness",
+    type: "Converter"
   }
 ];
 
