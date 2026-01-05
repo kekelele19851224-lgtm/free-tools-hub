@@ -440,6 +440,13 @@ export const calculators: Calculator[] = [
     url: "/ranch-brand-generator",
     category: "Lifestyle",
     type: "Generator"
+  },
+  {
+    name: "Music Artist Name Generator",
+    description: "Free music artist name generator for solo musicians, rappers, DJs, and bands. Generate unique stage names by genre, style, or from your real name.",
+    url: "/music-artist-name-generator",
+    category: "Lifestyle",
+    type: "Generator"
   }
 ];
 
