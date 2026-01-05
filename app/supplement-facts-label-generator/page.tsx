@@ -254,6 +254,7 @@ export default function SupplementFactsLabelGenerator() {
   const [funnyPersonName, setFunnyPersonName] = useState("");
   const [funnyIngredients, setFunnyIngredients] = useState<FunnyIngredient[]>(funnyTemplates[0].ingredients);
   const [funnyColor, setFunnyColor] = useState("#10B981");
+  const [funnyLabelSize, setFunnyLabelSize] = useState("standard");
 
   // Add preset ingredient
   const addPresetIngredient = () => {
@@ -361,46 +362,69 @@ export default function SupplementFactsLabelGenerator() {
   };
 
   // Download label as PNG
-  const downloadLabel = async (ref: React.RefObject<HTMLDivElement | null>, filename: string) => {
+  const downloadLabel = async (ref: React.RefObject<HTMLDivElement | null>, filename: string, size: string) => {
     if (!ref.current) return;
     
     try {
       const html2canvas = (await import('html2canvas')).default;
-      const selectedSize = labelSizeOptions.find(s => s.id === labelSize) || labelSizeOptions[1];
+      const selectedSize = labelSizeOptions.find(s => s.id === size) || labelSizeOptions[1];
       
-      const canvas = await html2canvas(ref.current, {
+      // Clone the element to avoid modifying the original
+      const clone = ref.current.cloneNode(true) as HTMLElement;
+      clone.style.position = 'absolute';
+      clone.style.left = '-9999px';
+      clone.style.top = '0';
+      clone.style.width = 'auto';
+      clone.style.height = 'auto';
+      document.body.appendChild(clone);
+      
+      const canvas = await html2canvas(clone, {
         backgroundColor: '#ffffff',
-        scale: 3,
-        width: ref.current.offsetWidth,
-        height: ref.current.offsetHeight
+        scale: 2,
+        useCORS: true,
+        allowTaint: true,
+        logging: false,
+        windowWidth: clone.scrollWidth,
+        windowHeight: clone.scrollHeight
       });
       
-      // Create a new canvas with the selected size
+      document.body.removeChild(clone);
+      
+      // Create output canvas with selected size
       const outputCanvas = document.createElement('canvas');
       outputCanvas.width = selectedSize.width;
       outputCanvas.height = selectedSize.height;
       const ctx = outputCanvas.getContext('2d');
       
       if (ctx) {
+        // Fill white background
         ctx.fillStyle = '#ffffff';
         ctx.fillRect(0, 0, outputCanvas.width, outputCanvas.height);
         
-        // Calculate scaling to fit
-        const scale = Math.min(
-          (outputCanvas.width - 40) / canvas.width,
-          (outputCanvas.height - 40) / canvas.height
-        );
-        const x = (outputCanvas.width - canvas.width * scale) / 2;
-        const y = (outputCanvas.height - canvas.height * scale) / 2;
+        // Calculate scaling to fit while maintaining aspect ratio
+        const padding = 40;
+        const availableWidth = outputCanvas.width - padding * 2;
+        const availableHeight = outputCanvas.height - padding * 2;
         
-        ctx.drawImage(canvas, x, y, canvas.width * scale, canvas.height * scale);
+        const scale = Math.min(
+          availableWidth / canvas.width,
+          availableHeight / canvas.height
+        );
+        
+        const scaledWidth = canvas.width * scale;
+        const scaledHeight = canvas.height * scale;
+        const x = (outputCanvas.width - scaledWidth) / 2;
+        const y = (outputCanvas.height - scaledHeight) / 2;
+        
+        ctx.drawImage(canvas, x, y, scaledWidth, scaledHeight);
       }
       
       const link = document.createElement('a');
-      link.download = `${filename}-${selectedSize.id}.png`;
-      link.href = outputCanvas.toDataURL('image/png');
+      link.download = `${filename}-${selectedSize.width}x${selectedSize.height}.png`;
+      link.href = outputCanvas.toDataURL('image/png', 1.0);
       link.click();
     } catch (error) {
+      console.error('Download error:', error);
       alert('Download failed. Please try using browser screenshot instead.');
     }
   };
@@ -824,7 +848,7 @@ export default function SupplementFactsLabelGenerator() {
                   </select>
                   
                   <button
-                    onClick={() => downloadLabel(labelRef, 'supplement-facts-label')}
+                    onClick={() => downloadLabel(labelRef, 'supplement-facts-label', labelSize)}
                     disabled={ingredients.length === 0}
                     style={{
                       width: "100%",
@@ -1119,28 +1143,49 @@ export default function SupplementFactsLabelGenerator() {
                   </div>
                 </div>
 
-                {/* Download Button */}
-                <button
-                  onClick={() => downloadLabel(funnyLabelRef, `funny-label-${getFunnyTitle().toLowerCase().replace(/\s+/g, '-')}`)}
-                  style={{
-                    width: "100%",
-                    marginTop: "20px",
-                    padding: "14px",
-                    borderRadius: "8px",
-                    border: "none",
-                    backgroundColor: funnyColor,
-                    color: "white",
-                    fontWeight: "600",
-                    fontSize: "1rem",
-                    cursor: "pointer",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    gap: "8px"
-                  }}
-                >
-                  📥 Download Label (PNG)
-                </button>
+                {/* Size Selection & Download */}
+                <div style={{ marginTop: "20px" }}>
+                  <label style={{ display: "block", fontSize: "0.85rem", color: "#374151", marginBottom: "8px", fontWeight: "600" }}>
+                    Download Size (300 DPI for print)
+                  </label>
+                  <select
+                    value={funnyLabelSize}
+                    onChange={(e) => setFunnyLabelSize(e.target.value)}
+                    style={{
+                      width: "100%",
+                      padding: "10px",
+                      borderRadius: "8px",
+                      border: "1px solid #E5E7EB",
+                      fontSize: "0.9rem",
+                      marginBottom: "12px"
+                    }}
+                  >
+                    {labelSizeOptions.map(size => (
+                      <option key={size.id} value={size.id}>{size.name}</option>
+                    ))}
+                  </select>
+                  
+                  <button
+                    onClick={() => downloadLabel(funnyLabelRef, `funny-label-${getFunnyTitle().toLowerCase().replace(/\s+/g, '-')}`, funnyLabelSize)}
+                    style={{
+                      width: "100%",
+                      padding: "14px",
+                      borderRadius: "8px",
+                      border: "none",
+                      backgroundColor: funnyColor,
+                      color: "white",
+                      fontWeight: "600",
+                      fontSize: "1rem",
+                      cursor: "pointer",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      gap: "8px"
+                    }}
+                  >
+                    📥 Download Label (PNG)
+                  </button>
+                </div>
 
                 {/* Usage Ideas */}
                 <div style={{ marginTop: "20px", padding: "12px", backgroundColor: "#F5F3FF", borderRadius: "8px" }}>
