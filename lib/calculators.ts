@@ -461,6 +461,13 @@ export const calculators: Calculator[] = [
     url: "/dumbbell-to-barbell-converter",
     category: "Fitness",
     type: "Converter"
+  },
+  {
+    name: "3 Phase to Single Phase Calculator",
+    description: "Free 3 phase to single phase calculator. Calculate power conversion, find equivalent current, and size your phase converter with formulas and guide.",
+    url: "/3-phase-to-single-phase-calculator",
+    category: "Converter",
+    type: "Converter"
   }
 ];
 
