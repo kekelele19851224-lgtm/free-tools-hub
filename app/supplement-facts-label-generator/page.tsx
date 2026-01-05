@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Link from "next/link";
 import RelatedTools from "@/components/RelatedTools";
 
@@ -46,6 +46,13 @@ const servingSizeOptions = [
   "1 Teaspoon",
   "1 Tablespoon",
   "1 Packet"
+];
+
+// Label size options for download
+const labelSizeOptions = [
+  { id: "small", name: "Small (2\" × 3\")", width: 600, height: 900 },
+  { id: "standard", name: "Standard (2.5\" × 3.75\")", width: 750, height: 1125 },
+  { id: "large", name: "Large (3\" × 4.5\")", width: 900, height: 1350 }
 ];
 
 // Funny label templates
@@ -238,6 +245,9 @@ export default function SupplementFactsLabelGenerator() {
   const [customName, setCustomName] = useState("");
   const [customAmount, setCustomAmount] = useState("");
   const [customUnit, setCustomUnit] = useState("mg");
+  const [labelSize, setLabelSize] = useState("standard");
+  const labelRef = useRef<HTMLDivElement>(null);
+  const funnyLabelRef = useRef<HTMLDivElement>(null);
   
   // Funny generator state (Tab 2)
   const [funnyTemplate, setFunnyTemplate] = useState("best-mom");
@@ -348,6 +358,51 @@ export default function SupplementFactsLabelGenerator() {
     }
     const template = funnyTemplates.find(t => t.id === funnyTemplate);
     return template?.title || "Amazing Person";
+  };
+
+  // Download label as PNG
+  const downloadLabel = async (ref: React.RefObject<HTMLDivElement | null>, filename: string) => {
+    if (!ref.current) return;
+    
+    try {
+      const html2canvas = (await import('html2canvas')).default;
+      const selectedSize = labelSizeOptions.find(s => s.id === labelSize) || labelSizeOptions[1];
+      
+      const canvas = await html2canvas(ref.current, {
+        backgroundColor: '#ffffff',
+        scale: 3,
+        width: ref.current.offsetWidth,
+        height: ref.current.offsetHeight
+      });
+      
+      // Create a new canvas with the selected size
+      const outputCanvas = document.createElement('canvas');
+      outputCanvas.width = selectedSize.width;
+      outputCanvas.height = selectedSize.height;
+      const ctx = outputCanvas.getContext('2d');
+      
+      if (ctx) {
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(0, 0, outputCanvas.width, outputCanvas.height);
+        
+        // Calculate scaling to fit
+        const scale = Math.min(
+          (outputCanvas.width - 40) / canvas.width,
+          (outputCanvas.height - 40) / canvas.height
+        );
+        const x = (outputCanvas.width - canvas.width * scale) / 2;
+        const y = (outputCanvas.height - canvas.height * scale) / 2;
+        
+        ctx.drawImage(canvas, x, y, canvas.width * scale, canvas.height * scale);
+      }
+      
+      const link = document.createElement('a');
+      link.download = `${filename}-${selectedSize.id}.png`;
+      link.href = outputCanvas.toDataURL('image/png');
+      link.click();
+    } catch (error) {
+      alert('Download failed. Please try using browser screenshot instead.');
+    }
   };
 
   return (
@@ -661,7 +716,9 @@ export default function SupplementFactsLabelGenerator() {
               
               <div style={{ padding: "24px" }}>
                 {/* FDA Style Label */}
-                <div style={{
+                <div
+                  ref={labelRef}
+                  style={{
                   border: "2px solid #000",
                   padding: "8px",
                   fontFamily: "Arial, Helvetica, sans-serif",
@@ -744,11 +801,55 @@ export default function SupplementFactsLabelGenerator() {
                   )}
                 </div>
 
-                {/* Download Tip */}
-                <div style={{ marginTop: "20px", padding: "12px", backgroundColor: "#FEF3C7", borderRadius: "8px" }}>
-                  <p style={{ margin: 0, fontSize: "0.85rem", color: "#92400E" }}>
-                    💡 <strong>Tip:</strong> Use your browser&apos;s screenshot tool or right-click to save the label image.
-                  </p>
+                {/* Size Selection & Download */}
+                <div style={{ marginTop: "20px" }}>
+                  <label style={{ display: "block", fontSize: "0.85rem", color: "#374151", marginBottom: "8px", fontWeight: "600" }}>
+                    Download Size (300 DPI for print)
+                  </label>
+                  <select
+                    value={labelSize}
+                    onChange={(e) => setLabelSize(e.target.value)}
+                    style={{
+                      width: "100%",
+                      padding: "10px",
+                      borderRadius: "8px",
+                      border: "1px solid #E5E7EB",
+                      fontSize: "0.9rem",
+                      marginBottom: "12px"
+                    }}
+                  >
+                    {labelSizeOptions.map(size => (
+                      <option key={size.id} value={size.id}>{size.name}</option>
+                    ))}
+                  </select>
+                  
+                  <button
+                    onClick={() => downloadLabel(labelRef, 'supplement-facts-label')}
+                    disabled={ingredients.length === 0}
+                    style={{
+                      width: "100%",
+                      padding: "14px",
+                      borderRadius: "8px",
+                      border: "none",
+                      backgroundColor: ingredients.length === 0 ? "#D1D5DB" : "#059669",
+                      color: "white",
+                      fontWeight: "600",
+                      fontSize: "1rem",
+                      cursor: ingredients.length === 0 ? "not-allowed" : "pointer",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      gap: "8px"
+                    }}
+                  >
+                    📥 Download Label (PNG)
+                  </button>
+                  
+                  {ingredients.length === 0 && (
+                    <p style={{ margin: "8px 0 0 0", fontSize: "0.8rem", color: "#9CA3AF", textAlign: "center" }}>
+                      Add ingredients to enable download
+                    </p>
+                  )}
                 </div>
               </div>
             </div>
@@ -940,7 +1041,9 @@ export default function SupplementFactsLabelGenerator() {
               
               <div style={{ padding: "24px" }}>
                 {/* Funny Style Label */}
-                <div style={{
+                <div
+                  ref={funnyLabelRef}
+                  style={{
                   border: `4px solid ${funnyColor}`,
                   borderRadius: "12px",
                   padding: "16px",
@@ -1015,6 +1118,29 @@ export default function SupplementFactsLabelGenerator() {
                     ✨ Made with 100% Love ✨
                   </div>
                 </div>
+
+                {/* Download Button */}
+                <button
+                  onClick={() => downloadLabel(funnyLabelRef, `funny-label-${getFunnyTitle().toLowerCase().replace(/\s+/g, '-')}`)}
+                  style={{
+                    width: "100%",
+                    marginTop: "20px",
+                    padding: "14px",
+                    borderRadius: "8px",
+                    border: "none",
+                    backgroundColor: funnyColor,
+                    color: "white",
+                    fontWeight: "600",
+                    fontSize: "1rem",
+                    cursor: "pointer",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: "8px"
+                  }}
+                >
+                  📥 Download Label (PNG)
+                </button>
 
                 {/* Usage Ideas */}
                 <div style={{ marginTop: "20px", padding: "12px", backgroundColor: "#F5F3FF", borderRadius: "8px" }}>
