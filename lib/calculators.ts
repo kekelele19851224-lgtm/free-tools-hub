@@ -426,6 +426,13 @@ export const calculators: Calculator[] = [
     url: "/supplement-facts-label-generator",
     category: "Lifestyle",
     type: "Generator"
+  },
+  {
+    name: "Poem Title Generator",
+    description: "Free poem title generator with creative ideas for any theme. Generate titles for love poems, nature poems, deep poetry, funny poems, and more.",
+    url: "/poem-title-generator",
+    category: "Lifestyle",
+    type: "Generator"
   }
 ];
 
