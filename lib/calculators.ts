@@ -601,6 +601,13 @@ export const calculators: Calculator[] = [
     url: "/monthly-savings-calculator",
     category: "Finance",
     type: "Calculator"
+  },
+  {
+    name: "Chapter 13 Bankruptcy Calculator",
+    description: "Estimate your Chapter 13 bankruptcy monthly payment based on income, debts, and state median income. See 3 vs 5-year plan options.",
+    url: "/chapter-13-bankruptcy-calculator",
+    category: "Finance",
+    type: "Calculator"
   }
 ];
 
