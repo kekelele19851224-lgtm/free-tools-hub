@@ -489,6 +489,13 @@ export const calculators: Calculator[] = [
     url: "/pain-and-suffering-calculator",
     category: "Finance",
     type: "Calculator"
+  },
+  {
+    name: "Sade Sati Calculator",
+    description: "Check if you are in Shani Sade Sati by Moon sign. Find your current phase, timeline, and remedies for Saturn's 7.5-year transit.",
+    url: "/sade-sati-calculator",
+    category: "Lifestyle",
+    type: "Calculator"
   }
 ];
 
