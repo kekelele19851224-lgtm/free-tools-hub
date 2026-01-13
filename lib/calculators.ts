@@ -302,6 +302,13 @@ export const calculators: Calculator[] = [
     type: "Calculator"
   },
   {
+    name: "Tree Removal Cost Calculator",
+    description: "Estimate tree removal costs by height, diameter, tree type, and location. Calculate multiple trees with bundle discounts. Free instant estimates.",
+    url: "/tree-removal-cost-calculator",
+    category: "Home",
+    type: "Calculator"
+  },
+  {
     name: "Neck Injury Settlement Calculator",
     description: "Estimate your neck injury settlement based on medical expenses, lost wages, and pain & suffering. Calculate take-home after attorney fees.",
     url: "/neck-injury-settlement-calculator",
