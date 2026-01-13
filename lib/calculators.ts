@@ -615,6 +615,13 @@ export const calculators: Calculator[] = [
     url: "/mortgage-calculator-montana",
     category: "Finance",
     type: "Calculator"
+  },
+  {
+    name: "Express Entry CRS Calculator",
+    description: "Calculate your Comprehensive Ranking System (CRS) score for Canada Express Entry. Updated for 2025 with 67-point FSWP eligibility check.",
+    url: "/express-entry-calculator",
+    category: "Immigration",
+    type: "Calculator"
   }
 ];
 
