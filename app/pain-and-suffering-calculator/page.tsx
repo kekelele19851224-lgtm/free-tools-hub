@@ -616,7 +616,7 @@ export default function PainAndSufferingCalculator() {
                   </div>
                 ) : (
                   <p style={{ margin: 0, fontSize: "2rem", fontWeight: "bold", color: "#5B21B6", textAlign: "center" }}>
-                    ${(perDiemResult + (parseFloat(medicalExpenses) || 0)).toLocaleString()}
+                    ${Math.round((perDiemResult + economicDamages) * (1 - faultReduction)).toLocaleString()}
                   </p>
                 )}
               </div>
