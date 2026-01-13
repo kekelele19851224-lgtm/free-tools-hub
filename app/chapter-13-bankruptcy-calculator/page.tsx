@@ -156,15 +156,55 @@ function getPlanLength(annualIncome: number, householdSize: number, state: strin
   return annualIncome <= median ? 36 : 60;
 }
 
-// Calculate Chapter 13 payment
-function calculatePayment(
+// Quick estimate calculation (simplified)
+function calculateQuickEstimate(
   monthlyIncome: number,
+  householdSize: number,
+  state: string,
+  totalDebt: number
+): {
+  monthlyPayment: number;
+  planMonths: number;
+  paymentRange: { low: number; high: number };
+} {
+  const annualIncome = monthlyIncome * 12;
+  const planMonths = getPlanLength(annualIncome, householdSize, state);
+  
+  // Simplified calculation: estimate based on debt and income
+  const basePayment = totalDebt / planMonths;
+  const attorneyMonthly = ATTORNEY_FEE_ESTIMATE / planMonths;
+  const filingMonthly = FILING_FEE / planMonths;
+  
+  // Rough estimate of disposable income contribution
+  const disposableEstimate = monthlyIncome * 0.15;
+  
+  // Minimum payment includes fees + some debt repayment
+  const subtotal = Math.min(basePayment, disposableEstimate) + attorneyMonthly + filingMonthly;
+  const trusteeFee = subtotal * TRUSTEE_FEE_PERCENT;
+  const monthlyPayment = subtotal + trusteeFee;
+  
+  // Provide a range (±20%)
+  return {
+    monthlyPayment,
+    planMonths,
+    paymentRange: {
+      low: Math.round(monthlyPayment * 0.8),
+      high: Math.round(monthlyPayment * 1.3)
+    }
+  };
+}
+
+// Detailed calculation
+function calculateDetailed(
+  monthlyIncome: number,
+  spouseIncome: number,
   householdSize: number,
   state: string,
   mortgageArrears: number,
   carArrears: number,
   priorityDebt: number,
-  unsecuredDebt: number
+  unsecuredDebt: number,
+  monthlyExpenses: number
 ): {
   monthlyPayment: number;
   planMonths: number;
@@ -179,8 +219,10 @@ function calculatePayment(
   };
   totalPlanCost: number;
   unsecuredPercent: number;
+  disposableIncome: number;
 } {
-  const annualIncome = monthlyIncome * 12;
+  const totalIncome = monthlyIncome + spouseIncome;
+  const annualIncome = totalIncome * 12;
   const planMonths = getPlanLength(annualIncome, householdSize, state);
   
   // Calculate monthly payments for each category
@@ -190,15 +232,19 @@ function calculatePayment(
   const attorneyMonthly = ATTORNEY_FEE_ESTIMATE / planMonths;
   const filingMonthly = FILING_FEE / planMonths;
   
+  // Calculate disposable income
+  const sizeIndex = Math.min(householdSize - 1, 3);
+  const median = stateMedianIncome[state]?.[sizeIndex] || 70000;
+  
+  // Use actual expenses if provided, otherwise estimate
+  const allowedExpenses = monthlyExpenses > 0 ? monthlyExpenses : totalIncome * 0.85;
+  const disposableIncome = Math.max(0, totalIncome - allowedExpenses);
+  
   // Base payment (must pay)
   const basePayment = mortgageMonthly + carMonthly + priorityMonthly + attorneyMonthly + filingMonthly;
   
-  // Estimate disposable income (simplified - actual uses IRS standards)
-  // Roughly 10-20% of gross income depending on situation
-  const estimatedDisposable = monthlyIncome * 0.15;
-  
-  // Unsecured payment is disposable income minus secured/priority payments
-  const availableForUnsecured = Math.max(0, estimatedDisposable - basePayment);
+  // Unsecured payment is remaining disposable income
+  const availableForUnsecured = Math.max(0, disposableIncome - basePayment);
   const unsecuredMonthly = Math.min(availableForUnsecured, unsecuredDebt / planMonths);
   
   // Calculate what percent of unsecured debt will be paid
@@ -227,7 +273,8 @@ function calculatePayment(
       filingFee: filingMonthly
     },
     totalPlanCost: monthlyPayment * planMonths,
-    unsecuredPercent: Math.min(100, unsecuredPercent)
+    unsecuredPercent: Math.min(100, unsecuredPercent),
+    disposableIncome
   };
 }
 
@@ -235,47 +282,69 @@ export default function Chapter13BankruptcyCalculator() {
   // Tab state
   const [activeTab, setActiveTab] = useState<"quick" | "detailed" | "info">("quick");
   
-  // Quick estimate inputs
-  const [monthlyIncome, setMonthlyIncome] = useState<string>("5000");
-  const [householdSize, setHouseholdSize] = useState<string>("2");
-  const [state, setState] = useState<string>("california");
+  // Quick estimate inputs (simple)
+  const [quickIncome, setQuickIncome] = useState<string>("5000");
+  const [quickState, setQuickState] = useState<string>("california");
+  const [quickHousehold, setQuickHousehold] = useState<string>("2");
+  const [quickTotalDebt, setQuickTotalDebt] = useState<string>("50000");
+  
+  // Detailed inputs (comprehensive)
+  const [detailedIncome, setDetailedIncome] = useState<string>("5000");
+  const [spouseIncome, setSpouseIncome] = useState<string>("0");
+  const [detailedState, setDetailedState] = useState<string>("california");
+  const [detailedHousehold, setDetailedHousehold] = useState<string>("2");
   const [mortgageArrears, setMortgageArrears] = useState<string>("0");
   const [carArrears, setCarArrears] = useState<string>("0");
   const [priorityDebt, setPriorityDebt] = useState<string>("5000");
   const [unsecuredDebt, setUnsecuredDebt] = useState<string>("30000");
+  const [monthlyExpenses, setMonthlyExpenses] = useState<string>("0");
 
-  // Calculate results
-  const result = calculatePayment(
-    parseFloat(monthlyIncome) || 0,
-    parseInt(householdSize) || 1,
-    state,
+  // Calculate quick result
+  const quickResult = calculateQuickEstimate(
+    parseFloat(quickIncome) || 0,
+    parseInt(quickHousehold) || 1,
+    quickState,
+    parseFloat(quickTotalDebt) || 0
+  );
+  
+  // Calculate detailed result
+  const detailedResult = calculateDetailed(
+    parseFloat(detailedIncome) || 0,
+    parseFloat(spouseIncome) || 0,
+    parseInt(detailedHousehold) || 1,
+    detailedState,
     parseFloat(mortgageArrears) || 0,
     parseFloat(carArrears) || 0,
     parseFloat(priorityDebt) || 0,
-    parseFloat(unsecuredDebt) || 0
+    parseFloat(unsecuredDebt) || 0,
+    parseFloat(monthlyExpenses) || 0
   );
 
   // Get median income for display
-  const sizeIndex = Math.min((parseInt(householdSize) || 1) - 1, 3);
-  const medianIncome = stateMedianIncome[state]?.[sizeIndex] || 70000;
-  const annualIncome = (parseFloat(monthlyIncome) || 0) * 12;
-  const isAboveMedian = annualIncome > medianIncome;
+  const quickSizeIndex = Math.min((parseInt(quickHousehold) || 1) - 1, 3);
+  const quickMedian = stateMedianIncome[quickState]?.[quickSizeIndex] || 70000;
+  const quickAnnual = (parseFloat(quickIncome) || 0) * 12;
+  const quickAboveMedian = quickAnnual > quickMedian;
+  
+  const detailedSizeIndex = Math.min((parseInt(detailedHousehold) || 1) - 1, 3);
+  const detailedMedian = stateMedianIncome[detailedState]?.[detailedSizeIndex] || 70000;
+  const detailedAnnual = ((parseFloat(detailedIncome) || 0) + (parseFloat(spouseIncome) || 0)) * 12;
+  const detailedAboveMedian = detailedAnnual > detailedMedian;
 
   const tabs = [
     { id: "quick", label: "Quick Estimate", icon: "⚡" },
-    { id: "detailed", label: "Payment Breakdown", icon: "📋" },
+    { id: "detailed", label: "Detailed Calculator", icon: "📋" },
     { id: "info", label: "How It Works", icon: "📖" }
   ];
 
-  // Calculate donut chart segments
-  const total = result.monthlyPayment;
+  // Calculate donut chart segments for detailed view
   const segments = [
-    { label: "Mortgage Arrears", value: result.breakdown.mortgageArrears, color: "#3B82F6" },
-    { label: "Car Arrears", value: result.breakdown.carArrears, color: "#8B5CF6" },
-    { label: "Priority Debt", value: result.breakdown.priority, color: "#EF4444" },
-    { label: "Unsecured Debt", value: result.breakdown.unsecured, color: "#10B981" },
-    { label: "Attorney Fee", value: result.breakdown.attorneyFee, color: "#F59E0B" },
-    { label: "Trustee Fee", value: result.breakdown.trusteeFee, color: "#6366F1" },
+    { label: "Mortgage Arrears", value: detailedResult.breakdown.mortgageArrears, color: "#3B82F6" },
+    { label: "Car Arrears", value: detailedResult.breakdown.carArrears, color: "#8B5CF6" },
+    { label: "Priority Debt", value: detailedResult.breakdown.priority, color: "#EF4444" },
+    { label: "Unsecured Debt", value: detailedResult.breakdown.unsecured, color: "#10B981" },
+    { label: "Attorney Fee", value: detailedResult.breakdown.attorneyFee, color: "#F59E0B" },
+    { label: "Trustee Fee", value: detailedResult.breakdown.trusteeFee, color: "#6366F1" },
   ].filter(s => s.value > 0);
 
   return (
@@ -301,8 +370,8 @@ export default function Chapter13BankruptcyCalculator() {
             </h1>
           </div>
           <p style={{ fontSize: "1.125rem", color: "#4B5563", maxWidth: "800px" }}>
-            Estimate your Chapter 13 repayment plan monthly payment. See how your debts would be 
-            structured over a 3 or 5-year repayment period.
+            Estimate your Chapter 13 repayment plan monthly payment. Start with a quick estimate or 
+            use the detailed calculator for a more accurate projection.
           </p>
         </div>
 
@@ -383,49 +452,172 @@ export default function Chapter13BankruptcyCalculator() {
           }}>
             <div style={{ backgroundColor: "#1E40AF", padding: "16px 24px" }}>
               <h2 style={{ color: "white", margin: 0, fontSize: "1.25rem", fontWeight: "600" }}>
-                {activeTab === "quick" && "⚡ Your Financial Information"}
-                {activeTab === "detailed" && "📋 Detailed Inputs"}
+                {activeTab === "quick" && "⚡ Quick Estimate (4 Questions)"}
+                {activeTab === "detailed" && "📋 Detailed Calculator"}
                 {activeTab === "info" && "📖 Understanding Chapter 13"}
               </h2>
             </div>
             
             <div style={{ padding: "24px" }}>
-              {(activeTab === "quick" || activeTab === "detailed") && (
+              {/* QUICK ESTIMATE TAB */}
+              {activeTab === "quick" && (
                 <>
-                  {/* Income & Location */}
-                  <div style={{ marginBottom: "20px" }}>
-                    <h3 style={{ fontSize: "0.9rem", fontWeight: "600", color: "#1E40AF", marginBottom: "12px", borderBottom: "2px solid #DBEAFE", paddingBottom: "8px" }}>
-                      📍 Income & Location
-                    </h3>
-                    
-                    <div style={{ marginBottom: "12px" }}>
-                      <label style={{ display: "block", fontSize: "0.85rem", color: "#374151", marginBottom: "6px", fontWeight: "500" }}>
-                        Monthly Gross Income ($)
-                      </label>
+                  <p style={{ fontSize: "0.85rem", color: "#6B7280", marginBottom: "20px", padding: "12px", backgroundColor: "#F3F4F6", borderRadius: "8px" }}>
+                    ⚡ Answer just 4 questions for a rough estimate. Use the <strong>Detailed Calculator</strong> tab for a more accurate projection.
+                  </p>
+                  
+                  <div style={{ marginBottom: "16px" }}>
+                    <label style={{ display: "block", fontSize: "0.9rem", color: "#374151", marginBottom: "6px", fontWeight: "600" }}>
+                      1. What is your monthly gross income?
+                    </label>
+                    <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                      <span style={{ color: "#6B7280" }}>$</span>
                       <input
                         type="number"
-                        value={monthlyIncome}
-                        onChange={(e) => setMonthlyIncome(e.target.value)}
+                        value={quickIncome}
+                        onChange={(e) => setQuickIncome(e.target.value)}
                         placeholder="5000"
                         style={{
-                          width: "100%",
-                          padding: "10px",
+                          flex: 1,
+                          padding: "12px",
                           borderRadius: "8px",
                           border: "1px solid #E5E7EB",
-                          fontSize: "1rem",
-                          boxSizing: "border-box"
+                          fontSize: "1rem"
                         }}
                       />
+                      <span style={{ color: "#6B7280" }}>/month</span>
+                    </div>
+                  </div>
+                  
+                  <div style={{ marginBottom: "16px" }}>
+                    <label style={{ display: "block", fontSize: "0.9rem", color: "#374151", marginBottom: "6px", fontWeight: "600" }}>
+                      2. What state do you live in?
+                    </label>
+                    <select
+                      value={quickState}
+                      onChange={(e) => setQuickState(e.target.value)}
+                      style={{
+                        width: "100%",
+                        padding: "12px",
+                        borderRadius: "8px",
+                        border: "1px solid #E5E7EB",
+                        fontSize: "1rem",
+                        backgroundColor: "white"
+                      }}
+                    >
+                      {Object.entries(stateNames).map(([key, name]) => (
+                        <option key={key} value={key}>{name}</option>
+                      ))}
+                    </select>
+                  </div>
+                  
+                  <div style={{ marginBottom: "16px" }}>
+                    <label style={{ display: "block", fontSize: "0.9rem", color: "#374151", marginBottom: "6px", fontWeight: "600" }}>
+                      3. How many people in your household?
+                    </label>
+                    <select
+                      value={quickHousehold}
+                      onChange={(e) => setQuickHousehold(e.target.value)}
+                      style={{
+                        width: "100%",
+                        padding: "12px",
+                        borderRadius: "8px",
+                        border: "1px solid #E5E7EB",
+                        fontSize: "1rem",
+                        backgroundColor: "white"
+                      }}
+                    >
+                      {[1, 2, 3, 4, 5, 6].map(size => (
+                        <option key={size} value={size}>{size} {size === 1 ? 'person' : 'people'}</option>
+                      ))}
+                    </select>
+                  </div>
+                  
+                  <div style={{ marginBottom: "16px" }}>
+                    <label style={{ display: "block", fontSize: "0.9rem", color: "#374151", marginBottom: "6px", fontWeight: "600" }}>
+                      4. What is your total debt? (approximate)
+                    </label>
+                    <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                      <span style={{ color: "#6B7280" }}>$</span>
+                      <input
+                        type="number"
+                        value={quickTotalDebt}
+                        onChange={(e) => setQuickTotalDebt(e.target.value)}
+                        placeholder="50000"
+                        style={{
+                          flex: 1,
+                          padding: "12px",
+                          borderRadius: "8px",
+                          border: "1px solid #E5E7EB",
+                          fontSize: "1rem"
+                        }}
+                      />
+                    </div>
+                    <p style={{ fontSize: "0.75rem", color: "#6B7280", marginTop: "4px" }}>
+                      Include credit cards, medical bills, taxes owed, mortgage arrears, car loan arrears
+                    </p>
+                  </div>
+                </>
+              )}
+
+              {/* DETAILED CALCULATOR TAB */}
+              {activeTab === "detailed" && (
+                <>
+                  {/* Income Section */}
+                  <div style={{ marginBottom: "20px" }}>
+                    <h3 style={{ fontSize: "0.9rem", fontWeight: "600", color: "#1E40AF", marginBottom: "12px", borderBottom: "2px solid #DBEAFE", paddingBottom: "8px" }}>
+                      💰 Income Information
+                    </h3>
+                    
+                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px", marginBottom: "12px" }}>
+                      <div>
+                        <label style={{ display: "block", fontSize: "0.8rem", color: "#374151", marginBottom: "4px", fontWeight: "500" }}>
+                          Your Monthly Income ($)
+                        </label>
+                        <input
+                          type="number"
+                          value={detailedIncome}
+                          onChange={(e) => setDetailedIncome(e.target.value)}
+                          placeholder="5000"
+                          style={{
+                            width: "100%",
+                            padding: "10px",
+                            borderRadius: "8px",
+                            border: "1px solid #E5E7EB",
+                            fontSize: "0.95rem",
+                            boxSizing: "border-box"
+                          }}
+                        />
+                      </div>
+                      <div>
+                        <label style={{ display: "block", fontSize: "0.8rem", color: "#374151", marginBottom: "4px", fontWeight: "500" }}>
+                          Spouse Income ($)
+                        </label>
+                        <input
+                          type="number"
+                          value={spouseIncome}
+                          onChange={(e) => setSpouseIncome(e.target.value)}
+                          placeholder="0"
+                          style={{
+                            width: "100%",
+                            padding: "10px",
+                            borderRadius: "8px",
+                            border: "1px solid #E5E7EB",
+                            fontSize: "0.95rem",
+                            boxSizing: "border-box"
+                          }}
+                        />
+                      </div>
                     </div>
                     
                     <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px" }}>
                       <div>
-                        <label style={{ display: "block", fontSize: "0.85rem", color: "#374151", marginBottom: "6px", fontWeight: "500" }}>
+                        <label style={{ display: "block", fontSize: "0.8rem", color: "#374151", marginBottom: "4px", fontWeight: "500" }}>
                           State
                         </label>
                         <select
-                          value={state}
-                          onChange={(e) => setState(e.target.value)}
+                          value={detailedState}
+                          onChange={(e) => setDetailedState(e.target.value)}
                           style={{
                             width: "100%",
                             padding: "10px",
@@ -441,12 +633,12 @@ export default function Chapter13BankruptcyCalculator() {
                         </select>
                       </div>
                       <div>
-                        <label style={{ display: "block", fontSize: "0.85rem", color: "#374151", marginBottom: "6px", fontWeight: "500" }}>
+                        <label style={{ display: "block", fontSize: "0.8rem", color: "#374151", marginBottom: "4px", fontWeight: "500" }}>
                           Household Size
                         </label>
                         <select
-                          value={householdSize}
-                          onChange={(e) => setHouseholdSize(e.target.value)}
+                          value={detailedHousehold}
+                          onChange={(e) => setDetailedHousehold(e.target.value)}
                           style={{
                             width: "100%",
                             padding: "10px",
@@ -457,7 +649,7 @@ export default function Chapter13BankruptcyCalculator() {
                           }}
                         >
                           {[1, 2, 3, 4, 5, 6].map(size => (
-                            <option key={size} value={size}>{size} {size === 1 ? 'person' : 'people'}</option>
+                            <option key={size} value={size}>{size}</option>
                           ))}
                         </select>
                       </div>
@@ -469,13 +661,13 @@ export default function Chapter13BankruptcyCalculator() {
                     <h3 style={{ fontSize: "0.9rem", fontWeight: "600", color: "#1E40AF", marginBottom: "12px", borderBottom: "2px solid #DBEAFE", paddingBottom: "8px" }}>
                       🏠 Secured Debt Arrears
                     </h3>
-                    <p style={{ fontSize: "0.75rem", color: "#6B7280", marginBottom: "12px" }}>
-                      Amount you&apos;re behind (not total owed). Enter $0 if current on payments.
+                    <p style={{ fontSize: "0.7rem", color: "#6B7280", marginBottom: "8px" }}>
+                      Enter amount you&apos;re <strong>behind</strong> (not total owed). Enter $0 if current on payments.
                     </p>
                     
                     <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px" }}>
                       <div>
-                        <label style={{ display: "block", fontSize: "0.85rem", color: "#374151", marginBottom: "6px", fontWeight: "500" }}>
+                        <label style={{ display: "block", fontSize: "0.8rem", color: "#374151", marginBottom: "4px", fontWeight: "500" }}>
                           Mortgage Arrears ($)
                         </label>
                         <input
@@ -488,13 +680,13 @@ export default function Chapter13BankruptcyCalculator() {
                             padding: "10px",
                             borderRadius: "8px",
                             border: "1px solid #E5E7EB",
-                            fontSize: "1rem",
+                            fontSize: "0.95rem",
                             boxSizing: "border-box"
                           }}
                         />
                       </div>
                       <div>
-                        <label style={{ display: "block", fontSize: "0.85rem", color: "#374151", marginBottom: "6px", fontWeight: "500" }}>
+                        <label style={{ display: "block", fontSize: "0.8rem", color: "#374151", marginBottom: "4px", fontWeight: "500" }}>
                           Car Loan Arrears ($)
                         </label>
                         <input
@@ -507,7 +699,7 @@ export default function Chapter13BankruptcyCalculator() {
                             padding: "10px",
                             borderRadius: "8px",
                             border: "1px solid #E5E7EB",
-                            fontSize: "1rem",
+                            fontSize: "0.95rem",
                             boxSizing: "border-box"
                           }}
                         />
@@ -515,15 +707,15 @@ export default function Chapter13BankruptcyCalculator() {
                     </div>
                   </div>
 
-                  {/* Priority & Unsecured Debts */}
-                  <div style={{ marginBottom: "16px" }}>
+                  {/* Other Debts */}
+                  <div style={{ marginBottom: "20px" }}>
                     <h3 style={{ fontSize: "0.9rem", fontWeight: "600", color: "#1E40AF", marginBottom: "12px", borderBottom: "2px solid #DBEAFE", paddingBottom: "8px" }}>
                       💳 Other Debts
                     </h3>
                     
                     <div style={{ marginBottom: "12px" }}>
-                      <label style={{ display: "block", fontSize: "0.85rem", color: "#374151", marginBottom: "6px", fontWeight: "500" }}>
-                        Priority Debt ($) <span style={{ color: "#DC2626", fontSize: "0.75rem" }}>- Must be paid in full</span>
+                      <label style={{ display: "block", fontSize: "0.8rem", color: "#374151", marginBottom: "4px", fontWeight: "500" }}>
+                        Priority Debt ($) <span style={{ color: "#DC2626", fontSize: "0.7rem" }}>Must be paid 100%</span>
                       </label>
                       <input
                         type="number"
@@ -535,18 +727,18 @@ export default function Chapter13BankruptcyCalculator() {
                           padding: "10px",
                           borderRadius: "8px",
                           border: "1px solid #E5E7EB",
-                          fontSize: "1rem",
+                          fontSize: "0.95rem",
                           boxSizing: "border-box"
                         }}
                       />
-                      <p style={{ fontSize: "0.7rem", color: "#6B7280", marginTop: "4px" }}>
-                        Includes: recent taxes, child support arrears, alimony owed
+                      <p style={{ fontSize: "0.65rem", color: "#6B7280", marginTop: "2px" }}>
+                        Taxes owed, child support arrears, alimony
                       </p>
                     </div>
                     
                     <div>
-                      <label style={{ display: "block", fontSize: "0.85rem", color: "#374151", marginBottom: "6px", fontWeight: "500" }}>
-                        Unsecured Debt ($) <span style={{ color: "#059669", fontSize: "0.75rem" }}>- May be reduced</span>
+                      <label style={{ display: "block", fontSize: "0.8rem", color: "#374151", marginBottom: "4px", fontWeight: "500" }}>
+                        Unsecured Debt ($) <span style={{ color: "#059669", fontSize: "0.7rem" }}>May be reduced</span>
                       </label>
                       <input
                         type="number"
@@ -558,21 +750,50 @@ export default function Chapter13BankruptcyCalculator() {
                           padding: "10px",
                           borderRadius: "8px",
                           border: "1px solid #E5E7EB",
-                          fontSize: "1rem",
+                          fontSize: "0.95rem",
                           boxSizing: "border-box"
                         }}
                       />
-                      <p style={{ fontSize: "0.7rem", color: "#6B7280", marginTop: "4px" }}>
-                        Includes: credit cards, medical bills, personal loans, payday loans
+                      <p style={{ fontSize: "0.65rem", color: "#6B7280", marginTop: "2px" }}>
+                        Credit cards, medical bills, personal loans
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Monthly Expenses (optional) */}
+                  <div>
+                    <h3 style={{ fontSize: "0.9rem", fontWeight: "600", color: "#1E40AF", marginBottom: "12px", borderBottom: "2px solid #DBEAFE", paddingBottom: "8px" }}>
+                      📝 Monthly Expenses (Optional)
+                    </h3>
+                    <div>
+                      <label style={{ display: "block", fontSize: "0.8rem", color: "#374151", marginBottom: "4px", fontWeight: "500" }}>
+                        Total Monthly Expenses ($)
+                      </label>
+                      <input
+                        type="number"
+                        value={monthlyExpenses}
+                        onChange={(e) => setMonthlyExpenses(e.target.value)}
+                        placeholder="Leave blank for estimate"
+                        style={{
+                          width: "100%",
+                          padding: "10px",
+                          borderRadius: "8px",
+                          border: "1px solid #E5E7EB",
+                          fontSize: "0.95rem",
+                          boxSizing: "border-box"
+                        }}
+                      />
+                      <p style={{ fontSize: "0.65rem", color: "#6B7280", marginTop: "2px" }}>
+                        Rent/mortgage payment, utilities, food, insurance, car payment, etc.
                       </p>
                     </div>
                   </div>
                 </>
               )}
 
+              {/* INFO TAB */}
               {activeTab === "info" && (
                 <>
-                  {/* Chapter 13 Overview */}
                   <div style={{ marginBottom: "20px" }}>
                     <h3 style={{ fontSize: "1rem", fontWeight: "600", color: "#1E40AF", marginBottom: "12px" }}>What is Chapter 13?</h3>
                     <p style={{ fontSize: "0.85rem", color: "#4B5563", lineHeight: "1.7" }}>
@@ -582,35 +803,33 @@ export default function Chapter13BankruptcyCalculator() {
                     </p>
                   </div>
 
-                  {/* Debt Types */}
                   <div style={{ marginBottom: "20px" }}>
-                    <h3 style={{ fontSize: "1rem", fontWeight: "600", color: "#1E40AF", marginBottom: "12px" }}>Types of Debt in Chapter 13</h3>
+                    <h3 style={{ fontSize: "1rem", fontWeight: "600", color: "#1E40AF", marginBottom: "12px" }}>Types of Debt</h3>
                     
                     <div style={{ backgroundColor: "#FEE2E2", borderRadius: "8px", padding: "12px", marginBottom: "8px" }}>
-                      <p style={{ fontWeight: "600", color: "#991B1B", margin: "0 0 4px 0", fontSize: "0.85rem" }}>🔴 Priority Debts (100% payment)</p>
-                      <p style={{ color: "#B91C1C", margin: 0, fontSize: "0.8rem" }}>Recent taxes, child support, alimony - must be paid in full</p>
+                      <p style={{ fontWeight: "600", color: "#991B1B", margin: "0 0 4px 0", fontSize: "0.85rem" }}>🔴 Priority Debts (100%)</p>
+                      <p style={{ color: "#B91C1C", margin: 0, fontSize: "0.8rem" }}>Taxes, child support, alimony - must pay in full</p>
                     </div>
                     
                     <div style={{ backgroundColor: "#DBEAFE", borderRadius: "8px", padding: "12px", marginBottom: "8px" }}>
-                      <p style={{ fontWeight: "600", color: "#1E40AF", margin: "0 0 4px 0", fontSize: "0.85rem" }}>🔵 Secured Debts (arrears paid)</p>
-                      <p style={{ color: "#1D4ED8", margin: 0, fontSize: "0.8rem" }}>Mortgage & car arrears paid to keep property</p>
+                      <p style={{ fontWeight: "600", color: "#1E40AF", margin: "0 0 4px 0", fontSize: "0.85rem" }}>🔵 Secured Debts (arrears)</p>
+                      <p style={{ color: "#1D4ED8", margin: 0, fontSize: "0.8rem" }}>Mortgage & car arrears to keep property</p>
                     </div>
                     
                     <div style={{ backgroundColor: "#ECFDF5", borderRadius: "8px", padding: "12px" }}>
                       <p style={{ fontWeight: "600", color: "#065F46", margin: "0 0 4px 0", fontSize: "0.85rem" }}>🟢 Unsecured Debts (0-100%)</p>
-                      <p style={{ color: "#047857", margin: 0, fontSize: "0.8rem" }}>Credit cards, medical bills - paid based on disposable income</p>
+                      <p style={{ color: "#047857", margin: 0, fontSize: "0.8rem" }}>Credit cards, medical bills - based on income</p>
                     </div>
                   </div>
 
-                  {/* Plan Length */}
                   <div>
                     <h3 style={{ fontSize: "1rem", fontWeight: "600", color: "#1E40AF", marginBottom: "12px" }}>3-Year vs 5-Year Plan</h3>
                     <div style={{ fontSize: "0.85rem", color: "#4B5563", lineHeight: "1.7" }}>
                       <p style={{ margin: "0 0 8px 0" }}>
-                        <strong>3-Year Plan:</strong> If your income is <em>below</em> your state&apos;s median income
+                        <strong>3-Year Plan:</strong> Income <em>below</em> state median
                       </p>
                       <p style={{ margin: 0 }}>
-                        <strong>5-Year Plan:</strong> If your income is <em>above</em> your state&apos;s median income
+                        <strong>5-Year Plan:</strong> Income <em>above</em> state median
                       </p>
                     </div>
                   </div>
@@ -629,14 +848,74 @@ export default function Chapter13BankruptcyCalculator() {
           }}>
             <div style={{ backgroundColor: "#059669", padding: "16px 24px" }}>
               <h2 style={{ color: "white", margin: 0, fontSize: "1.25rem", fontWeight: "600" }}>
-                {activeTab === "info" ? "📊 Chapter 13 vs Chapter 7" : "💵 Estimated Monthly Payment"}
+                {activeTab === "quick" && "💵 Quick Estimate"}
+                {activeTab === "detailed" && "💵 Detailed Estimate"}
+                {activeTab === "info" && "📊 Chapter 13 vs Chapter 7"}
               </h2>
             </div>
             
             <div style={{ padding: "24px" }}>
-              {(activeTab === "quick" || activeTab === "detailed") && (
+              {/* QUICK RESULTS */}
+              {activeTab === "quick" && (
                 <>
-                  {/* Main Result */}
+                  <div style={{
+                    backgroundColor: "#FEF3C7",
+                    borderRadius: "12px",
+                    padding: "20px",
+                    marginBottom: "16px",
+                    border: "2px solid #F59E0B",
+                    textAlign: "center"
+                  }}>
+                    <p style={{ margin: "0 0 4px 0", fontSize: "0.8rem", color: "#92400E" }}>
+                      Estimated Payment Range
+                    </p>
+                    <p style={{ margin: 0, fontSize: "2rem", fontWeight: "bold", color: "#B45309" }}>
+                      {formatCurrency(quickResult.paymentRange.low)} - {formatCurrency(quickResult.paymentRange.high)}
+                    </p>
+                    <p style={{ margin: "8px 0 0 0", fontSize: "0.85rem", color: "#D97706" }}>
+                      per month for {quickResult.planMonths / 12} years
+                    </p>
+                  </div>
+
+                  <div style={{
+                    backgroundColor: quickAboveMedian ? "#FEF3C7" : "#DBEAFE",
+                    borderRadius: "10px",
+                    padding: "12px",
+                    marginBottom: "16px",
+                    border: quickAboveMedian ? "1px solid #FCD34D" : "1px solid #93C5FD"
+                  }}>
+                    <p style={{ margin: 0, fontSize: "0.85rem", color: quickAboveMedian ? "#92400E" : "#1E40AF" }}>
+                      📊 Your income ({formatCurrency(quickAnnual)}/yr) is <strong>{quickAboveMedian ? "above" : "below"}</strong> {stateNames[quickState]} median ({formatCurrency(quickMedian)}) 
+                      → <strong>{quickResult.planMonths / 12}-year plan</strong>
+                    </p>
+                  </div>
+
+                  <div style={{ backgroundColor: "#F3F4F6", borderRadius: "10px", padding: "16px", marginBottom: "16px" }}>
+                    <h4 style={{ margin: "0 0 12px 0", color: "#374151", fontSize: "0.9rem" }}>📋 What This Estimate Includes</h4>
+                    <ul style={{ margin: 0, paddingLeft: "20px", fontSize: "0.85rem", color: "#4B5563", lineHeight: "1.8" }}>
+                      <li>Debt repayment over {quickResult.planMonths} months</li>
+                      <li>Attorney fees (~$3,500)</li>
+                      <li>Filing fee ($313)</li>
+                      <li>Trustee fee (~10%)</li>
+                    </ul>
+                  </div>
+
+                  <div style={{
+                    backgroundColor: "#EEF2FF",
+                    borderRadius: "10px",
+                    padding: "12px",
+                    border: "1px solid #C7D2FE"
+                  }}>
+                    <p style={{ margin: 0, fontSize: "0.85rem", color: "#4338CA" }}>
+                      👉 For a more accurate estimate, use the <strong>Detailed Calculator</strong> tab to enter your specific debt types.
+                    </p>
+                  </div>
+                </>
+              )}
+
+              {/* DETAILED RESULTS */}
+              {activeTab === "detailed" && (
+                <>
                   <div style={{
                     backgroundColor: "#ECFDF5",
                     borderRadius: "12px",
@@ -649,24 +928,23 @@ export default function Chapter13BankruptcyCalculator() {
                       Estimated Monthly Payment
                     </p>
                     <p style={{ margin: 0, fontSize: "2.5rem", fontWeight: "bold", color: "#059669" }}>
-                      {formatCurrency(result.monthlyPayment)}
+                      {formatCurrency(detailedResult.monthlyPayment)}
                     </p>
                     <p style={{ margin: "8px 0 0 0", fontSize: "0.9rem", color: "#047857" }}>
-                      over {result.planMonths} months ({result.planMonths / 12} years)
+                      over {detailedResult.planMonths} months ({detailedResult.planMonths / 12} years)
                     </p>
                   </div>
 
-                  {/* Plan Length Info */}
                   <div style={{
-                    backgroundColor: isAboveMedian ? "#FEF3C7" : "#DBEAFE",
+                    backgroundColor: detailedAboveMedian ? "#FEF3C7" : "#DBEAFE",
                     borderRadius: "10px",
                     padding: "12px",
                     marginBottom: "16px",
-                    border: isAboveMedian ? "1px solid #FCD34D" : "1px solid #93C5FD"
+                    border: detailedAboveMedian ? "1px solid #FCD34D" : "1px solid #93C5FD"
                   }}>
-                    <p style={{ margin: 0, fontSize: "0.85rem", color: isAboveMedian ? "#92400E" : "#1E40AF" }}>
-                      📊 Your income ({formatCurrency(annualIncome)}/year) is <strong>{isAboveMedian ? "above" : "below"}</strong> the 
-                      {" "}{stateNames[state]} median ({formatCurrency(medianIncome)}) → <strong>{result.planMonths / 12}-year plan</strong>
+                    <p style={{ margin: 0, fontSize: "0.85rem", color: detailedAboveMedian ? "#92400E" : "#1E40AF" }}>
+                      📊 Income ({formatCurrency(detailedAnnual)}/yr) is <strong>{detailedAboveMedian ? "above" : "below"}</strong> {stateNames[detailedState]} median ({formatCurrency(detailedMedian)}) 
+                      → <strong>{detailedResult.planMonths / 12}-year plan</strong>
                     </p>
                   </div>
 
@@ -685,7 +963,7 @@ export default function Chapter13BankruptcyCalculator() {
                       ))}
                       <div style={{ borderTop: "1px solid #D1D5DB", paddingTop: "8px", marginTop: "8px", display: "flex", justifyContent: "space-between" }}>
                         <span style={{ fontWeight: "600", color: "#374151" }}>Total Monthly</span>
-                        <span style={{ fontWeight: "bold", color: "#059669" }}>{formatCurrency(result.monthlyPayment)}</span>
+                        <span style={{ fontWeight: "bold", color: "#059669" }}>{formatCurrency(detailedResult.monthlyPayment)}</span>
                       </div>
                     </div>
                   </div>
@@ -695,18 +973,17 @@ export default function Chapter13BankruptcyCalculator() {
                     <div style={{ backgroundColor: "#EEF2FF", borderRadius: "10px", padding: "12px", textAlign: "center" }}>
                       <p style={{ margin: 0, fontSize: "0.75rem", color: "#3730A3" }}>Total Plan Cost</p>
                       <p style={{ margin: "4px 0 0 0", fontSize: "1.1rem", fontWeight: "bold", color: "#4F46E5" }}>
-                        {formatCurrency(result.totalPlanCost)}
+                        {formatCurrency(detailedResult.totalPlanCost)}
                       </p>
                     </div>
                     <div style={{ backgroundColor: "#ECFDF5", borderRadius: "10px", padding: "12px", textAlign: "center" }}>
                       <p style={{ margin: 0, fontSize: "0.75rem", color: "#065F46" }}>Unsecured Debt Paid</p>
                       <p style={{ margin: "4px 0 0 0", fontSize: "1.1rem", fontWeight: "bold", color: "#059669" }}>
-                        {result.unsecuredPercent.toFixed(0)}%
+                        {detailedResult.unsecuredPercent.toFixed(0)}%
                       </p>
                     </div>
                   </div>
 
-                  {/* Important Note */}
                   <div style={{
                     backgroundColor: "#FEF3C7",
                     borderRadius: "10px",
@@ -714,30 +991,29 @@ export default function Chapter13BankruptcyCalculator() {
                     border: "1px solid #FCD34D"
                   }}>
                     <p style={{ margin: 0, fontSize: "0.8rem", color: "#92400E" }}>
-                      ⚠️ This is a <strong>rough estimate</strong>. Actual payments depend on the means test, 
-                      your specific expenses, and court/trustee requirements. Consult a bankruptcy attorney.
+                      ⚠️ <strong>Rough estimate only.</strong> Actual payment depends on means test, IRS expense standards, and court requirements. Consult a bankruptcy attorney.
                     </p>
                   </div>
                 </>
               )}
 
+              {/* INFO RESULTS */}
               {activeTab === "info" && (
                 <>
-                  {/* Comparison Table */}
                   <div style={{ marginBottom: "20px" }}>
                     <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.85rem" }}>
                       <thead>
                         <tr style={{ backgroundColor: "#EEF2FF" }}>
                           <th style={{ padding: "10px", border: "1px solid #E5E7EB", textAlign: "left" }}>Feature</th>
-                          <th style={{ padding: "10px", border: "1px solid #E5E7EB", textAlign: "center" }}>Chapter 7</th>
-                          <th style={{ padding: "10px", border: "1px solid #E5E7EB", textAlign: "center" }}>Chapter 13</th>
+                          <th style={{ padding: "10px", border: "1px solid #E5E7EB", textAlign: "center" }}>Ch. 7</th>
+                          <th style={{ padding: "10px", border: "1px solid #E5E7EB", textAlign: "center" }}>Ch. 13</th>
                         </tr>
                       </thead>
                       <tbody>
                         <tr>
                           <td style={{ padding: "10px", border: "1px solid #E5E7EB" }}>Duration</td>
-                          <td style={{ padding: "10px", border: "1px solid #E5E7EB", textAlign: "center" }}>3-6 months</td>
-                          <td style={{ padding: "10px", border: "1px solid #E5E7EB", textAlign: "center" }}>3-5 years</td>
+                          <td style={{ padding: "10px", border: "1px solid #E5E7EB", textAlign: "center" }}>3-6 mo</td>
+                          <td style={{ padding: "10px", border: "1px solid #E5E7EB", textAlign: "center" }}>3-5 yr</td>
                         </tr>
                         <tr style={{ backgroundColor: "#F9FAFB" }}>
                           <td style={{ padding: "10px", border: "1px solid #E5E7EB" }}>Keep Property</td>
@@ -751,33 +1027,30 @@ export default function Chapter13BankruptcyCalculator() {
                         </tr>
                         <tr style={{ backgroundColor: "#F9FAFB" }}>
                           <td style={{ padding: "10px", border: "1px solid #E5E7EB" }}>Income Limit</td>
-                          <td style={{ padding: "10px", border: "1px solid #E5E7EB", textAlign: "center" }}>Yes (means test)</td>
+                          <td style={{ padding: "10px", border: "1px solid #E5E7EB", textAlign: "center" }}>Yes</td>
                           <td style={{ padding: "10px", border: "1px solid #E5E7EB", textAlign: "center" }}>No</td>
                         </tr>
                         <tr>
                           <td style={{ padding: "10px", border: "1px solid #E5E7EB" }}>Monthly Payment</td>
                           <td style={{ padding: "10px", border: "1px solid #E5E7EB", textAlign: "center" }}>$0</td>
-                          <td style={{ padding: "10px", border: "1px solid #E5E7EB", textAlign: "center" }}>$500-$2,000+</td>
+                          <td style={{ padding: "10px", border: "1px solid #E5E7EB", textAlign: "center" }}>$500+</td>
                         </tr>
                       </tbody>
                     </table>
                   </div>
 
-                  {/* Who Should File */}
                   <div style={{ backgroundColor: "#ECFDF5", borderRadius: "10px", padding: "16px", marginBottom: "16px" }}>
-                    <h4 style={{ margin: "0 0 12px 0", color: "#065F46", fontSize: "0.9rem" }}>✅ Chapter 13 May Be Right If You:</h4>
+                    <h4 style={{ margin: "0 0 12px 0", color: "#065F46", fontSize: "0.9rem" }}>✅ Chapter 13 Is Good If You:</h4>
                     <ul style={{ margin: 0, paddingLeft: "20px", color: "#047857", fontSize: "0.85rem", lineHeight: "1.8" }}>
-                      <li>Want to keep your home and catch up on mortgage</li>
-                      <li>Have regular income to make monthly payments</li>
-                      <li>Don&apos;t qualify for Chapter 7 (income too high)</li>
-                      <li>Have assets you want to protect</li>
-                      <li>Need to repay priority debts over time</li>
+                      <li>Want to keep your home</li>
+                      <li>Have regular income</li>
+                      <li>Don&apos;t qualify for Chapter 7</li>
+                      <li>Need to catch up on payments</li>
                     </ul>
                   </div>
 
-                  {/* Filing Costs */}
                   <div style={{ backgroundColor: "#F3F4F6", borderRadius: "10px", padding: "16px" }}>
-                    <h4 style={{ margin: "0 0 12px 0", color: "#374151", fontSize: "0.9rem" }}>💰 Typical Chapter 13 Costs</h4>
+                    <h4 style={{ margin: "0 0 12px 0", color: "#374151", fontSize: "0.9rem" }}>💰 Typical Costs</h4>
                     <div style={{ fontSize: "0.85rem", color: "#4B5563" }}>
                       <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "6px" }}>
                         <span>Filing Fee:</span>
@@ -789,7 +1062,7 @@ export default function Chapter13BankruptcyCalculator() {
                       </div>
                       <div style={{ display: "flex", justifyContent: "space-between" }}>
                         <span>Trustee Fee:</span>
-                        <span style={{ fontWeight: "500" }}>~10% of payments</span>
+                        <span style={{ fontWeight: "500" }}>~10%</span>
                       </div>
                     </div>
                   </div>
@@ -813,7 +1086,6 @@ export default function Chapter13BankruptcyCalculator() {
           </div>
           <div style={{ padding: "24px" }}>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "20px" }}>
-              {/* Priority */}
               <div style={{ backgroundColor: "#FEE2E2", borderRadius: "12px", padding: "20px" }}>
                 <h3 style={{ color: "#991B1B", margin: "0 0 12px 0", fontSize: "1rem" }}>🔴 Priority Debts</h3>
                 <p style={{ color: "#B91C1C", margin: "0 0 12px 0", fontSize: "0.85rem", fontWeight: "600" }}>Must be paid 100%</p>
@@ -825,7 +1097,6 @@ export default function Chapter13BankruptcyCalculator() {
                 </ul>
               </div>
 
-              {/* Secured */}
               <div style={{ backgroundColor: "#DBEAFE", borderRadius: "12px", padding: "20px" }}>
                 <h3 style={{ color: "#1E40AF", margin: "0 0 12px 0", fontSize: "1rem" }}>🔵 Secured Debts</h3>
                 <p style={{ color: "#1D4ED8", margin: "0 0 12px 0", fontSize: "0.85rem", fontWeight: "600" }}>Arrears paid to keep property</p>
@@ -837,7 +1108,6 @@ export default function Chapter13BankruptcyCalculator() {
                 </ul>
               </div>
 
-              {/* Unsecured */}
               <div style={{ backgroundColor: "#ECFDF5", borderRadius: "12px", padding: "20px" }}>
                 <h3 style={{ color: "#065F46", margin: "0 0 12px 0", fontSize: "1rem" }}>🟢 Unsecured Debts</h3>
                 <p style={{ color: "#047857", margin: "0 0 12px 0", fontSize: "0.85rem", fontWeight: "600" }}>0-100% based on disposable income</p>
@@ -854,7 +1124,6 @@ export default function Chapter13BankruptcyCalculator() {
 
         {/* Content + Sidebar */}
         <div className="content-sidebar" style={{ display: "flex", gap: "32px", marginBottom: "40px", flexWrap: "wrap" }}>
-          {/* Main Content */}
           <div style={{ flex: "2", minWidth: "300px" }}>
             <div style={{ backgroundColor: "white", borderRadius: "16px", boxShadow: "0 1px 3px rgba(0,0,0,0.1)", border: "1px solid #E5E7EB", padding: "32px" }}>
               <h2 style={{ fontSize: "1.5rem", fontWeight: "bold", color: "#111827", marginBottom: "20px" }}>⚖️ How Chapter 13 Payment Is Calculated</h2>
@@ -866,39 +1135,25 @@ export default function Chapter13BankruptcyCalculator() {
                   amount</strong> required by any of these tests:
                 </p>
                 <ol style={{ paddingLeft: "20px" }}>
-                  <li><strong>Feasibility Test:</strong> Your plan must pay all secured arrears, priority debts, 
-                  trustee fees, and attorney fees within 60 months.</li>
-                  <li><strong>Best Interest Test:</strong> Unsecured creditors must receive at least what they 
-                  would have received in a Chapter 7 liquidation.</li>
-                  <li><strong>Disposable Income Test:</strong> All your &quot;disposable income&quot; (income minus 
-                  IRS-allowed expenses) must go to the plan for 3-5 years.</li>
+                  <li><strong>Feasibility Test:</strong> Pay secured arrears, priority debts, trustee fees, and attorney fees within 60 months.</li>
+                  <li><strong>Best Interest Test:</strong> Unsecured creditors receive at least what they&apos;d get in Chapter 7.</li>
+                  <li><strong>Disposable Income Test:</strong> All disposable income goes to the plan for 3-5 years.</li>
                 </ol>
-                
-                <h3 style={{ color: "#111827", marginTop: "24px", marginBottom: "12px" }}>What Affects Your Payment</h3>
-                <p>
-                  Higher payments typically result from: being behind on your mortgage, having significant 
-                  priority debts (taxes, child support), earning above your state&apos;s median income, or having 
-                  non-exempt assets. Lower payments are possible when you have less debt, lower income, or 
-                  qualify for a 3-year plan.
-                </p>
               </div>
             </div>
           </div>
 
-          {/* Sidebar */}
           <div style={{ flex: "1", minWidth: "280px" }}>
-            {/* Get Help */}
             <div style={{ backgroundColor: "#EFF6FF", borderRadius: "16px", padding: "24px", marginBottom: "24px", border: "1px solid #BFDBFE" }}>
               <h3 style={{ fontSize: "1.125rem", fontWeight: "bold", color: "#1E40AF", marginBottom: "16px" }}>🤝 Next Steps</h3>
               <div style={{ fontSize: "0.85rem", color: "#1D4ED8", lineHeight: "1.8" }}>
-                <p style={{ margin: "0 0 8px 0" }}>1. Gather all financial documents</p>
-                <p style={{ margin: "0 0 8px 0" }}>2. Complete credit counseling course</p>
-                <p style={{ margin: "0 0 8px 0" }}>3. Consult with a bankruptcy attorney</p>
-                <p style={{ margin: 0 }}>4. File petition with the court</p>
+                <p style={{ margin: "0 0 8px 0" }}>1. Gather financial documents</p>
+                <p style={{ margin: "0 0 8px 0" }}>2. Complete credit counseling</p>
+                <p style={{ margin: "0 0 8px 0" }}>3. Consult bankruptcy attorney</p>
+                <p style={{ margin: 0 }}>4. File petition with court</p>
               </div>
             </div>
 
-            {/* Average Payments */}
             <div style={{ backgroundColor: "#FEF3C7", borderRadius: "16px", padding: "24px", marginBottom: "24px", border: "1px solid #FCD34D" }}>
               <h3 style={{ fontSize: "1.125rem", fontWeight: "bold", color: "#92400E", marginBottom: "12px" }}>📈 Typical Payments</h3>
               <div style={{ fontSize: "0.85rem", color: "#B45309", lineHeight: "2" }}>
@@ -908,7 +1163,6 @@ export default function Chapter13BankruptcyCalculator() {
               </div>
             </div>
 
-            {/* Related Tools */}
             <RelatedTools currentUrl="/chapter-13-bankruptcy-calculator" currentCategory="Finance" />
           </div>
         </div>
@@ -927,10 +1181,8 @@ export default function Chapter13BankruptcyCalculator() {
         <div style={{ padding: "20px", backgroundColor: "#FEF2F2", borderRadius: "12px", border: "1px solid #FECACA" }}>
           <p style={{ fontSize: "0.85rem", color: "#991B1B", textAlign: "center", margin: 0, lineHeight: "1.7" }}>
             ⚖️ <strong>Legal Disclaimer:</strong> This calculator provides rough estimates for informational purposes only. 
-            It is <strong>not legal advice</strong>. Bankruptcy law is complex and varies by state and federal district. 
-            The actual payment depends on many factors including the means test, IRS expense standards, local court rules, 
-            and trustee requirements. <strong>Always consult with a qualified bankruptcy attorney</strong> before making 
-            any decisions about filing bankruptcy. Results from this calculator should not be relied upon for legal or financial decisions.
+            It is <strong>not legal advice</strong>. Bankruptcy law is complex and varies by jurisdiction. 
+            <strong> Always consult with a qualified bankruptcy attorney</strong> before making any decisions.
           </p>
         </div>
       </div>
