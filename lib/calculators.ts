@@ -573,6 +573,13 @@ export const calculators: Calculator[] = [
     url: "/millionaire-calculator",
     category: "Finance",
     type: "Calculator"
+  },
+  {
+    name: "Raw Food Calculator for Dogs",
+    description: "Calculate daily raw food amounts, get 80/10/10 recipe breakdowns, and estimate monthly costs for PMR and BARF diets.",
+    url: "/raw-food-calculator-dog",
+    category: "Pets",
+    type: "Calculator"
   }
 ];
 
