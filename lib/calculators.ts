@@ -531,6 +531,13 @@ export const calculators: Calculator[] = [
     url: "/therapy-productivity-calculator",
     category: "Healthcare",
     type: "Calculator"
+  },
+  {
+    name: "Wainscoting Calculator",
+    description: "Calculate panel spacing, frame dimensions, and material needs for picture frame wainscoting and board and batten projects. Get measurements in fractions.",
+    url: "/wainscoting-calculator",
+    category: "Construction",
+    type: "Calculator"
   }
 ];
 
