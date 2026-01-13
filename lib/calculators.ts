@@ -608,6 +608,13 @@ export const calculators: Calculator[] = [
     url: "/chapter-13-bankruptcy-calculator",
     category: "Finance",
     type: "Calculator"
+  },
+  {
+    name: "Montana Mortgage Calculator",
+    description: "Calculate monthly mortgage payments with Montana county-specific property tax rates. Includes affordability calculator and amortization schedule.",
+    url: "/mortgage-calculator-montana",
+    category: "Finance",
+    type: "Calculator"
   }
 ];
 
