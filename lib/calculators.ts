@@ -545,6 +545,13 @@ export const calculators: Calculator[] = [
     url: "/septic-tank-size-calculator",
     category: "Home",
     type: "Calculator"
+  },
+  {
+    name: "Barndominium Cost Calculator",
+    description: "Estimate barndominium build costs by square footage or budget. Get cost breakdowns for kits, turnkey builds, and custom construction with state pricing.",
+    url: "/barndominium-cost-calculator",
+    category: "Construction",
+    type: "Calculator"
   }
 ];
 
