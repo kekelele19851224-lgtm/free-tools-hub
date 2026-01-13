@@ -524,6 +524,13 @@ export const calculators: Calculator[] = [
     url: "/ebitda-calculator",
     category: "Finance",
     type: "Calculator"
+  },
+  {
+    name: "Therapy Productivity Calculator",
+    description: "Calculate productivity percentage for PT, OT, and SLP therapists. Plan daily goals and convert minutes to CPT billing units with the 8-minute rule.",
+    url: "/therapy-productivity-calculator",
+    category: "Healthcare",
+    type: "Calculator"
   }
 ];
 
