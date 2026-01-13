@@ -594,6 +594,13 @@ export const calculators: Calculator[] = [
     url: "/percent-to-fraction-calculator",
     category: "Math",
     type: "Calculator"
+  },
+  {
+    name: "Monthly Savings Calculator",
+    description: "Calculate future balance with compound interest, how much to save monthly for a goal, or time to reach your savings target.",
+    url: "/monthly-savings-calculator",
+    category: "Finance",
+    type: "Calculator"
   }
 ];
 
