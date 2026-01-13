@@ -538,6 +538,13 @@ export const calculators: Calculator[] = [
     url: "/wainscoting-calculator",
     category: "Construction",
     type: "Calculator"
+  },
+  {
+    name: "Septic Tank Size Calculator",
+    description: "Calculate septic tank capacity by bedrooms, occupants, or dimensions. Get recommendations in gallons and liters with pumping frequency estimates.",
+    url: "/septic-tank-size-calculator",
+    category: "Home",
+    type: "Calculator"
   }
 ];
 
