@@ -580,6 +580,13 @@ export const calculators: Calculator[] = [
     url: "/raw-food-calculator-dog",
     category: "Pets",
     type: "Calculator"
+  },
+  {
+    name: "Dining Room Table Size Calculator",
+    description: "Find the perfect dining table size by room dimensions or seating needs. Supports rectangular, round, square, and oval tables.",
+    url: "/dining-room-table-size-calculator",
+    category: "Home",
+    type: "Calculator"
   }
 ];
 
