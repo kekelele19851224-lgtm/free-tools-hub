@@ -587,6 +587,13 @@ export const calculators: Calculator[] = [
     url: "/dining-room-table-size-calculator",
     category: "Home",
     type: "Calculator"
+  },
+  {
+    name: "Percent to Fraction Calculator",
+    description: "Convert percentages to fractions with step-by-step solution. Supports decimals like 12.5%, 33.33%. Also converts fractions to percentages.",
+    url: "/percent-to-fraction-calculator",
+    category: "Math",
+    type: "Calculator"
   }
 ];
 
