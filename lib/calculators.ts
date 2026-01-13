@@ -75,6 +75,13 @@ export const calculators: Calculator[] = [
     type: "Calculator"
   },
   {
+    name: "Blow In Insulation Calculator",
+    description: "Calculate blown-in insulation needs - bags, depth, and cost for cellulose or fiberglass with R-value guide.",
+    url: "/blow-in-insulation-calculator",
+    category: "Construction",
+    type: "Calculator"
+  },
+  {
     name: "Golf Club Length Calculator",
     description: "Find the correct golf club length based on your height and wrist-to-floor measurement. Get personalized recommendations for every club.",
     url: "/golf-club-length-calculator",
