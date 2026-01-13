@@ -503,6 +503,13 @@ export const calculators: Calculator[] = [
     url: "/aggregate-calculator",
     category: "Construction",
     type: "Calculator"
+  },
+  {
+    name: "Toyota Car Payment Calculator",
+    description: "Calculate monthly payments for any Toyota vehicle. Compare finance vs lease options with 2026 MSRP prices for Camry, RAV4, Corolla, Tacoma and more.",
+    url: "/car-payment-calculator-toyota",
+    category: "Finance",
+    type: "Calculator"
   }
 ];
 
