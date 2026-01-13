@@ -517,6 +517,13 @@ export const calculators: Calculator[] = [
     url: "/cpc-calculator",
     category: "Marketing",
     type: "Calculator"
+  },
+  {
+    name: "EBITDA Calculator",
+    description: "Calculate EBITDA from net income or operating profit. Get EBITDA margin, EBIT comparison, and business valuation using EV/EBITDA multiples.",
+    url: "/ebitda-calculator",
+    category: "Finance",
+    type: "Calculator"
   }
 ];
 
