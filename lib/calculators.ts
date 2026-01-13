@@ -475,6 +475,13 @@ export const calculators: Calculator[] = [
     url: "/3-phase-to-single-phase-calculator",
     category: "Converter",
     type: "Converter"
+  },
+  {
+    name: "Money Market Account Calculator",
+    description: "Calculate compound interest earnings with APY rates and monthly contributions. Compare daily vs monthly compounding. See how much your MMA will grow.",
+    url: "/money-market-account-calculator",
+    category: "Finance",
+    type: "Calculator"
   }
 ];
 
