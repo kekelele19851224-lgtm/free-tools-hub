@@ -496,6 +496,13 @@ export const calculators: Calculator[] = [
     url: "/sade-sati-calculator",
     category: "Lifestyle",
     type: "Calculator"
+  },
+  {
+    name: "Aggregate Calculator",
+    description: "Calculate how much gravel, sand, or crushed stone you need in cubic yards and tons. Get coverage estimates and cost calculations for driveways, patios, and landscaping.",
+    url: "/aggregate-calculator",
+    category: "Construction",
+    type: "Calculator"
   }
 ];
 
