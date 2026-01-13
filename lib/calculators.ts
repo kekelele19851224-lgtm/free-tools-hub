@@ -566,6 +566,13 @@ export const calculators: Calculator[] = [
     url: "/jepq-dividend-calculator",
     category: "Finance",
     type: "Calculator"
+  },
+  {
+    name: "Millionaire Calculator",
+    description: "Calculate how long to become a millionaire, monthly savings needed, and track wealth milestones with inflation adjustment.",
+    url: "/millionaire-calculator",
+    category: "Finance",
+    type: "Calculator"
   }
 ];
 
