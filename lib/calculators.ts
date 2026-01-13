@@ -510,6 +510,13 @@ export const calculators: Calculator[] = [
     url: "/car-payment-calculator-toyota",
     category: "Finance",
     type: "Calculator"
+  },
+  {
+    name: "CPC Calculator",
+    description: "Calculate cost per click, CTR, CPM for Google Ads, Facebook, Amazon. Plan your ad budget and analyze campaign performance with industry benchmarks.",
+    url: "/cpc-calculator",
+    category: "Marketing",
+    type: "Calculator"
   }
 ];
 
