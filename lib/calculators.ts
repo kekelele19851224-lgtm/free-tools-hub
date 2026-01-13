@@ -482,6 +482,13 @@ export const calculators: Calculator[] = [
     url: "/money-market-account-calculator",
     category: "Finance",
     type: "Calculator"
+  },
+  {
+    name: "Pain and Suffering Calculator",
+    description: "Calculate pain and suffering compensation for personal injury claims. Estimate using multiplier and per diem methods. Free instant settlement estimates.",
+    url: "/pain-and-suffering-calculator",
+    category: "Finance",
+    type: "Calculator"
   }
 ];
 
