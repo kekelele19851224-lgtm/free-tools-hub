@@ -559,6 +559,13 @@ export const calculators: Calculator[] = [
     url: "/barndominium-cost-calculator",
     category: "Construction",
     type: "Calculator"
+  },
+  {
+    name: "JEPQ Dividend Calculator",
+    description: "Calculate JEPQ monthly dividend income, plan retirement goals, and compare with JEPI and SCHD.",
+    url: "/jepq-dividend-calculator",
+    category: "Finance",
+    type: "Calculator"
   }
 ];
 
