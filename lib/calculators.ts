@@ -713,6 +713,13 @@ export const calculators: Calculator[] = [
     url: "/drywall-installation-cost-calculator",
     category: "Construction",
     type: "Calculator"
+  },
+  {
+    name: "Stock Split Calculator",
+    description: "Calculate how stock splits affect your shares, price, and cost basis. Supports forward splits, reverse splits, and multiple splits.",
+    url: "/stock-split-calculator",
+    category: "Finance",
+    type: "Calculator"
   }
 ];
 
