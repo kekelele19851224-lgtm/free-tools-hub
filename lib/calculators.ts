@@ -699,6 +699,13 @@ export const calculators: Calculator[] = [
     url: "/candle-calculator",
     category: "DIY",
     type: "Calculator"
+  },
+  {
+    name: "Concrete Step Calculator",
+    description: "Calculate concrete volume for steps and stairs, estimate bags needed, and design code-compliant staircases.",
+    url: "/concrete-step-calculator",
+    category: "Construction",
+    type: "Calculator"
   }
 ];
 
