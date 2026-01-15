@@ -727,6 +727,13 @@ export const calculators: Calculator[] = [
     url: "/yard-calculator-for-rock",
     category: "Home",
     type: "Calculator"
+  },
+  {
+    name: "QQQI Dividend Calculator",
+    description: "Calculate QQQI dividend income, find investment needed for target monthly income, and project DRIP growth with this NEOS Nasdaq-100 High Income ETF calculator.",
+    url: "/qqqi-dividend-calculator",
+    category: "Finance",
+    type: "Calculator"
   }
 ];
 
