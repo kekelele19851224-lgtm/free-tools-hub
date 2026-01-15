@@ -650,6 +650,13 @@ export const calculators: Calculator[] = [
     url: "/auto-loan-calculator-mn",
     category: "Finance",
     type: "Calculator"
+  },
+  {
+    name: "Air Changes per Hour Calculator",
+    description: "Calculate ACH from CFM and room volume, or find required CFM for target ACH. Includes ASHRAE and CDC ventilation guidelines.",
+    url: "/air-changes-per-hour-calculator",
+    category: "Engineering",
+    type: "Calculator"
   }
 ];
 
