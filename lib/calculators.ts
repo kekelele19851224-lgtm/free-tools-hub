@@ -755,6 +755,13 @@ export const calculators: Calculator[] = [
     url: "/roofing-squares-calculator",
     category: "Construction",
     type: "Calculator"
+  },
+  {
+    name: "Accelerated Aging Calculator",
+    description: "Calculate accelerated aging time based on ASTM F1980 and Arrhenius equation. Estimate shelf life testing duration for medical device packaging.",
+    url: "/accelerated-aging-calculator",
+    category: "Science",
+    type: "Calculator"
   }
 ];
 
