@@ -678,6 +678,13 @@ export const calculators: Calculator[] = [
     url: "/house-cleaning-cost-calculator",
     category: "Home",
     type: "Calculator"
+  },
+  {
+    name: "Window Tint Calculator",
+    description: "Calculate final VLT percentage, check state tint laws, and estimate car window tinting costs.",
+    url: "/tint-calculator",
+    category: "Auto",
+    type: "Calculator"
   }
 ];
 
