@@ -671,6 +671,13 @@ export const calculators: Calculator[] = [
     url: "/fence-picket-calculator",
     category: "Construction",
     type: "Calculator"
+  },
+  {
+    name: "House Cleaning Cost Calculator",
+    description: "Estimate house cleaning costs based on home size, rooms, cleaning type, and add-on services.",
+    url: "/house-cleaning-cost-calculator",
+    category: "Home",
+    type: "Calculator"
   }
 ];
 
