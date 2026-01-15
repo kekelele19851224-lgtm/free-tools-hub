@@ -762,6 +762,13 @@ export const calculators: Calculator[] = [
     url: "/accelerated-aging-calculator",
     category: "Science",
     type: "Calculator"
+  },
+  {
+    name: "Alimony Calculator NC",
+    description: "Estimate North Carolina spousal support using AAML formula, duration estimator, and eligibility check based on NC alimony laws.",
+    url: "/alimony-calculator-nc",
+    category: "Finance",
+    type: "Calculator"
   }
 ];
 
