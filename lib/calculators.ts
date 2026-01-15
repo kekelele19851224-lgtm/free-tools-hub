@@ -685,6 +685,13 @@ export const calculators: Calculator[] = [
     url: "/tint-calculator",
     category: "Auto",
     type: "Calculator"
+  },
+  {
+    name: "Business Line of Credit Calculator",
+    description: "Calculate monthly payments, total interest, and compare interest-only vs principal & interest options for business credit lines.",
+    url: "/business-line-of-credit-calculator",
+    category: "Finance",
+    type: "Calculator"
   }
 ];
 
