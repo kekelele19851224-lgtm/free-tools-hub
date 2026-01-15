@@ -636,6 +636,13 @@ export const calculators: Calculator[] = [
     url: "/enterprise-value-calculator",
     category: "Finance",
     type: "Calculator"
+  },
+  {
+    name: "Rug Size Calculator",
+    description: "Find the perfect rug size for any room using the 18-inch rule. Match to standard sizes for living room, bedroom, dining room.",
+    url: "/rug-size-calculator",
+    category: "Home",
+    type: "Calculator"
   }
 ];
 
