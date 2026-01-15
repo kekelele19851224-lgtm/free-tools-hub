@@ -168,33 +168,33 @@ export default function AutoLoanCalculatorMN() {
   const remainingMonthsNum = parseInt(remainingMonths) || 0;
   const extraMonthlyNum = parseFloat(extraMonthly) || 0;
   const oneTimePaymentNum = parseFloat(oneTimePayment) || 0;
-  
-  // Calculate original payoff
-  const originalTotalPaid = currentPaymentNum * remainingMonthsNum;
-  const originalInterest = originalTotalPaid - currentBalanceNum;
-  
-  // Calculate new payoff with extra payments
+  const monthlyRate = currentRateNum / 100 / 12;
+  let originalBalance = currentBalanceNum;
+  let originalInterest = 0;
+  let actualOriginalMonths = 0;
+  while (originalBalance > 0 && actualOriginalMonths < 360) {
+    const interestCharge = originalBalance * monthlyRate;
+    const principalPayment = Math.min(currentPaymentNum - interestCharge, originalBalance);
+    if (principalPayment <= 0) break;
+    originalBalance -= principalPayment;
+    originalInterest += interestCharge;
+    actualOriginalMonths++;
+  }
   const newBalance = currentBalanceNum - oneTimePaymentNum;
   const newMonthlyPayment = currentPaymentNum + extraMonthlyNum;
-  
-  // Calculate months to payoff with extra payments
   let balance = newBalance;
   let monthsToPayoff = 0;
-  let totalPaidWithExtra = oneTimePaymentNum;
-  const monthlyRate = currentRateNum / 100 / 12;
-  
+  let interestWithExtra = 0;
   while (balance > 0 && monthsToPayoff < 360) {
     const interestCharge = balance * monthlyRate;
     const principalPayment = Math.min(newMonthlyPayment - interestCharge, balance);
-    balance -= principalPayment;
-    totalPaidWithExtra += newMonthlyPayment;
-    monthsToPayoff++;
     if (principalPayment <= 0) break;
+    balance -= principalPayment;
+    interestWithExtra += interestCharge;
+    monthsToPayoff++;
   }
-  
-  const interestWithExtra = totalPaidWithExtra - currentBalanceNum;
   const interestSaved = Math.max(0, originalInterest - interestWithExtra);
-  const monthsSaved = Math.max(0, remainingMonthsNum - monthsToPayoff);
+  const monthsSaved = Math.max(0, actualOriginalMonths - monthsToPayoff);
 
   const tabs = [
     { id: "payment", label: "Car Payment Calculator", icon: "🚗" },
@@ -759,7 +759,7 @@ export default function AutoLoanCalculatorMN() {
                         <p style={{ color: "#6B7280", margin: "0 0 8px 0", fontWeight: "600" }}>Original Plan</p>
                         <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "4px" }}>
                           <span>Time to payoff:</span>
-                          <span>{remainingMonthsNum} months</span>
+                          <span>{actualOriginalMonths} months</span>
                         </div>
                         <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "4px" }}>
                           <span>Total interest:</span>
