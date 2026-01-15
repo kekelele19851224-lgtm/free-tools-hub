@@ -734,6 +734,13 @@ export const calculators: Calculator[] = [
     url: "/qqqi-dividend-calculator",
     category: "Finance",
     type: "Calculator"
+  },
+  {
+    name: "Parallel Resistor Calculator",
+    description: "Calculate equivalent resistance for resistors in parallel or series. Find missing resistor values and current distribution with automatic unit conversion.",
+    url: "/parallel-resistor-calculator",
+    category: "Electronics",
+    type: "Calculator"
   }
 ];
 
