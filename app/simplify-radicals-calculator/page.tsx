@@ -790,12 +790,16 @@ export default function SimplifyRadicalsCalculator() {
                     {coef1}√{rad1} {operation === "add" ? "+" : operation === "subtract" ? "−" : operation === "multiply" ? "×" : "÷"} {coef2}√{rad2} =
                   </p>
                   <div style={{ fontSize: "2.5rem", fontWeight: "bold", color: "#1D4ED8" }}>
-                    {operationResult.canCombine && operationResult.resultRad > 0
-                      ? `${operationResult.resultCoef}√${operationResult.resultRad}`
-                      : operationResult.canCombine && operationResult.resultRad === 0
-                      ? operationResult.resultCoef.toFixed(4)
-                      : operationResult.resultRad === 1
-                      ? operationResult.resultCoef
+                    {operationResult.canCombine
+                      ? operationResult.resultRad === 1
+                        ? (Number.isInteger(operationResult.resultCoef)
+                            ? operationResult.resultCoef
+                            : operationResult.resultCoef.toFixed(4).replace(/\.?0+$/, ''))
+                        : operationResult.resultRad === 0
+                          ? operationResult.resultCoef.toFixed(4).replace(/\.?0+$/, '')
+                          : `${Number.isInteger(operationResult.resultCoef)
+                              ? operationResult.resultCoef
+                              : operationResult.resultCoef.toFixed(2).replace(/\.?0+$/, '')}√${operationResult.resultRad}`
                       : "Cannot simplify"
                     }
                   </div>
