@@ -720,6 +720,13 @@ export const calculators: Calculator[] = [
     url: "/stock-split-calculator",
     category: "Finance",
     type: "Calculator"
+  },
+  {
+    name: "Yard Calculator for Rock",
+    description: "Calculate cubic yards, tons, and bags of rock needed for landscaping. Includes coverage calculator and cost estimator.",
+    url: "/yard-calculator-for-rock",
+    category: "Home",
+    type: "Calculator"
   }
 ];
 
