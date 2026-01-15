@@ -629,6 +629,13 @@ export const calculators: Calculator[] = [
     url: "/express-entry-calculator",
     category: "Immigration",
     type: "Calculator"
+  },
+  {
+    name: "Enterprise Value Calculator",
+    description: "Calculate enterprise value from market cap, debt, and cash. Estimate business valuation using EBITDA multiples by industry.",
+    url: "/enterprise-value-calculator",
+    category: "Finance",
+    type: "Calculator"
   }
 ];
 
