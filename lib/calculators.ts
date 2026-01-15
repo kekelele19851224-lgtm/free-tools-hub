@@ -692,6 +692,13 @@ export const calculators: Calculator[] = [
     url: "/business-line-of-credit-calculator",
     category: "Finance",
     type: "Calculator"
+  },
+  {
+    name: "Candle Calculator",
+    description: "Calculate wax and fragrance amounts, estimate costs, and set profitable prices for handmade candles.",
+    url: "/candle-calculator",
+    category: "DIY",
+    type: "Calculator"
   }
 ];
 
