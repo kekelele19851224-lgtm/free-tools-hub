@@ -1063,6 +1063,68 @@ export default function AlimonyCalculatorNC() {
           </div>
         </div>
 
+        {/* Related Tools */}
+        <div style={{ 
+          backgroundColor: "white", 
+          borderRadius: "16px", 
+          boxShadow: "0 1px 3px rgba(0,0,0,0.1)", 
+          border: "1px solid #E5E7EB", 
+          padding: "32px", 
+          marginBottom: "24px" 
+        }}>
+          <h2 style={{ fontSize: "1.5rem", fontWeight: "bold", color: "#111827", marginBottom: "24px" }}>Related Calculators</h2>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "16px" }}>
+            <Link href="/child-support-calculator" style={{ 
+              display: "block", 
+              padding: "20px", 
+              backgroundColor: "#F9FAFB", 
+              borderRadius: "12px", 
+              border: "1px solid #E5E7EB", 
+              textDecoration: "none", 
+              transition: "all 0.2s" 
+            }}>
+              <h3 style={{ fontSize: "1.1rem", fontWeight: "600", color: "#111827", marginBottom: "8px" }}>Child Support Calculator</h3>
+              <p style={{ fontSize: "0.9rem", color: "#6B7280", margin: 0 }}>Calculate child support payments based on income and custody arrangement.</p>
+            </Link>
+            <Link href="/divorce-settlement-calculator" style={{ 
+              display: "block", 
+              padding: "20px", 
+              backgroundColor: "#F9FAFB", 
+              borderRadius: "12px", 
+              border: "1px solid #E5E7EB", 
+              textDecoration: "none", 
+              transition: "all 0.2s" 
+            }}>
+              <h3 style={{ fontSize: "1.1rem", fontWeight: "600", color: "#111827", marginBottom: "8px" }}>Divorce Settlement Calculator</h3>
+              <p style={{ fontSize: "0.9rem", color: "#6B7280", margin: 0 }}>Estimate fair division of assets and property in divorce proceedings.</p>
+            </Link>
+            <Link href="/net-worth-calculator" style={{ 
+              display: "block", 
+              padding: "20px", 
+              backgroundColor: "#F9FAFB", 
+              borderRadius: "12px", 
+              border: "1px solid #E5E7EB", 
+              textDecoration: "none", 
+              transition: "all 0.2s" 
+            }}>
+              <h3 style={{ fontSize: "1.1rem", fontWeight: "600", color: "#111827", marginBottom: "8px" }}>Net Worth Calculator</h3>
+              <p style={{ fontSize: "0.9rem", color: "#6B7280", margin: 0 }}>Calculate your total net worth including assets and liabilities.</p>
+            </Link>
+            <Link href="/salary-to-hourly-calculator" style={{ 
+              display: "block", 
+              padding: "20px", 
+              backgroundColor: "#F9FAFB", 
+              borderRadius: "12px", 
+              border: "1px solid #E5E7EB", 
+              textDecoration: "none", 
+              transition: "all 0.2s" 
+            }}>
+              <h3 style={{ fontSize: "1.1rem", fontWeight: "600", color: "#111827", marginBottom: "8px" }}>Salary to Hourly Calculator</h3>
+              <p style={{ fontSize: "0.9rem", color: "#6B7280", margin: 0 }}>Convert annual salary to hourly wage for income calculations.</p>
+            </Link>
+          </div>
+        </div>
+
         {/* Disclaimer */}
         <div style={{ padding: "16px", backgroundColor: "#F3F4F6", borderRadius: "8px" }}>
           <p style={{ fontSize: "0.75rem", color: "#6B7280", textAlign: "center", margin: 0 }}>
