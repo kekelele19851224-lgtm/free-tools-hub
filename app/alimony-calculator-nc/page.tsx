@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import RelatedTools from "@/components/RelatedTools";
 
 // Duration reference data
 const durationReference = [
@@ -993,63 +994,103 @@ export default function AlimonyCalculatorNC() {
           </div>
         )}
 
-        {/* Content Section */}
-        <div style={{
-          backgroundColor: "white",
-          borderRadius: "16px",
-          boxShadow: "0 1px 3px rgba(0,0,0,0.1)",
-          border: "1px solid #E5E7EB",
-          padding: "32px",
-          marginBottom: "40px"
-        }}>
-          <h2 style={{ fontSize: "1.5rem", fontWeight: "bold", color: "#111827", marginBottom: "20px" }}>⚖️ Understanding Alimony in North Carolina</h2>
+        {/* Content + Sidebar */}
+        <div className="content-sidebar" style={{ display: "flex", gap: "32px", marginBottom: "40px", flexWrap: "wrap" }}>
+          {/* Main Content */}
+          <div style={{ flex: "2", minWidth: "300px" }}>
+            <div style={{ backgroundColor: "white", borderRadius: "16px", boxShadow: "0 1px 3px rgba(0,0,0,0.1)", border: "1px solid #E5E7EB", padding: "32px" }}>
+              <h2 style={{ fontSize: "1.5rem", fontWeight: "bold", color: "#111827", marginBottom: "20px" }}>⚖️ Understanding Alimony in North Carolina</h2>
 
-          <div style={{ color: "#4B5563", lineHeight: "1.8" }}>
-            <p>
-              Alimony (also called spousal support or maintenance) in North Carolina is financial support that one spouse 
-              pays to the other during and/or after a divorce. Unlike child support, NC does not have a fixed formula 
-              for calculating alimony—courts have broad discretion based on statutory factors.
-            </p>
+              <div style={{ color: "#4B5563", lineHeight: "1.8" }}>
+                <p>
+                  Alimony (also called spousal support or maintenance) in North Carolina is financial support that one spouse 
+                  pays to the other during and/or after a divorce. Unlike child support, NC does not have a fixed formula 
+                  for calculating alimony—courts have broad discretion based on statutory factors.
+                </p>
 
-            <h3 style={{ color: "#111827", marginTop: "24px", marginBottom: "12px" }}>Types of Spousal Support in NC</h3>
-            <p>
-              <strong>Post-Separation Support (PSS):</strong> Temporary support paid while the divorce is pending. 
-              It helps the dependent spouse maintain their lifestyle during the separation period.<br /><br />
-              <strong>Alimony:</strong> Long-term support awarded after the divorce is final. It can be rehabilitative 
-              (to help the spouse become self-supporting), durational (for a set time), or permanent (rare, usually for 
-              long marriages where the dependent spouse cannot become self-sufficient).
-            </p>
+                <h3 style={{ color: "#111827", marginTop: "24px", marginBottom: "12px" }}>Types of Spousal Support in NC</h3>
+                <p>
+                  <strong>Post-Separation Support (PSS):</strong> Temporary support paid while the divorce is pending. 
+                  It helps the dependent spouse maintain their lifestyle during the separation period.<br /><br />
+                  <strong>Alimony:</strong> Long-term support awarded after the divorce is final. It can be rehabilitative 
+                  (to help the spouse become self-supporting), durational (for a set time), or permanent (rare, usually for 
+                  long marriages where the dependent spouse cannot become self-sufficient).
+                </p>
 
-            <h3 style={{ color: "#111827", marginTop: "24px", marginBottom: "12px" }}>The 16 Factors NC Courts Consider</h3>
-            <p>
-              Under N.C. Gen. Stat. § 50-16.3A, courts consider multiple factors including: marital misconduct, 
-              relative earnings and earning capacity, ages and health of both spouses, duration of the marriage, 
-              contributions to the other spouse&apos;s education or career, standard of living during marriage, 
-              education levels, assets and liabilities, property brought to the marriage, contributions as homemaker, 
-              and other relevant circumstances.
-            </p>
+                <h3 style={{ color: "#111827", marginTop: "24px", marginBottom: "12px" }}>The 16 Factors NC Courts Consider</h3>
+                <p>
+                  Under N.C. Gen. Stat. § 50-16.3A, courts consider multiple factors including: marital misconduct, 
+                  relative earnings and earning capacity, ages and health of both spouses, duration of the marriage, 
+                  contributions to the other spouse&apos;s education or career, standard of living during marriage, 
+                  education levels, assets and liabilities, property brought to the marriage, contributions as homemaker, 
+                  and other relevant circumstances.
+                </p>
 
-            <div style={{
-              backgroundColor: "#FEF3C7",
-              padding: "20px",
-              borderRadius: "12px",
-              margin: "20px 0",
-              border: "1px solid #FCD34D"
-            }}>
-              <p style={{ margin: "0 0 8px 0", fontWeight: "600", color: "#92400E" }}>⚠️ Important: Marital Misconduct Rules</p>
-              <ul style={{ margin: 0, paddingLeft: "20px", color: "#B45309" }}>
-                <li>If the <strong>dependent spouse</strong> (seeking alimony) committed adultery → <strong>No alimony</strong></li>
-                <li>If the <strong>supporting spouse</strong> (paying) committed adultery → <strong>Must pay alimony</strong></li>
-                <li>If <strong>both</strong> committed adultery → Court has discretion</li>
-              </ul>
+                <div style={{
+                  backgroundColor: "#FEF3C7",
+                  padding: "20px",
+                  borderRadius: "12px",
+                  margin: "20px 0",
+                  border: "1px solid #FCD34D"
+                }}>
+                  <p style={{ margin: "0 0 8px 0", fontWeight: "600", color: "#92400E" }}>⚠️ Important: Marital Misconduct Rules</p>
+                  <ul style={{ margin: 0, paddingLeft: "20px", color: "#B45309" }}>
+                    <li>If the <strong>dependent spouse</strong> (seeking alimony) committed adultery → <strong>No alimony</strong></li>
+                    <li>If the <strong>supporting spouse</strong> (paying) committed adultery → <strong>Must pay alimony</strong></li>
+                    <li>If <strong>both</strong> committed adultery → Court has discretion</li>
+                  </ul>
+                </div>
+
+                <h3 style={{ color: "#111827", marginTop: "24px", marginBottom: "12px" }}>When Does Alimony End?</h3>
+                <p>
+                  In North Carolina, alimony automatically terminates when: the recipient spouse remarries, the recipient 
+                  spouse begins cohabitating with another adult in a marriage-like relationship, or either spouse dies. 
+                  The court may also set a specific end date when awarding alimony.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Sidebar */}
+          <div style={{ flex: "1", minWidth: "280px" }}>
+            {/* Quick Reference Card */}
+            <div style={{ backgroundColor: "#EFF6FF", borderRadius: "16px", padding: "24px", marginBottom: "24px", border: "1px solid #93C5FD" }}>
+              <h3 style={{ fontSize: "1.125rem", fontWeight: "bold", color: "#1E40AF", marginBottom: "16px" }}>📊 AAML Formula</h3>
+              <div style={{ fontSize: "0.9rem", color: "#2563EB", lineHeight: "2" }}>
+                <p style={{ margin: 0 }}><strong>Alimony =</strong></p>
+                <p style={{ margin: 0 }}>30% × Payor Income</p>
+                <p style={{ margin: 0 }}>- 20% × Recipient Income</p>
+              </div>
+              <p style={{ margin: "12px 0 0 0", fontSize: "0.8rem", color: "#3B82F6" }}>
+                Cap: Recipient total ≤ 40% of combined income
+              </p>
             </div>
 
-            <h3 style={{ color: "#111827", marginTop: "24px", marginBottom: "12px" }}>When Does Alimony End?</h3>
-            <p>
-              In North Carolina, alimony automatically terminates when: the recipient spouse remarries, the recipient 
-              spouse begins cohabitating with another adult in a marriage-like relationship, or either spouse dies. 
-              The court may also set a specific end date when awarding alimony.
-            </p>
+            {/* Duration Guide */}
+            <div style={{ backgroundColor: "#F5F3FF", borderRadius: "16px", padding: "24px", marginBottom: "24px", border: "1px solid #C4B5FD" }}>
+              <h3 style={{ fontSize: "1.125rem", fontWeight: "bold", color: "#5B21B6", marginBottom: "12px" }}>📅 Duration Guide</h3>
+              <div style={{ fontSize: "0.85rem", color: "#6D28D9", lineHeight: "2.2" }}>
+                <p style={{ margin: 0 }}>5 yrs marriage → 2-2.5 yrs</p>
+                <p style={{ margin: 0 }}>10 yrs marriage → 4-5 yrs</p>
+                <p style={{ margin: 0 }}>15 yrs marriage → 6-7.5 yrs</p>
+                <p style={{ margin: 0 }}>20+ yrs → May be permanent</p>
+              </div>
+              <p style={{ margin: "8px 0 0 0", fontSize: "0.75rem", color: "#7C3AED" }}>
+                Formula: Marriage × 0.40 to 0.50
+              </p>
+            </div>
+
+            {/* Misconduct Warning */}
+            <div style={{ backgroundColor: "#FEF2F2", borderRadius: "16px", padding: "24px", marginBottom: "24px", border: "1px solid #FECACA" }}>
+              <h3 style={{ fontSize: "1.125rem", fontWeight: "bold", color: "#991B1B", marginBottom: "12px" }}>⚠️ Misconduct Impact</h3>
+              <div style={{ fontSize: "0.85rem", color: "#DC2626", lineHeight: "1.8" }}>
+                <p style={{ margin: "0 0 8px 0" }}>❌ You cheated → No alimony</p>
+                <p style={{ margin: 0 }}>✅ Spouse cheated → Must pay</p>
+              </div>
+            </div>
+
+            {/* Related Tools */}
+            <RelatedTools currentUrl="/alimony-calculator-nc" currentCategory="Finance" />
           </div>
         </div>
 
@@ -1060,68 +1101,6 @@ export default function AlimonyCalculatorNC() {
             {faqs.map((faq, index) => (
               <FAQItem key={index} question={faq.question} answer={faq.answer} />
             ))}
-          </div>
-        </div>
-
-        {/* Related Tools */}
-        <div style={{ 
-          backgroundColor: "white", 
-          borderRadius: "16px", 
-          boxShadow: "0 1px 3px rgba(0,0,0,0.1)", 
-          border: "1px solid #E5E7EB", 
-          padding: "32px", 
-          marginBottom: "24px" 
-        }}>
-          <h2 style={{ fontSize: "1.5rem", fontWeight: "bold", color: "#111827", marginBottom: "24px" }}>Related Calculators</h2>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "16px" }}>
-            <Link href="/child-support-calculator" style={{ 
-              display: "block", 
-              padding: "20px", 
-              backgroundColor: "#F9FAFB", 
-              borderRadius: "12px", 
-              border: "1px solid #E5E7EB", 
-              textDecoration: "none", 
-              transition: "all 0.2s" 
-            }}>
-              <h3 style={{ fontSize: "1.1rem", fontWeight: "600", color: "#111827", marginBottom: "8px" }}>Child Support Calculator</h3>
-              <p style={{ fontSize: "0.9rem", color: "#6B7280", margin: 0 }}>Calculate child support payments based on income and custody arrangement.</p>
-            </Link>
-            <Link href="/divorce-settlement-calculator" style={{ 
-              display: "block", 
-              padding: "20px", 
-              backgroundColor: "#F9FAFB", 
-              borderRadius: "12px", 
-              border: "1px solid #E5E7EB", 
-              textDecoration: "none", 
-              transition: "all 0.2s" 
-            }}>
-              <h3 style={{ fontSize: "1.1rem", fontWeight: "600", color: "#111827", marginBottom: "8px" }}>Divorce Settlement Calculator</h3>
-              <p style={{ fontSize: "0.9rem", color: "#6B7280", margin: 0 }}>Estimate fair division of assets and property in divorce proceedings.</p>
-            </Link>
-            <Link href="/net-worth-calculator" style={{ 
-              display: "block", 
-              padding: "20px", 
-              backgroundColor: "#F9FAFB", 
-              borderRadius: "12px", 
-              border: "1px solid #E5E7EB", 
-              textDecoration: "none", 
-              transition: "all 0.2s" 
-            }}>
-              <h3 style={{ fontSize: "1.1rem", fontWeight: "600", color: "#111827", marginBottom: "8px" }}>Net Worth Calculator</h3>
-              <p style={{ fontSize: "0.9rem", color: "#6B7280", margin: 0 }}>Calculate your total net worth including assets and liabilities.</p>
-            </Link>
-            <Link href="/salary-to-hourly-calculator" style={{ 
-              display: "block", 
-              padding: "20px", 
-              backgroundColor: "#F9FAFB", 
-              borderRadius: "12px", 
-              border: "1px solid #E5E7EB", 
-              textDecoration: "none", 
-              transition: "all 0.2s" 
-            }}>
-              <h3 style={{ fontSize: "1.1rem", fontWeight: "600", color: "#111827", marginBottom: "8px" }}>Salary to Hourly Calculator</h3>
-              <p style={{ fontSize: "0.9rem", color: "#6B7280", margin: 0 }}>Convert annual salary to hourly wage for income calculations.</p>
-            </Link>
           </div>
         </div>
 
