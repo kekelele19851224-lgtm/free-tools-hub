@@ -61,6 +61,13 @@ export const calculators: Calculator[] = [
     type: "Calculator"
   },
   {
+    name: "Epoxy Flooring Cost Calculator",
+    description: "Estimate epoxy flooring costs for garage, basement, or commercial floors. Compare DIY vs professional installation.",
+    url: "/epoxy-flooring-cost-calculator",
+    category: "Home",
+    type: "Calculator"
+  },
+  {
     name: "Yards to Tons Calculator",
     description: "Convert cubic yards to tons for gravel, sand, dirt, mulch, concrete and other materials. Supports bidirectional conversion.",
     url: "/yards-to-tons-calculator",
