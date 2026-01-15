@@ -706,6 +706,13 @@ export const calculators: Calculator[] = [
     url: "/concrete-step-calculator",
     category: "Construction",
     type: "Calculator"
+  },
+  {
+    name: "Drywall Installation Cost Calculator",
+    description: "Estimate costs per square foot for hanging and finishing drywall, calculate materials needed, and compare finish levels.",
+    url: "/drywall-installation-cost-calculator",
+    category: "Construction",
+    type: "Calculator"
   }
 ];
 
