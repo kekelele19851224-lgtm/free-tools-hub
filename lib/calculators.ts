@@ -748,6 +748,13 @@ export const calculators: Calculator[] = [
     url: "/simplify-radicals-calculator",
     category: "Math",
     type: "Calculator"
+  },
+  {
+    name: "Roofing Squares Calculator",
+    description: "Calculate roofing squares with pitch adjustment. Estimate shingles, bundles, and total roofing costs with pitch multiplier table.",
+    url: "/roofing-squares-calculator",
+    category: "Construction",
+    type: "Calculator"
   }
 ];
 
