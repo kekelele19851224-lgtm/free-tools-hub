@@ -664,6 +664,13 @@ export const calculators: Calculator[] = [
     url: "/decomposed-granite-calculator",
     category: "Home",
     type: "Calculator"
+  },
+  {
+    name: "Fence Picket Calculator",
+    description: "Calculate how many fence pickets, posts, rails, and materials you need for standard, privacy, or board-on-board fences.",
+    url: "/fence-picket-calculator",
+    category: "Construction",
+    type: "Calculator"
   }
 ];
 
