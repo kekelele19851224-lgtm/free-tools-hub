@@ -657,6 +657,13 @@ export const calculators: Calculator[] = [
     url: "/air-changes-per-hour-calculator",
     category: "Engineering",
     type: "Calculator"
+  },
+  {
+    name: "Decomposed Granite Calculator",
+    description: "Calculate how much decomposed granite you need in cubic yards, tons, and bags with cost estimator for landscaping projects.",
+    url: "/decomposed-granite-calculator",
+    category: "Home",
+    type: "Calculator"
   }
 ];
 
