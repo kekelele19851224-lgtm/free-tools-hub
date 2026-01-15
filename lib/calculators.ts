@@ -741,6 +741,13 @@ export const calculators: Calculator[] = [
     url: "/parallel-resistor-calculator",
     category: "Electronics",
     type: "Calculator"
+  },
+  {
+    name: "Simplify Radicals Calculator",
+    description: "Simplify square roots, cube roots, and nth roots with step-by-step solutions. Shows prime factorization method and performs radical operations.",
+    url: "/simplify-radicals-calculator",
+    category: "Math",
+    type: "Calculator"
   }
 ];
 
