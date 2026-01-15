@@ -643,6 +643,13 @@ export const calculators: Calculator[] = [
     url: "/rug-size-calculator",
     category: "Home",
     type: "Calculator"
+  },
+  {
+    name: "Auto Loan Calculator MN",
+    description: "Calculate car payments in Minnesota with 6.875% MN sales tax, Metro transit tax, trade-in credit, and early payoff savings.",
+    url: "/auto-loan-calculator-mn",
+    category: "Finance",
+    type: "Calculator"
   }
 ];
 
