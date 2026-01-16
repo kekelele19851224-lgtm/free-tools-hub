@@ -797,6 +797,13 @@ export const calculators: Calculator[] = [
     url: "/concrete-calculator",
     category: "Construction",
     type: "Calculator"
+  },
+  {
+    name: "Deck Post Spacing Calculator",
+    description: "Calculate post positions, beam sizes, and footing requirements with visual layout diagram. IRC 2021 compliant.",
+    url: "/deck-post-spacing-calculator",
+    category: "Construction",
+    type: "Calculator"
   }
 ];
 
