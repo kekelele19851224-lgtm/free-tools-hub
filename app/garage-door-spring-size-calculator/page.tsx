@@ -210,8 +210,10 @@ export default function GarageDoorSpringSizeCalculator() {
     const drumCircumference = 12.75;
     const turnsNeeded = (heightInches / drumCircumference) + 1;
 
-    // Calculate max turns for spring (simplified: length / wire size - 2)
-    const maxTurns = Math.floor(length / wireSize) - 2;
+    // Max safe turns: typically recommended turns + 2-3 for adjustment, capped at practical limit 
+    const theoreticalMax = Math.floor(length / wireSize) - 2; 
+    const practicalMax = Math.ceil(turnsNeeded + 3); 
+    const maxTurns = Math.min(theoreticalMax, practicalMax, 15); // Cap at 15 for residential 
 
     // Calculate weight capacity (for two springs): multiply spring IPPT by 2, then divide by 2 when combining, net effect equals IPPT × turns
     const weightCapacity = (springIPPT * 2 * turnsNeeded) / 2;
