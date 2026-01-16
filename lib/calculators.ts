@@ -859,6 +859,13 @@ export const calculators: Calculator[] = [
     url: "/mortgage-apr-calculator",
     category: "Finance",
     type: "Calculator"
+  },
+  {
+    name: "Freight Density Calculator",
+    description: "Calculate cargo density and determine freight class for LTL shipments. Works for XPO, FedEx, UPS, Saia, Estes and all NMFC carriers.",
+    url: "/freight-density-calculator",
+    category: "Business",
+    type: "Calculator"
   }
 ];
 
