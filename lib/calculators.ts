@@ -873,6 +873,13 @@ export const calculators: Calculator[] = [
     url: "/reverse-sales-tax-calculator",
     category: "Finance",
     type: "Calculator"
+  },
+  {
+    name: "Pool Alkalinity Calculator",
+    description: "Calculate how much baking soda to raise or muriatic acid to lower your pool's total alkalinity. Works for pools, spas, and hot tubs.",
+    url: "/pool-alkalinity-calculator",
+    category: "Home",
+    type: "Calculator"
   }
 ];
 
