@@ -769,6 +769,13 @@ export const calculators: Calculator[] = [
     url: "/alimony-calculator-nc",
     category: "Finance",
     type: "Calculator"
+  },
+  {
+    name: "Arizona Mortgage Calculator",
+    description: "Calculate monthly mortgage payments in Arizona with property taxes by county, insurance, PMI and HOA. All 15 AZ counties included.",
+    url: "/arizona-mortgage-calculator",
+    category: "Finance",
+    type: "Calculator"
   }
 ];
 
