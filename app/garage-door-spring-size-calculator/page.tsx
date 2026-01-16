@@ -202,9 +202,10 @@ export default function GarageDoorSpringSizeCalculator() {
     const doorWeight = parseFloat(verifyDoorWeight) || 0;
 
     // Calculate IPPT using simplified formula
-    // IPPT ≈ (wire^4 × length) / (10.2 × mean_diameter)
+    // IPPT formula: industry standard approximation
+    // IPPT ≈ (wire^4 × 405000 × length) / (mean_diameter^2)
     const meanDiameter = id + wireSize;
-    const springIPPT = (Math.pow(wireSize, 4) * length * 1000000) / (10.2 * meanDiameter);
+    const springIPPT = (Math.pow(wireSize, 4) * 405000 * length) / Math.pow(meanDiameter, 2);
     
     // Calculate turns needed
     const heightInches = doorHeightVal * 12;
@@ -214,7 +215,7 @@ export default function GarageDoorSpringSizeCalculator() {
     // Calculate max turns for spring (simplified: length / wire size - 2)
     const maxTurns = Math.floor(length / wireSize) - 2;
 
-    // Calculate weight capacity (for two springs)
+    // Calculate weight capacity (for two springs): multiply spring IPPT by 2, then divide by 2 when combining, net effect equals IPPT × turns
     const weightCapacity = (springIPPT * 2 * turnsNeeded) / 2;
 
     // Check if spring is adequate
@@ -709,6 +710,19 @@ export default function GarageDoorSpringSizeCalculator() {
                           </span>
                         </div>
                       </div>
+                    </div>
+                    
+                    <div style={{ 
+                      backgroundColor: "#EEF2FF",
+                      borderRadius: "8px",
+                      padding: "12px 16px",
+                      border: "1px solid #C7D2FE",
+                      marginBottom: "20px"
+                    }}>
+                      <p style={{ margin: 0, fontSize: "0.85rem", color: "#4338CA" }}>
+                        ℹ️ <strong>ID Note:</strong> Most residential torsion springs use <strong>2&quot; inside diameter (ID)</strong>. 
+                        <span style={{ marginLeft: "4px" }}>1¾&quot; ID is also common.</span> If unsure, choose 2&quot; and verify in the <em>Verify Existing Spring</em> tab.
+                      </p>
                     </div>
                   </>
                 ) : (
