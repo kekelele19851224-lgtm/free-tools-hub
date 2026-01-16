@@ -776,6 +776,13 @@ export const calculators: Calculator[] = [
     url: "/arizona-mortgage-calculator",
     category: "Finance",
     type: "Calculator"
+  },
+  {
+    name: "Car Paint Calculator",
+    description: "Calculate how much paint you need for your vehicle. Estimate primer, basecoat, and clear coat quantities with cost estimator.",
+    url: "/car-paint-calculator",
+    category: "Auto",
+    type: "Calculator"
   }
 ];
 
