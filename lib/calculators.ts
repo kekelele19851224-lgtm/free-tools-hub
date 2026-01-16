@@ -783,6 +783,13 @@ export const calculators: Calculator[] = [
     url: "/car-paint-calculator",
     category: "Auto",
     type: "Calculator"
+  },
+  {
+    name: "Concrete Block Calculator",
+    description: "Calculate CMU blocks needed for walls with automatic door & window opening deductions. Includes mortar and cost estimates.",
+    url: "/concrete-block-calculator",
+    category: "Construction",
+    type: "Calculator"
   }
 ];
 
