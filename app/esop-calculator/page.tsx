@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from "react";
 import Link from "next/link";
+import RelatedTools from "@/components/RelatedTools";
 
 // FAQ data
 const faqs = [
@@ -1347,6 +1348,8 @@ export default function ESOPCalculator() {
                 <p style={{ margin: 0 }}><strong>NSO:</strong> Non-Qualified Stock Option</p>
               </div>
             </div>
+
+            <RelatedTools currentUrl="/esop-calculator" currentCategory="Finance" />
           </div>
         </div>
 
