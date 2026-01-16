@@ -845,6 +845,13 @@ export const calculators: Calculator[] = [
     url: "/gestation-calculator-wheel",
     category: "Health",
     type: "Calculator"
+  },
+  {
+    name: "Hip Roof Calculator",
+    description: "Calculate hip roof area in square feet, estimate shingles and materials, find rafter lengths. Includes pitch chart.",
+    url: "/hip-roof-calculator",
+    category: "Home",
+    type: "Calculator"
   }
 ];
 
