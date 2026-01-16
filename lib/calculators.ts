@@ -894,6 +894,13 @@ export const calculators: Calculator[] = [
     url: "/well-pump-size-calculator",
     category: "Home",
     type: "Calculator"
+  },
+  {
+    name: "Wedding Gift Calculator",
+    description: "Calculate how much money to give as a wedding gift based on your relationship, budget, and wedding type.",
+    url: "/wedding-gift-calculator",
+    category: "Lifestyle",
+    type: "Calculator"
   }
 ];
 
