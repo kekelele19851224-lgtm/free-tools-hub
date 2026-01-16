@@ -167,7 +167,6 @@ export default function FirstLienHelocCalculator() {
     // First Lien HELOC with Velocity Banking
     // Simplified calculation: using cash flow surplus to pay down principal
     const helocMonthlyRate = helocRateVal / 100 / 12;
-    const dailyRate = helocRateVal / 100 / 365;
     
     // Calculate HELOC payoff with velocity banking
     // Each month: deposit income, pay expenses throughout month, end with surplus paying principal
@@ -229,7 +228,7 @@ export default function FirstLienHelocCalculator() {
     };
   }, [mortgageBalance, mortgageRate, mortgageYearsLeft, compareHelocRate, monthlyIncome, monthlyExpenses]);
 
-  // Tab 3 Calculations - Payoff with Extra Payments
+  // Tab 3 Calculations - Payoff with Extra Payments (修复版)
   const payoffResults = useMemo(() => {
     const balance = parseFloat(currentBalance) || 0;
     const rate = parseFloat(payoffRate) || 0;
@@ -237,22 +236,32 @@ export default function FirstLienHelocCalculator() {
     const extra = parseFloat(extraPayment) || 0;
     const monthlyRate = rate / 100 / 12;
 
+    // 计算最低月付（仅覆盖首月利息）
+    const minPaymentRequired = balance * monthlyRate;
+
     // Original payoff (current payment only)
     let origBalance = balance;
     let origMonths = 0;
     let origInterest = 0;
     const maxMonths = 360;
+    let origViable = true;
 
-    while (origBalance > 0 && origMonths < maxMonths) {
-      const interest = origBalance * monthlyRate;
-      const principal = Math.min(payment - interest, origBalance);
-      if (principal <= 0) {
-        origMonths = maxMonths;
-        break;
+    // 检查月付是否足够覆盖利息
+    if (payment <= minPaymentRequired) {
+      origViable = false;
+      origMonths = 0;
+      origInterest = 0;
+    } else {
+      while (origBalance > 0 && origMonths < maxMonths) {
+        const interest = origBalance * monthlyRate;
+        const principal = Math.min(payment - interest, origBalance);
+        origInterest += interest;
+        origBalance -= principal;
+        origMonths++;
       }
-      origInterest += interest;
-      origBalance -= principal;
-      origMonths++;
+      if (origBalance > 0) {
+        origViable = false;
+      }
     }
 
     // New payoff (with extra payment)
@@ -260,36 +269,54 @@ export default function FirstLienHelocCalculator() {
     let newMonths = 0;
     let newInterest = 0;
     const totalPayment = payment + extra;
+    let newViable = true;
 
-    while (newBalance > 0 && newMonths < maxMonths) {
-      const interest = newBalance * monthlyRate;
-      const principal = Math.min(totalPayment - interest, newBalance);
-      if (principal <= 0) {
-        newMonths = maxMonths;
-        break;
+    // 检查新月付是否足够覆盖利息
+    if (totalPayment <= minPaymentRequired) {
+      newViable = false;
+      newMonths = 0;
+      newInterest = 0;
+    } else {
+      while (newBalance > 0 && newMonths < maxMonths) {
+        const interest = newBalance * monthlyRate;
+        const principal = Math.min(totalPayment - interest, newBalance);
+        newInterest += interest;
+        newBalance -= principal;
+        newMonths++;
       }
-      newInterest += interest;
-      newBalance -= principal;
-      newMonths++;
+      if (newBalance > 0) {
+        newViable = false;
+      }
     }
 
-    const monthsSaved = origMonths - newMonths;
-    const interestSaved = origInterest - newInterest;
+    // 计算节省（只有两种情况都可行时才有意义）
+    const monthsSaved = (origViable && newViable) ? origMonths - newMonths : 0;
+    const interestSaved = (origViable && newViable) ? origInterest - newInterest : 0;
 
     return {
+      // 原始还款计划
       origMonths,
-      origYears: Math.round((origMonths / 12) * 10) / 10,
+      origYears: origViable ? Math.round((origMonths / 12) * 10) / 10 : 0,
       origInterest,
       origTotalCost: balance + origInterest,
+      origViable,
+      
+      // 新还款计划（含额外还款）
       newMonths,
-      newYears: Math.round((newMonths / 12) * 10) / 10,
+      newYears: newViable ? Math.round((newMonths / 12) * 10) / 10 : 0,
       newInterest,
       newTotalCost: balance + newInterest,
+      newViable,
+      
+      // 节省
       monthsSaved,
       yearsSaved: Math.round((monthsSaved / 12) * 10) / 10,
       interestSaved,
+      
+      // 其他信息
       totalPayment,
-      isViable: origMonths < maxMonths && newMonths < maxMonths
+      minPaymentRequired,
+      isViable: origViable && newViable
     };
   }, [currentBalance, payoffRate, currentPayment, extraPayment]);
 
@@ -966,7 +993,7 @@ export default function FirstLienHelocCalculator() {
           </div>
         )}
 
-        {/* Tab 3: Payoff Calculator */}
+        {/* Tab 3: Payoff Calculator (修复版) */}
         {activeTab === "payoff" && (
           <div className="calc-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "24px", marginBottom: "24px" }}>
             {/* Input Panel */}
@@ -1090,7 +1117,7 @@ export default function FirstLienHelocCalculator() {
               </div>
             </div>
 
-            {/* Results Panel */}
+            {/* Results Panel (修复版) */}
             <div className="calc-results" style={{
               backgroundColor: "white",
               borderRadius: "16px",
@@ -1105,7 +1132,45 @@ export default function FirstLienHelocCalculator() {
               </div>
 
               <div style={{ padding: "24px" }}>
-                {/* Savings Highlight */}
+                {/* 警告：月付不足以覆盖利息 */}
+                {!payoffResults.origViable && (
+                  <div style={{
+                    backgroundColor: "#FEF2F2",
+                    borderRadius: "12px",
+                    padding: "20px",
+                    textAlign: "center",
+                    marginBottom: "20px",
+                    border: "2px solid #FECACA"
+                  }}>
+                    <p style={{ margin: "0 0 8px 0", fontSize: "1.5rem" }}>⚠️</p>
+                    <p style={{ margin: "0 0 8px 0", fontSize: "1.1rem", fontWeight: "bold", color: "#DC2626" }}>
+                      Monthly payment is insufficient!
+                    </p>
+                    <p style={{ margin: "0 0 12px 0", fontSize: "0.95rem", color: "#991B1B" }}>
+                      Current payment <strong>{formatMoney(parseFloat(currentPayment) || 0)}</strong> is less than monthly interest <strong>{formatMoney(payoffResults.minPaymentRequired)}</strong>
+                    </p>
+                    <p style={{ margin: 0, fontSize: "0.9rem", color: "#B91C1C" }}>
+                      Minimum payment required: <strong>{formatMoney(payoffResults.minPaymentRequired + 1)}</strong> or more to pay down the loan
+                    </p>
+                  </div>
+                )}
+
+                {/* 警告：加了额外还款仍然不足 */}
+                {payoffResults.origViable && !payoffResults.newViable && (
+                  <div style={{
+                    backgroundColor: "#FEF3C7",
+                    borderRadius: "12px",
+                    padding: "16px",
+                    marginBottom: "20px",
+                    border: "1px solid #FCD34D"
+                  }}>
+                    <p style={{ margin: 0, fontSize: "0.9rem", color: "#92400E" }}>
+                      ⚠️ Even with the extra payment, total payment of {formatMoney(payoffResults.totalPayment)} is still not enough to effectively pay off the loan.
+                    </p>
+                  </div>
+                )}
+
+                {/* 正常情况：显示节省 */}
                 {payoffResults.isViable && payoffResults.interestSaved > 0 && (
                   <div style={{
                     backgroundColor: "#FEF3C7",
@@ -1127,34 +1192,42 @@ export default function FirstLienHelocCalculator() {
                   </div>
                 )}
 
-                {/* Comparison Cards */}
+                {/* Comparison Cards (修复版) */}
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px", marginBottom: "20px" }}>
                   <div style={{
-                    backgroundColor: "#FEF2F2",
+                    backgroundColor: payoffResults.origViable ? "#FEF2F2" : "#F3F4F6",
                     borderRadius: "12px",
                     padding: "16px",
-                    border: "1px solid #FECACA"
+                    border: payoffResults.origViable ? "1px solid #FECACA" : "1px solid #D1D5DB"
                   }}>
-                    <p style={{ margin: "0 0 8px 0", fontSize: "0.8rem", color: "#991B1B", fontWeight: "600" }}>Without Extra Payment</p>
-                    <p style={{ margin: "0 0 4px 0", fontSize: "1.5rem", fontWeight: "bold", color: "#DC2626" }}>
-                      {payoffResults.origYears} years
+                    <p style={{ margin: "0 0 8px 0", fontSize: "0.8rem", color: payoffResults.origViable ? "#991B1B" : "#6B7280", fontWeight: "600" }}>
+                      Without Extra Payment
                     </p>
-                    <p style={{ margin: 0, fontSize: "0.85rem", color: "#B91C1C" }}>
-                      Interest: {formatCurrency(payoffResults.origInterest)}
+                    <p style={{ margin: "0 0 4px 0", fontSize: "1.5rem", fontWeight: "bold", color: payoffResults.origViable ? "#DC2626" : "#9CA3AF" }}>
+                      {payoffResults.origViable ? `${payoffResults.origYears} years` : "N/A"}
+                    </p>
+                    <p style={{ margin: 0, fontSize: "0.85rem", color: payoffResults.origViable ? "#B91C1C" : "#9CA3AF" }}>
+                      {payoffResults.origViable 
+                        ? `Interest: ${formatCurrency(payoffResults.origInterest)}` 
+                        : "Payment too low"}
                     </p>
                   </div>
                   <div style={{
-                    backgroundColor: "#ECFDF5",
+                    backgroundColor: payoffResults.newViable ? "#ECFDF5" : "#F3F4F6",
                     borderRadius: "12px",
                     padding: "16px",
-                    border: "1px solid #6EE7B7"
+                    border: payoffResults.newViable ? "1px solid #6EE7B7" : "1px solid #D1D5DB"
                   }}>
-                    <p style={{ margin: "0 0 8px 0", fontSize: "0.8rem", color: "#065F46", fontWeight: "600" }}>With Extra Payment</p>
-                    <p style={{ margin: "0 0 4px 0", fontSize: "1.5rem", fontWeight: "bold", color: "#059669" }}>
-                      {payoffResults.newYears} years
+                    <p style={{ margin: "0 0 8px 0", fontSize: "0.8rem", color: payoffResults.newViable ? "#065F46" : "#6B7280", fontWeight: "600" }}>
+                      With Extra Payment
                     </p>
-                    <p style={{ margin: 0, fontSize: "0.85rem", color: "#047857" }}>
-                      Interest: {formatCurrency(payoffResults.newInterest)}
+                    <p style={{ margin: "0 0 4px 0", fontSize: "1.5rem", fontWeight: "bold", color: payoffResults.newViable ? "#059669" : "#9CA3AF" }}>
+                      {payoffResults.newViable ? `${payoffResults.newYears} years` : "N/A"}
+                    </p>
+                    <p style={{ margin: 0, fontSize: "0.85rem", color: payoffResults.newViable ? "#047857" : "#9CA3AF" }}>
+                      {payoffResults.newViable 
+                        ? `Interest: ${formatCurrency(payoffResults.newInterest)}` 
+                        : "Payment too low"}
                     </p>
                   </div>
                 </div>
@@ -1175,11 +1248,15 @@ export default function FirstLienHelocCalculator() {
                     </div>
                     <div style={{ display: "flex", justifyContent: "space-between", padding: "10px 12px", backgroundColor: "#F9FAFB", borderRadius: "6px" }}>
                       <span style={{ color: "#4B5563" }}>Months Saved</span>
-                      <span style={{ fontWeight: "600", color: "#059669" }}>{payoffResults.monthsSaved} months</span>
+                      <span style={{ fontWeight: "600", color: payoffResults.isViable ? "#059669" : "#9CA3AF" }}>
+                        {payoffResults.isViable ? `${payoffResults.monthsSaved} months` : "N/A"}
+                      </span>
                     </div>
                     <div style={{ display: "flex", justifyContent: "space-between", padding: "10px 12px", backgroundColor: "#FEF3C7", borderRadius: "6px" }}>
                       <span style={{ color: "#92400E", fontWeight: "600" }}>Interest Saved</span>
-                      <span style={{ fontWeight: "bold", color: "#D97706" }}>{formatCurrency(payoffResults.interestSaved)}</span>
+                      <span style={{ fontWeight: "bold", color: payoffResults.isViable ? "#D97706" : "#9CA3AF" }}>
+                        {payoffResults.isViable ? formatCurrency(payoffResults.interestSaved) : "N/A"}
+                      </span>
                     </div>
                   </div>
                 </div>
