@@ -824,6 +824,13 @@ export const calculators: Calculator[] = [
     icon: "💰",
     category: "Finance",
     type: "Calculator"
+  },
+  {
+    name: "First Lien HELOC Calculator",
+    description: "Compare First Lien HELOC vs traditional mortgage. Calculate payments, see velocity banking savings, and payoff time.",
+    url: "/first-lien-heloc-calculator",
+    category: "Finance",
+    type: "Calculator"
   }
 ];
 
