@@ -790,6 +790,13 @@ export const calculators: Calculator[] = [
     url: "/concrete-block-calculator",
     category: "Construction",
     type: "Calculator"
+  },
+  {
+    name: "Concrete Calculator",
+    description: "Calculate cubic yards, bags needed, and total cost with state-by-state pricing. For slabs, driveways, footings, and stairs.",
+    url: "/concrete-calculator",
+    category: "Construction",
+    type: "Calculator"
   }
 ];
 
