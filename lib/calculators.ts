@@ -852,6 +852,13 @@ export const calculators: Calculator[] = [
     url: "/hip-roof-calculator",
     category: "Home",
     type: "Calculator"
+  },
+  {
+    name: "Mortgage APR Calculator",
+    description: "Calculate the true Annual Percentage Rate including fees. Compare loan offers and find break-even points.",
+    url: "/mortgage-apr-calculator",
+    category: "Finance",
+    type: "Calculator"
   }
 ];
 
