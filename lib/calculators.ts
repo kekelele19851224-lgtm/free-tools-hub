@@ -838,6 +838,13 @@ export const calculators: Calculator[] = [
     url: "/first-lien-heloc-calculator",
     category: "Finance",
     type: "Calculator"
+  },
+  {
+    name: "Gestation Calculator Wheel",
+    description: "Calculate due date from LMP, find gestational age, and track pregnancy milestones. Free online OB wheel.",
+    url: "/gestation-calculator-wheel",
+    category: "Health",
+    type: "Calculator"
   }
 ];
 
