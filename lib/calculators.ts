@@ -866,6 +866,13 @@ export const calculators: Calculator[] = [
     url: "/freight-density-calculator",
     category: "Business",
     type: "Calculator"
+  },
+  {
+    name: "Reverse Sales Tax Calculator",
+    description: "Calculate the original pre-tax price from a total amount including sales tax. Select your state for automatic tax rate lookup.",
+    url: "/reverse-sales-tax-calculator",
+    category: "Finance",
+    type: "Calculator"
   }
 ];
 
