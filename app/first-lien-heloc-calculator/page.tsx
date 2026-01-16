@@ -245,10 +245,12 @@ export default function FirstLienHelocCalculator() {
     let origInterest = 0;
     const maxMonths = 360;
     let origViable = true;
+    let origReason: 'insufficient' | 'too_long' | null = null;
 
     // 检查月付是否足够覆盖利息
     if (payment <= minPaymentRequired) {
       origViable = false;
+      origReason = 'insufficient';
       origMonths = 0;
       origInterest = 0;
     } else {
@@ -261,6 +263,7 @@ export default function FirstLienHelocCalculator() {
       }
       if (origBalance > 0) {
         origViable = false;
+        origReason = 'too_long';
       }
     }
 
@@ -316,7 +319,8 @@ export default function FirstLienHelocCalculator() {
       // 其他信息
       totalPayment,
       minPaymentRequired,
-      isViable: origViable && newViable
+      isViable: origViable && newViable,
+      origReason
     };
   }, [currentBalance, payoffRate, currentPayment, extraPayment]);
 
@@ -1132,8 +1136,8 @@ export default function FirstLienHelocCalculator() {
               </div>
 
               <div style={{ padding: "24px" }}>
-                {/* 警告：月付不足以覆盖利息 */}
-                {!payoffResults.origViable && (
+                {/* 警告：区分两种情况 */}
+                {!payoffResults.origViable && payoffResults.origReason === 'insufficient' && (
                   <div style={{
                     backgroundColor: "#FEF2F2",
                     borderRadius: "12px",
@@ -1144,13 +1148,29 @@ export default function FirstLienHelocCalculator() {
                   }}>
                     <p style={{ margin: "0 0 8px 0", fontSize: "1.5rem" }}>⚠️</p>
                     <p style={{ margin: "0 0 8px 0", fontSize: "1.1rem", fontWeight: "bold", color: "#DC2626" }}>
-                      Monthly payment is insufficient!
+                      月付不足以覆盖利息
                     </p>
                     <p style={{ margin: "0 0 12px 0", fontSize: "0.95rem", color: "#991B1B" }}>
-                      Current payment <strong>{formatMoney(parseFloat(currentPayment) || 0)}</strong> is less than monthly interest <strong>{formatMoney(payoffResults.minPaymentRequired)}</strong>
+                      当前月付 <strong>{formatMoney(parseFloat(currentPayment) || 0)}</strong> 小于当月利息 <strong>{formatMoney(payoffResults.minPaymentRequired)}</strong>
                     </p>
                     <p style={{ margin: 0, fontSize: "0.9rem", color: "#B91C1C" }}>
-                      Minimum payment required: <strong>{formatMoney(payoffResults.minPaymentRequired + 1)}</strong> or more to pay down the loan
+                      覆盖利息的最低月付：<strong>{formatMoney(payoffResults.minPaymentRequired + 1)}</strong>
+                    </p>
+                  </div>
+                )}
+                {!payoffResults.origViable && payoffResults.origReason === 'too_long' && (
+                  <div style={{
+                    backgroundColor: "#FEF3C7",
+                    borderRadius: "12px",
+                    padding: "16px",
+                    marginBottom: "20px",
+                    border: "1px solid #FCD34D"
+                  }}>
+                    <p style={{ margin: "0 0 8px 0", fontSize: "1rem", fontWeight: "600", color: "#B45309" }}>
+                      还款周期超过30年，建议增加月付金额
+                    </p>
+                    <p style={{ margin: 0, fontSize: "0.9rem", color: "#92400E" }}>
+                      当前月付可覆盖利息，但在 30 年期限内无法还清本金
                     </p>
                   </div>
                 )}
@@ -1209,7 +1229,7 @@ export default function FirstLienHelocCalculator() {
                     <p style={{ margin: 0, fontSize: "0.85rem", color: payoffResults.origViable ? "#B91C1C" : "#9CA3AF" }}>
                       {payoffResults.origViable 
                         ? `Interest: ${formatCurrency(payoffResults.origInterest)}` 
-                        : "Payment too low"}
+                        : payoffResults.origReason === 'insufficient' ? "Payment too low" : "Term > 30 years"}
                     </p>
                   </div>
                   <div style={{
