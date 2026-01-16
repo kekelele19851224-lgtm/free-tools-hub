@@ -814,6 +814,16 @@ export const calculators: Calculator[] = [
     icon: "🦌",
     category: "Outdoors",
     type: "Calculator"
+  },
+  {
+    name: "ESOP Calculator",
+    title: "ESOP Calculator",
+    description: "Free stock option calculator. Calculate ESOP value, visualize vesting schedules, and compare job offers with equity compensation.",
+    url: "/esop-calculator",
+    href: "/esop-calculator",
+    icon: "💰",
+    category: "Finance",
+    type: "Calculator"
   }
 ];
 
