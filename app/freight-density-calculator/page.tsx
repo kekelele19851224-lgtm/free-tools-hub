@@ -134,6 +134,7 @@ export default function FreightDensityCalculator() {
       setLength(pallet.length);
       setWidth(pallet.width);
       setHeight(pallet.height);
+      setUnit('inches'); // 预设托盘尺寸都是 inches，自动切换单位
     }
   };
 
@@ -171,26 +172,25 @@ export default function FreightDensityCalculator() {
 
   // Tab 2 Calculations - Multi-piece
   const multiResults = useMemo(() => {
-    let totalWeight = 0;
-    let totalCubicFeet = 0;
-
     const pieceDetails = pieces.map(piece => {
-      const w = parseFloat(piece.weight) || 0;
       const l = parseFloat(piece.length) || 0;
       const wd = parseFloat(piece.width) || 0;
       const h = parseFloat(piece.height) || 0;
-
       const cubicInches = l * wd * h;
       const cubicFeet = cubicInches / 1728;
-
-      totalWeight += w;
-      totalCubicFeet += cubicFeet;
-
       return {
         ...piece,
         cubicFeet: Math.round(cubicFeet * 100) / 100
       };
     });
+
+    const totalWeight = pieces.reduce((sum, p) => sum + (parseFloat(p.weight) || 0), 0);
+    const totalCubicFeet = pieces.reduce((sum, p) => {
+      const l = parseFloat(p.length) || 0;
+      const wd = parseFloat(p.width) || 0;
+      const h = parseFloat(p.height) || 0;
+      return sum + (l * wd * h) / 1728;
+    }, 0);
 
     const combinedDensity = totalCubicFeet > 0 ? totalWeight / totalCubicFeet : 0;
     const freightClass = getFreightClass(combinedDensity);
