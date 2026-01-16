@@ -804,6 +804,16 @@ export const calculators: Calculator[] = [
     url: "/deck-post-spacing-calculator",
     category: "Construction",
     type: "Calculator"
+  },
+  {
+    name: "Deer Scoring Calculator",
+    title: "Deer Scoring Calculator",
+    description: "Free Boone and Crockett scoring calculator for whitetail and mule deer. Calculate gross & net scores and check record book eligibility.",
+    url: "/deer-scoring-calculator",
+    href: "/deer-scoring-calculator",
+    icon: "🦌",
+    category: "Outdoors",
+    type: "Calculator"
   }
 ];
 
