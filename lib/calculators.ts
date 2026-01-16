@@ -908,6 +908,13 @@ export const calculators: Calculator[] = [
     url: "/t-shirt-size-calculator",
     category: "Lifestyle",
     type: "Calculator"
+  },
+  {
+    name: "Wood Floor Calculator",
+    description: "Calculate how much flooring you need. Get total square feet, number of boxes, and cost estimate for hardwood, laminate, and vinyl flooring.",
+    url: "/wood-floor-calculator",
+    category: "Home",
+    type: "Calculator"
   }
 ];
 
