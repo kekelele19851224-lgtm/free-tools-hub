@@ -414,6 +414,13 @@ export const calculators: Calculator[] = [
     type: "Calculator"
   },
   {
+    name: "Garage Door Spring Size Calculator",
+    description: "Find the right torsion spring size by door weight. Includes weight estimator, spring verification, and wire size chart.",
+    url: "/garage-door-spring-size-calculator",
+    category: "Auto",
+    type: "Calculator"
+  },
+  {
     name: "Feng Shui Bedroom Layout Generator",
     description: "Generate optimal bed placement for your bedroom based on feng shui principles. Find the command position and avoid bad feng shui.",
     url: "/feng-shui-bedroom-layout-generator",
