@@ -901,6 +901,13 @@ export const calculators: Calculator[] = [
     url: "/wedding-gift-calculator",
     category: "Lifestyle",
     type: "Calculator"
+  },
+  {
+    name: "T-Shirt Size Calculator",
+    description: "Find your perfect T-shirt size based on height and weight for men, women & kids. Includes size charts and international conversion.",
+    url: "/t-shirt-size-calculator",
+    category: "Lifestyle",
+    type: "Calculator"
   }
 ];
 
