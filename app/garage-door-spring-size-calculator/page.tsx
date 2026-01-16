@@ -202,10 +202,8 @@ export default function GarageDoorSpringSizeCalculator() {
     const doorWeight = parseFloat(verifyDoorWeight) || 0;
 
     // Calculate IPPT using simplified formula
-    // IPPT formula: industry standard approximation
-    // IPPT ≈ (wire^4 × 405000 × length) / (mean_diameter^2)
     const meanDiameter = id + wireSize;
-    const springIPPT = (Math.pow(wireSize, 4) * 405000 * length) / Math.pow(meanDiameter, 2);
+    const springIPPT = (Math.pow(wireSize, 4) * 875000) / (meanDiameter * length);
     
     // Calculate turns needed
     const heightInches = doorHeightVal * 12;
