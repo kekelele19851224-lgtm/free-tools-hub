@@ -880,6 +880,13 @@ export const calculators: Calculator[] = [
     url: "/pool-alkalinity-calculator",
     category: "Home",
     type: "Calculator"
+  },
+  {
+    name: "Stump Grinding Cost Calculator",
+    description: "Estimate tree stump removal prices based on diameter and rate per inch. Calculate single or multiple stumps with bulk discounts.",
+    url: "/stump-grinding-cost-calculator",
+    category: "Home",
+    type: "Calculator"
   }
 ];
 
