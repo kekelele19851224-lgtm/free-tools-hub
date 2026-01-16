@@ -154,7 +154,7 @@ export default function StumpGrindingCostCalculator() {
     else if (stumpCount >= 2) discountPercent = 10;
 
     const discountAmount = Math.round(subtotal * (discountPercent / 100));
-    let afterDiscount = subtotal - discountAmount;
+    const afterDiscount = subtotal - discountAmount;
 
     // Add-ons
     let addOns = 0;
