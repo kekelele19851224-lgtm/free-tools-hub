@@ -887,6 +887,13 @@ export const calculators: Calculator[] = [
     url: "/stump-grinding-cost-calculator",
     category: "Home",
     type: "Calculator"
+  },
+  {
+    name: "Well Pump Size Calculator",
+    description: "Calculate GPM needs and pump horsepower based on well depth, fixtures, and Total Dynamic Head (TDH).",
+    url: "/well-pump-size-calculator",
+    category: "Home",
+    type: "Calculator"
   }
 ];
 
