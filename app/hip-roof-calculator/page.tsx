@@ -97,7 +97,9 @@ export default function HipRoofCalculator() {
   // Tab 1 Calculations
   const areaResults = useMemo(() => {
     const length = parseFloat(buildingLength) || 0;
-    const width = parseFloat(buildingWidth) || 0;
+    const width = roofType === 'pyramid' 
+      ? (parseFloat(buildingLength) || 0) 
+      : (parseFloat(buildingWidth) || 0);
     const overhangFt = (parseFloat(overhang) || 0) / 12;
     
     // Get pitch data
