@@ -929,6 +929,13 @@ export const calculators: Calculator[] = [
     description: "Estimate the cost of prescription eyeglasses based on frames, lenses, coatings, and insurance coverage.",
     category: "Health",
     type: "Calculator"
+  },
+  {
+    name: "Radical Calculator",
+    url: "/radical-calculator",
+    description: "Simplify radical expressions with step-by-step solutions. Evaluate roots and perform radical operations.",
+    category: "Math",
+    type: "Calculator"
   }
 ];
 
