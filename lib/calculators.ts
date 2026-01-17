@@ -922,6 +922,13 @@ export const calculators: Calculator[] = [
     description: "Calculate total capacitance, voltage distribution, charge and energy for capacitors connected in series.",
     category: "Electronics",
     type: "Calculator"
+  },
+  {
+    name: "Prescription Glasses Cost Calculator",
+    url: "/prescription-glasses-cost-calculator",
+    description: "Estimate the cost of prescription eyeglasses based on frames, lenses, coatings, and insurance coverage.",
+    category: "Health",
+    type: "Calculator"
   }
 ];
 
