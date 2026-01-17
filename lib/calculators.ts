@@ -957,6 +957,13 @@ export const calculators: Calculator[] = [
     description: "Estimate wrongful death compensation including economic damages, non-economic damages, and settlement distribution after attorney fees.",
     category: "Legal",
     type: "Calculator"
+  },
+  {
+    name: "Solve Radical Equations Calculator",
+    url: "/solve-radical-equations-calculator",
+    description: "Solve radical equations step by step with extraneous solution checking. Supports square root and cube root equations.",
+    category: "Math",
+    type: "Calculator"
   }
 ];
 
