@@ -915,6 +915,13 @@ export const calculators: Calculator[] = [
     url: "/wood-floor-calculator",
     category: "Home",
     type: "Calculator"
+  },
+  {
+    name: "Series Capacitor Calculator",
+    url: "/series-capacitor-calculator",
+    description: "Calculate total capacitance, voltage distribution, charge and energy for capacitors connected in series.",
+    category: "Electronics",
+    type: "Calculator"
   }
 ];
 
