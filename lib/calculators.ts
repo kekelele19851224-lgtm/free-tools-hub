@@ -936,6 +936,13 @@ export const calculators: Calculator[] = [
     description: "Simplify radical expressions with step-by-step solutions. Evaluate roots and perform radical operations.",
     category: "Math",
     type: "Calculator"
+  },
+  {
+    name: "Dirt Calculator",
+    url: "/dirt-calculator",
+    description: "Calculate cubic yards of fill dirt, topsoil, sand or gravel. Get tonnage, coverage area, and dump truck loads.",
+    category: "Construction",
+    type: "Calculator"
   }
 ];
 
