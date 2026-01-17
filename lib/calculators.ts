@@ -943,6 +943,13 @@ export const calculators: Calculator[] = [
     description: "Calculate cubic yards of fill dirt, topsoil, sand or gravel. Get tonnage, coverage area, and dump truck loads.",
     category: "Construction",
     type: "Calculator"
+  },
+  {
+    name: "Nerve Damage Compensation Calculator",
+    url: "/nerve-damage-compensation-calculator",
+    description: "Estimate nerve damage settlement amounts using the multiplier method. Calculate pain and suffering damages for informational purposes.",
+    category: "Legal",
+    type: "Calculator"
   }
 ];
 
