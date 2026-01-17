@@ -950,6 +950,13 @@ export const calculators: Calculator[] = [
     description: "Estimate nerve damage settlement amounts using the multiplier method. Calculate pain and suffering damages for informational purposes.",
     category: "Legal",
     type: "Calculator"
+  },
+  {
+    name: "Wrongful Death Settlement Calculator",
+    url: "/wrongful-death-settlement-calculator",
+    description: "Estimate wrongful death compensation including economic damages, non-economic damages, and settlement distribution after attorney fees.",
+    category: "Legal",
+    type: "Calculator"
   }
 ];
 
