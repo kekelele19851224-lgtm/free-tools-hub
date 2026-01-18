@@ -12,10 +12,7 @@ interface BubbleStyle {
   name: string;
   emoji: string;
   description: string;
-  borderRadius: string;
-  border: string;
-  background: string;
-  tailStyle: "normal" | "cloud" | "burst" | "dotted" | "pixel";
+  tailStyle: "normal" | "cloud" | "burst" | "dotted" | "pixel" | "manga";
 }
 
 const bubbleStyles: { [key: string]: BubbleStyle } = {
@@ -23,72 +20,48 @@ const bubbleStyles: { [key: string]: BubbleStyle } = {
     name: "Speech",
     emoji: "💬",
     description: "Classic dialogue bubble",
-    borderRadius: "20px",
-    border: "3px solid #000",
-    background: "#FFFFFF",
     tailStyle: "normal"
   },
   thought: {
     name: "Thought",
     emoji: "💭",
     description: "Cloud-like thinking bubble",
-    borderRadius: "50%",
-    border: "3px solid #000",
-    background: "#FFFFFF",
     tailStyle: "cloud"
   },
   shout: {
     name: "Shout",
     emoji: "💥",
     description: "Explosive exclamation",
-    borderRadius: "0",
-    border: "3px solid #000",
-    background: "#FFE66D",
     tailStyle: "burst"
   },
   whisper: {
     name: "Whisper",
     emoji: "🤫",
     description: "Soft dotted bubble",
-    borderRadius: "20px",
-    border: "3px dashed #666",
-    background: "#F5F5F5",
     tailStyle: "dotted"
   },
   pixel: {
     name: "Pixel",
     emoji: "👾",
     description: "Retro game style",
-    borderRadius: "0",
-    border: "4px solid #000",
-    background: "#FFFFFF",
     tailStyle: "pixel"
   },
   comic: {
     name: "Comic",
     emoji: "📚",
     description: "Western comic style",
-    borderRadius: "30px 30px 30px 5px",
-    border: "4px solid #000",
-    background: "#FFFFFF",
     tailStyle: "normal"
   },
   manga: {
     name: "Manga",
     emoji: "🎌",
     description: "Japanese manga style",
-    borderRadius: "10px",
-    border: "2px solid #000",
-    background: "#FFFFFF",
-    tailStyle: "normal"
+    tailStyle: "manga"
   },
   cloud: {
     name: "Cloud",
     emoji: "☁️",
     description: "Dreamy cloud shape",
-    borderRadius: "50%",
-    border: "3px solid #87CEEB",
-    background: "#E8F4FD",
     tailStyle: "cloud"
   }
 };
@@ -236,107 +209,352 @@ export default function CartoonBubbleGenerator() {
     }
   };
 
-  // Render tail based on style and position
-  const renderTail = () => {
-    const tailColor = currentColor.bg;
-    const borderColor = currentColor.border;
-    
-    if (currentStyle.tailStyle === "cloud") {
-      // Cloud/thought bubble tail (small circles)
-      return (
-        <div style={{
-          position: "absolute",
-          bottom: "-30px",
-          left: tailPosition.includes("left") ? "30px" : tailPosition.includes("right") ? "auto" : "50%",
-          right: tailPosition.includes("right") ? "30px" : "auto",
-          transform: tailPosition === "bottom-center" ? "translateX(-50%)" : "none",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: tailPosition.includes("left") ? "flex-start" : tailPosition.includes("right") ? "flex-end" : "center",
-          gap: "2px"
-        }}>
-          <div style={{
-            width: "15px",
-            height: "15px",
-            borderRadius: "50%",
-            backgroundColor: tailColor,
-            border: `2px solid ${borderColor}`
-          }} />
-          <div style={{
-            width: "10px",
-            height: "10px",
-            borderRadius: "50%",
-            backgroundColor: tailColor,
-            border: `2px solid ${borderColor}`
-          }} />
-          <div style={{
-            width: "6px",
-            height: "6px",
-            borderRadius: "50%",
-            backgroundColor: tailColor,
-            border: `2px solid ${borderColor}`
-          }} />
-        </div>
-      );
-    }
-
-    if (currentStyle.tailStyle === "pixel") {
-      // Pixel style tail
-      return (
-        <div style={{
-          position: "absolute",
-          bottom: "-20px",
-          left: tailPosition.includes("left") ? "20px" : tailPosition.includes("right") ? "auto" : "50%",
-          right: tailPosition.includes("right") ? "20px" : "auto",
-          transform: tailPosition === "bottom-center" ? "translateX(-50%)" : "none"
-        }}>
-          <div style={{ display: "flex", flexDirection: "column" }}>
-            <div style={{ width: "20px", height: "8px", backgroundColor: tailColor, borderLeft: `4px solid ${borderColor}`, borderRight: `4px solid ${borderColor}` }} />
-            <div style={{ width: "12px", height: "8px", backgroundColor: tailColor, borderLeft: `4px solid ${borderColor}`, borderRight: `4px solid ${borderColor}`, marginLeft: tailPosition.includes("right") ? "auto" : "0" }} />
-            <div style={{ width: "4px", height: "8px", backgroundColor: borderColor, marginLeft: tailPosition.includes("right") ? "auto" : "0" }} />
-          </div>
-        </div>
-      );
-    }
-
-    // Normal triangle tail
+  // Get tail position values
+  const getTailPositionStyle = () => {
     const isLeft = tailPosition.includes("left");
     const isRight = tailPosition.includes("right");
     const isHorizontal = tailPosition === "left" || tailPosition === "right";
+    
+    return { isLeft, isRight, isHorizontal };
+  };
 
-    if (isHorizontal) {
+  // Render the bubble based on style
+  const renderBubble = () => {
+    const { isLeft, isRight, isHorizontal } = getTailPositionStyle();
+
+    // Cloud / Thought bubble - using SVG
+    if (bubbleStyle === "cloud" || bubbleStyle === "thought") {
       return (
-        <div style={{
-          position: "absolute",
-          top: "50%",
-          left: tailPosition === "left" ? "-20px" : "auto",
-          right: tailPosition === "right" ? "-20px" : "auto",
-          transform: "translateY(-50%)",
-          width: 0,
-          height: 0,
-          borderTop: "15px solid transparent",
-          borderBottom: "15px solid transparent",
-          borderRight: tailPosition === "left" ? `20px solid ${tailColor}` : "none",
-          borderLeft: tailPosition === "right" ? `20px solid ${tailColor}` : "none",
-          filter: `drop-shadow(${tailPosition === "left" ? "-2px" : "2px"} 0 0 ${borderColor})`
-        }} />
+        <div style={{ position: "relative", padding: "20px" }}>
+          <svg width="280" height="160" viewBox="0 0 280 160" style={{ overflow: "visible" }}>
+            {/* Cloud shape */}
+            <g>
+              {/* Main cloud body */}
+              <ellipse cx="140" cy="70" rx="100" ry="50" fill={currentColor.bg} stroke={currentColor.border} strokeWidth="3" />
+              {/* Left bump */}
+              <ellipse cx="70" cy="70" rx="45" ry="35" fill={currentColor.bg} stroke={currentColor.border} strokeWidth="3" />
+              {/* Right bump */}
+              <ellipse cx="210" cy="70" rx="45" ry="35" fill={currentColor.bg} stroke={currentColor.border} strokeWidth="3" />
+              {/* Top bump */}
+              <ellipse cx="140" cy="40" rx="50" ry="30" fill={currentColor.bg} stroke={currentColor.border} strokeWidth="3" />
+              {/* Cover inner lines */}
+              <ellipse cx="140" cy="70" rx="95" ry="45" fill={currentColor.bg} />
+              <ellipse cx="70" cy="70" rx="40" ry="30" fill={currentColor.bg} />
+              <ellipse cx="210" cy="70" rx="40" ry="30" fill={currentColor.bg} />
+              <ellipse cx="140" cy="45" rx="45" ry="25" fill={currentColor.bg} />
+            </g>
+            {/* Thought bubbles tail */}
+            <circle cx={isRight ? 220 : isLeft ? 60 : 140} cy="130" r="12" fill={currentColor.bg} stroke={currentColor.border} strokeWidth="2" />
+            <circle cx={isRight ? 235 : isLeft ? 45 : 140} cy="148" r="8" fill={currentColor.bg} stroke={currentColor.border} strokeWidth="2" />
+            <circle cx={isRight ? 248 : isLeft ? 32 : 140} cy="162" r="5" fill={currentColor.bg} stroke={currentColor.border} strokeWidth="2" />
+            {/* Text */}
+            <foreignObject x="40" y="30" width="200" height="80">
+              <div style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                height: "100%",
+                textAlign: "center",
+                fontSize: getFontSize(),
+                fontWeight: "500",
+                color: currentColor.text,
+                padding: "10px",
+                lineHeight: "1.3",
+                wordBreak: "break-word"
+              }}>
+                {text}
+              </div>
+            </foreignObject>
+          </svg>
+        </div>
       );
     }
 
+    // Shout bubble - spiky
+    if (bubbleStyle === "shout") {
+      return (
+        <div style={{ position: "relative", padding: "20px" }}>
+          <svg width="280" height="150" viewBox="0 0 280 150" style={{ overflow: "visible" }}>
+            {/* Spiky burst shape */}
+            <polygon
+              points="140,5 160,30 190,10 180,40 220,25 195,55 240,50 200,75 240,100 195,95 220,125 180,110 190,140 160,120 140,145 120,120 90,140 100,110 60,125 85,95 40,100 80,75 40,50 85,55 60,25 100,40 90,10 120,30"
+              fill={currentColor.bg}
+              stroke={currentColor.border}
+              strokeWidth="3"
+              strokeLinejoin="round"
+            />
+            {/* Text */}
+            <foreignObject x="60" y="40" width="160" height="70">
+              <div style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                height: "100%",
+                textAlign: "center",
+                fontSize: getFontSize(),
+                fontWeight: "800",
+                color: currentColor.text,
+                padding: "5px",
+                lineHeight: "1.2",
+                wordBreak: "break-word"
+              }}>
+                {text}
+              </div>
+            </foreignObject>
+          </svg>
+        </div>
+      );
+    }
+
+    // Pixel bubble
+    if (bubbleStyle === "pixel") {
+      return (
+        <div style={{ position: "relative", padding: "20px" }}>
+          <svg width="280" height="140" viewBox="0 0 280 140" style={{ overflow: "visible", imageRendering: "pixelated" }}>
+            {/* Pixel rectangle with stepped corners */}
+            <path
+              d={`
+                M 20,10 
+                L 260,10 
+                L 260,90 
+                L ${isRight ? 240 : isLeft ? 80 : 160},90
+                L ${isRight ? 240 : isLeft ? 80 : 160},110
+                L ${isRight ? 220 : isLeft ? 60 : 140},110
+                L ${isRight ? 220 : isLeft ? 60 : 140},130
+                L ${isRight ? 200 : isLeft ? 40 : 120},130
+                L ${isRight ? 200 : isLeft ? 40 : 120},110
+                L ${isRight ? 180 : isLeft ? 20 : 100},110
+                L ${isRight ? 180 : isLeft ? 20 : 100},90
+                L 20,90 
+                Z
+              `}
+              fill={currentColor.bg}
+              stroke={currentColor.border}
+              strokeWidth="4"
+            />
+            {/* Text */}
+            <foreignObject x="30" y="20" width="220" height="65">
+              <div style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                height: "100%",
+                textAlign: "center",
+                fontSize: getFontSize(),
+                fontWeight: "500",
+                color: currentColor.text,
+                fontFamily: "'Courier New', monospace",
+                padding: "5px",
+                lineHeight: "1.3",
+                wordBreak: "break-word"
+              }}>
+                {text}
+              </div>
+            </foreignObject>
+          </svg>
+        </div>
+      );
+    }
+
+    // Comic bubble - bold rounded with thick border
+    if (bubbleStyle === "comic") {
+      return (
+        <div style={{ position: "relative", padding: "20px" }}>
+          <svg width="280" height="150" viewBox="0 0 280 150" style={{ overflow: "visible" }}>
+            {/* Main comic bubble - more rounded */}
+            <ellipse cx="140" cy="60" rx="120" ry="55" fill={currentColor.bg} stroke={currentColor.border} strokeWidth="5" />
+            {/* Tail */}
+            <polygon
+              points={
+                isRight ? "200,95 230,130 180,100" :
+                isLeft ? "80,95 50,130 100,100" :
+                "130,95 140,130 150,95"
+              }
+              fill={currentColor.bg}
+              stroke={currentColor.border}
+              strokeWidth="5"
+              strokeLinejoin="round"
+            />
+            {/* Cover the line inside */}
+            <ellipse cx="140" cy="60" rx="115" ry="50" fill={currentColor.bg} />
+            {/* Text */}
+            <foreignObject x="40" y="20" width="200" height="80">
+              <div style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                height: "100%",
+                textAlign: "center",
+                fontSize: getFontSize(),
+                fontWeight: "700",
+                color: currentColor.text,
+                fontFamily: "'Comic Sans MS', 'Chalkboard', cursive",
+                padding: "10px",
+                lineHeight: "1.3",
+                wordBreak: "break-word"
+              }}>
+                {text}
+              </div>
+            </foreignObject>
+          </svg>
+        </div>
+      );
+    }
+
+    // Manga bubble - sharp pointed tail, more angular
+    if (bubbleStyle === "manga") {
+      return (
+        <div style={{ position: "relative", padding: "20px" }}>
+          <svg width="280" height="150" viewBox="0 0 280 150" style={{ overflow: "visible" }}>
+            {/* Main manga bubble - slightly angular ellipse */}
+            <ellipse cx="140" cy="55" rx="115" ry="50" fill={currentColor.bg} stroke={currentColor.border} strokeWidth="2" />
+            {/* Sharp pointed tail */}
+            <polygon
+              points={
+                isRight ? "190,90 250,140 170,95" :
+                isLeft ? "90,90 30,140 110,95" :
+                "135,90 140,140 145,90"
+              }
+              fill={currentColor.bg}
+              stroke={currentColor.border}
+              strokeWidth="2"
+              strokeLinejoin="miter"
+            />
+            {/* Cover the line inside */}
+            <ellipse cx="140" cy="55" rx="112" ry="47" fill={currentColor.bg} />
+            {/* Text */}
+            <foreignObject x="40" y="15" width="200" height="80">
+              <div style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                height: "100%",
+                textAlign: "center",
+                fontSize: getFontSize(),
+                fontWeight: "500",
+                color: currentColor.text,
+                padding: "10px",
+                lineHeight: "1.3",
+                wordBreak: "break-word"
+              }}>
+                {text}
+              </div>
+            </foreignObject>
+          </svg>
+        </div>
+      );
+    }
+
+    // Whisper bubble - dotted border
+    if (bubbleStyle === "whisper") {
+      return (
+        <div style={{ position: "relative", padding: "20px" }}>
+          <svg width="280" height="140" viewBox="0 0 280 140" style={{ overflow: "visible" }}>
+            {/* Dotted rectangle bubble */}
+            <rect
+              x="20" y="10" width="240" height="85" rx="20" ry="20"
+              fill={currentColor.bg}
+              stroke={currentColor.border}
+              strokeWidth="3"
+              strokeDasharray="8,6"
+            />
+            {/* Dotted tail */}
+            <path
+              d={
+                isRight ? "M 200,95 Q 220,110 210,130" :
+                isLeft ? "M 80,95 Q 60,110 70,130" :
+                "M 140,95 L 140,125"
+              }
+              fill="none"
+              stroke={currentColor.border}
+              strokeWidth="3"
+              strokeDasharray="6,4"
+              strokeLinecap="round"
+            />
+            {/* Text */}
+            <foreignObject x="35" y="20" width="210" height="65">
+              <div style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                height: "100%",
+                textAlign: "center",
+                fontSize: getFontSize(),
+                fontWeight: "400",
+                fontStyle: "italic",
+                color: currentColor.text,
+                opacity: 0.8,
+                padding: "5px",
+                lineHeight: "1.3",
+                wordBreak: "break-word"
+              }}>
+                {text}
+              </div>
+            </foreignObject>
+          </svg>
+        </div>
+      );
+    }
+
+    // Default Speech bubble
     return (
-      <div style={{
-        position: "absolute",
-        bottom: "-20px",
-        left: isLeft ? "30px" : isRight ? "auto" : "50%",
-        right: isRight ? "30px" : "auto",
-        transform: !isLeft && !isRight ? "translateX(-50%)" : "none",
-        width: 0,
-        height: 0,
-        borderLeft: "15px solid transparent",
-        borderRight: "15px solid transparent",
-        borderTop: `25px solid ${tailColor}`,
-        filter: `drop-shadow(0 3px 0 ${borderColor})`
-      }} />
+      <div style={{ position: "relative", padding: "20px" }}>
+        <svg width="280" height="140" viewBox="0 0 280 140" style={{ overflow: "visible" }}>
+          {/* Rounded rectangle bubble */}
+          <rect
+            x="20" y="10" width="240" height="85" rx="25" ry="25"
+            fill={currentColor.bg}
+            stroke={currentColor.border}
+            strokeWidth="3"
+          />
+          {/* Triangle tail */}
+          <polygon
+            points={
+              isHorizontal 
+                ? (tailPosition === "left" ? "20,40 0,55 20,60" : "260,40 280,55 260,60")
+                : (isRight ? "200,95 220,125 175,95" :
+                   isLeft ? "80,95 60,125 105,95" :
+                   "130,95 140,125 150,95")
+            }
+            fill={currentColor.bg}
+            stroke={currentColor.border}
+            strokeWidth="3"
+            strokeLinejoin="round"
+          />
+          {/* Cover the line inside for bottom tails */}
+          {!isHorizontal && (
+            <rect x="25" y="75" width="230" height="20" fill={currentColor.bg} />
+          )}
+          {/* Cover the line inside for horizontal tails */}
+          {isHorizontal && (
+            <rect 
+              x={tailPosition === "left" ? "15" : "255"} 
+              y="35" 
+              width="15" 
+              height="30" 
+              fill={currentColor.bg} 
+            />
+          )}
+          {/* Text */}
+          <foreignObject x="35" y="20" width="210" height="65">
+            <div style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              height: "100%",
+              textAlign: "center",
+              fontSize: getFontSize(),
+              fontWeight: "500",
+              color: currentColor.text,
+              padding: "5px",
+              lineHeight: "1.3",
+              wordBreak: "break-word"
+            }}>
+              {text}
+            </div>
+          </foreignObject>
+        </svg>
+      </div>
     );
   };
 
@@ -606,8 +824,8 @@ export default function CartoonBubbleGenerator() {
               <div style={{
                 backgroundColor: "#F3F4F6",
                 borderRadius: "12px",
-                padding: "40px",
-                minHeight: "250px",
+                padding: "20px",
+                minHeight: "220px",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
@@ -620,42 +838,8 @@ export default function CartoonBubbleGenerator() {
                     <p style={{ margin: "8px 0 0 0", fontSize: "0.85rem" }}>Your bubble will appear here</p>
                   </div>
                 ) : (
-                  <div 
-                    ref={bubbleRef}
-                    style={{ position: "relative", padding: "20px" }}
-                  >
-                    {/* Bubble */}
-                    <div style={{
-                      padding: "20px 30px",
-                      backgroundColor: currentColor.bg,
-                      border: `${currentStyle.border.split(' ')[0]} ${currentStyle.border.split(' ')[1]} ${currentColor.border}`,
-                      borderRadius: bubbleStyle === "shout" ? "0" : currentStyle.borderRadius,
-                      maxWidth: "300px",
-                      minWidth: "120px",
-                      position: "relative",
-                      boxShadow: bubbleStyle === "shout" ? "none" : "2px 2px 0 rgba(0,0,0,0.1)",
-                      clipPath: bubbleStyle === "shout" 
-                        ? "polygon(0% 15%, 15% 15%, 15% 0%, 30% 15%, 50% 0%, 50% 15%, 70% 0%, 70% 15%, 85% 0%, 85% 15%, 100% 15%, 100% 30%, 100% 50%, 100% 70%, 100% 85%, 85% 85%, 85% 100%, 70% 85%, 50% 100%, 50% 85%, 30% 100%, 30% 85%, 15% 100%, 15% 85%, 0% 85%, 0% 70%, 0% 50%, 0% 30%)"
-                        : "none"
-                    }}>
-                      <p style={{
-                        margin: 0,
-                        fontSize: getFontSize(),
-                        fontWeight: bubbleStyle === "shout" ? "700" : "500",
-                        color: currentColor.text,
-                        textAlign: "center",
-                        fontFamily: bubbleStyle === "pixel" ? "monospace" : 
-                                   bubbleStyle === "comic" ? "'Comic Sans MS', cursive" : 
-                                   "inherit",
-                        lineHeight: "1.4",
-                        wordBreak: "break-word"
-                      }}>
-                        {text}
-                      </p>
-                    </div>
-                    
-                    {/* Tail */}
-                    {bubbleStyle !== "shout" && renderTail()}
+                  <div ref={bubbleRef}>
+                    {renderBubble()}
                   </div>
                 )}
               </div>
