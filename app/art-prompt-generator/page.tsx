@@ -366,7 +366,8 @@ export default function ArtPromptGenerator() {
       const moodOptions = moods[mood];
       const selectedMood = getRandomItem(moodOptions);
       if (selectedMood) {
-        prompt += `a ${selectedMood} `;
+        const article = /^[aeiou]/i.test(selectedMood) ? "an" : "a";
+        prompt += `${article} ${selectedMood} `;
       } else {
         prompt += "a ";
       }
