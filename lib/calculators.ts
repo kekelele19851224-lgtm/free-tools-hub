@@ -985,6 +985,13 @@ export const calculators: Calculator[] = [
     url: "/art-prompt-generator",
     category: "Social",
     type: "Generator"
+  },
+  {
+    name: "Rizz Generator",
+    description: "Generate smooth pickup lines, flirty messages, and conversation starters. 8 styles including smooth, funny, bold, and poetic rizz.",
+    url: "/rizz-generator",
+    category: "Social",
+    type: "Generator"
   }
 ];
 
