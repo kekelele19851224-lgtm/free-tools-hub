@@ -1013,6 +1013,13 @@ export const calculators: Calculator[] = [
     url: "/random-dinner-generator",
     category: "Entertainment",
     type: "Generator"
+  },
+  {
+    name: "Topic Sentence Generator",
+    description: "Generate strong topic sentences for essays, research papers, and academic writing. Choose from formal, persuasive, informative, or analytical tones.",
+    url: "/topic-sentence-generator",
+    category: "Writing",
+    type: "Generator"
   }
 ];
 
