@@ -992,6 +992,13 @@ export const calculators: Calculator[] = [
     url: "/rizz-generator",
     category: "Social",
     type: "Generator"
+  },
+  {
+    name: "Nordic Name Generator",
+    description: "Generate authentic Viking and Norse names with meanings. Includes patronymic surnames, epithets, and 6 styles including Skyrim-style.",
+    url: "/nordic-name-generator",
+    category: "Social",
+    type: "Generator"
   }
 ];
 
