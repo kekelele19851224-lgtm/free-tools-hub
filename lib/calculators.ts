@@ -1006,6 +1006,13 @@ export const calculators: Calculator[] = [
     url: "/chinese-name-generator",
     category: "Social",
     type: "Generator"
+  },
+  {
+    name: "Random Dinner Generator",
+    description: "Can't decide what to eat? Generate random dinner ideas with 75+ recipes. Filter by cuisine, diet, cooking time, and servings.",
+    url: "/random-dinner-generator",
+    category: "Entertainment",
+    type: "Generator"
   }
 ];
 
