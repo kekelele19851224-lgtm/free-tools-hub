@@ -978,6 +978,13 @@ export const calculators: Calculator[] = [
     url: "/whole-house-generator-cost-calculator",
     category: "Home",
     type: "Calculator"
+  },
+  {
+    name: "Art Prompt Generator",
+    description: "Generate creative drawing prompts and art ideas. 8 categories including characters, fantasy, sci-fi, animals, landscapes and more.",
+    url: "/art-prompt-generator",
+    category: "Social",
+    type: "Generator"
   }
 ];
 
