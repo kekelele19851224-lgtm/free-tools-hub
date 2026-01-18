@@ -964,6 +964,13 @@ export const calculators: Calculator[] = [
     description: "Solve radical equations step by step with extraneous solution checking. Supports square root and cube root equations.",
     category: "Math",
     type: "Calculator"
+  },
+  {
+    name: "TikTok Comment Generator",
+    description: "Generate engaging TikTok comments instantly. 500+ templates for funny, supportive, flirty comments. Copy and paste ready.",
+    url: "/tiktok-comment-generator",
+    category: "Social",
+    type: "Generator"
   }
 ];
 
