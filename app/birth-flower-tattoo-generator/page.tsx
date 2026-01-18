@@ -296,13 +296,10 @@ export default function BirthFlowerTattooGenerator() {
           <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "12px", flexWrap: "wrap" }}>
             <span style={{ fontSize: "2.5rem" }}>🌸</span>
             <h1 style={{ fontSize: "2.25rem", fontWeight: "bold", color: "#111827", margin: 0 }}>
-              Birth Flower Tattoo Generator
+              Birth Flower Tattoo & Bouquet Generator
             </h1>
           </div>
-          <p style={{ fontSize: "1.125rem", color: "#4B5563", maxWidth: "800px" }}>
-            Discover your birth flower and create a meaningful tattoo design. Combine multiple birth flowers 
-            for a family bouquet tattoo with names.
-          </p>
+          <p style={{ fontSize: "1.125rem", color: "#4B5563", maxWidth: "800px" }}>Free birth flower bouquet generator with names. Create personalized tattoo designs for yourself, or combine multiple birth flowers for a family birth flower bouquet tattoo.</p>
         </div>
 
         {/* Tip Box */}
@@ -316,10 +313,10 @@ export default function BirthFlowerTattooGenerator() {
             <span style={{ fontSize: "1.5rem" }}>💡</span>
             <div>
               <p style={{ fontWeight: "600", color: "white", margin: "0 0 4px 0" }}>
-                <strong>Create Your Perfect Design</strong>
+                <strong>Create Your Perfect Birth Flower Bouquet</strong>
               </p>
               <p style={{ color: "#FBCFE8", margin: 0, fontSize: "0.95rem" }}>
-                Select one month for your birth flower, or multiple months to create a family birth flower bouquet tattoo!
+                Select one month for a single birth flower tattoo, or select multiple months to create a family birth flower bouquet tattoo with names!
               </p>
             </div>
           </div>
