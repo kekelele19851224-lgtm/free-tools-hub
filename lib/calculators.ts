@@ -999,6 +999,13 @@ export const calculators: Calculator[] = [
     url: "/nordic-name-generator",
     category: "Social",
     type: "Generator"
+  },
+  {
+    name: "Chinese Name Generator",
+    description: "Generate authentic Chinese names with characters (汉字), pinyin, and meanings. 5 styles including traditional, modern, ancient, and Five Elements.",
+    url: "/chinese-name-generator",
+    category: "Social",
+    type: "Generator"
   }
 ];
 
