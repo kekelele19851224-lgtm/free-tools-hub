@@ -495,13 +495,62 @@ export default function BirthFlowerTattooGenerator() {
                     marginBottom: "20px",
                     border: "2px dashed #FBCFE8"
                   }}>
-                    {/* Flower Emojis */}
-                    <div style={{ fontSize: "3rem", marginBottom: "16px", letterSpacing: "8px" }}>
+                    {/* Flower Emojis with Style Effects */}
+                    <div style={{
+                      fontSize: "3rem",
+                      marginBottom: "16px",
+                      letterSpacing: "8px",
+                      filter: style === "minimalist" ? "grayscale(100%)" :
+                              style === "watercolor" ? "blur(1px) saturate(1.5)" :
+                              style === "outline" ? "contrast(2) brightness(1.1)" :
+                              style === "botanical" ? "sepia(30%) saturate(1.2)" :
+                              "none",
+                      opacity: style === "minimalist" ? 0.8 : 1,
+                      transition: "all 0.3s ease"
+                    }}>
                       {selectedFlowers.map(f => f.emoji).join("")}
                     </div>
 
+                    {/* Style-specific visual frame */}
+                    {style === "geometric" && (
+                      <div style={{
+                        position: "relative",
+                        display: "inline-block",
+                        padding: "20px 40px",
+                        marginBottom: "16px"
+                      }}>
+                        <div style={{
+                          position: "absolute",
+                          top: 0,
+                          left: 0,
+                          right: 0,
+                          bottom: 0,
+                          border: "2px solid #DB2777",
+                          transform: "rotate(45deg)",
+                          borderRadius: "4px"
+                        }} />
+                        <div style={{
+                          position: "absolute",
+                          top: "-5px",
+                          left: "-5px",
+                          right: "-5px",
+                          bottom: "-5px",
+                          border: "1px solid #F9A8D4",
+                          borderRadius: "50%"
+                        }} />
+                      </div>
+                    )}
+
                     {/* Flower Names */}
-                    <div style={{ fontSize: "1.25rem", fontWeight: "600", color: "#BE185D", marginBottom: "8px" }}>
+                    <div style={{
+                      fontSize: "1.25rem",
+                      fontWeight: "600",
+                      color: "#BE185D",
+                      marginBottom: "8px",
+                      fontFamily: style === "botanical" ? "Georgia, serif" : "inherit",
+                      letterSpacing: style === "minimalist" ? "2px" : "normal",
+                      textTransform: style === "minimalist" ? "uppercase" : "none"
+                    }}>
                       {selectedFlowers.length === 1 
                         ? `${selectedFlowers[0].month} - ${selectedFlowers[0].flower}`
                         : "Birth Flower Bouquet"
@@ -510,14 +559,18 @@ export default function BirthFlowerTattooGenerator() {
 
                     {/* Name if provided */}
                     {name && (
-                      <div style={{ 
-                        fontFamily: "Georgia, serif",
-                        fontStyle: "italic",
-                        fontSize: "1.5rem",
+                      <div style={{
+                        fontFamily: style === "fineline" || style === "botanical" ? "Georgia, serif" :
+                                    style === "minimalist" ? "Arial, sans-serif" : "Georgia, serif",
+                        fontStyle: style === "minimalist" ? "normal" : "italic",
+                        fontSize: style === "minimalist" ? "1.2rem" : "1.5rem",
+                        fontWeight: style === "minimalist" ? "300" : "400",
                         color: "#DB2777",
-                        margin: "16px 0"
+                        margin: "16px 0",
+                        letterSpacing: style === "minimalist" ? "4px" : "normal",
+                        textTransform: style === "minimalist" ? "lowercase" : "none"
                       }}>
-                        ~ {name} ~
+                        {style === "minimalist" ? name : `~ ${name} ~`}
                       </div>
                     )}
 
@@ -527,12 +580,30 @@ export default function BirthFlowerTattooGenerator() {
                       padding: "6px 16px",
                       backgroundColor: "#DB2777",
                       color: "white",
-                      borderRadius: "20px",
+                      borderRadius: style === "geometric" ? "0" : "20px",
                       fontSize: "0.8rem",
-                      fontWeight: "500"
+                      fontWeight: "500",
+                      border: style === "outline" ? "2px solid white" : "none",
+                      boxShadow: style === "watercolor" ? "0 4px 15px rgba(219, 39, 119, 0.4)" : "none"
                     }}>
                       {tattooStyles[style].emoji} {tattooStyles[style].label} Style
                     </span>
+
+                    {/* Style Preview Description */}
+                    <p style={{
+                      fontSize: "0.75rem",
+                      color: "#9CA3AF",
+                      marginTop: "12px",
+                      marginBottom: 0,
+                      fontStyle: "italic"
+                    }}>
+                      {style === "minimalist" && "Clean, simple lines with minimal detail"}
+                      {style === "fineline" && "Delicate linework with subtle shading"}
+                      {style === "watercolor" && "Soft, flowing colors like a painting"}
+                      {style === "outline" && "Bold outlines with high contrast"}
+                      {style === "botanical" && "Scientific illustration style"}
+                      {style === "geometric" && "Flowers with geometric shapes"}
+                    </p>
                   </div>
 
                   {/* Flower Details */}
