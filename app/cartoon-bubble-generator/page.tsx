@@ -222,52 +222,115 @@ export default function CartoonBubbleGenerator() {
   const renderBubble = () => {
     const { isLeft, isRight, isHorizontal } = getTailPositionStyle();
 
-    // Cloud / Thought bubble - using SVG
-    if (bubbleStyle === "cloud" || bubbleStyle === "thought") {
+    // Thought bubble - classic comic thought with bumpy edges
+    if (bubbleStyle === "thought") {
       return (
         <div style={{ position: "relative", padding: "20px" }}>
-          <svg width="280" height="160" viewBox="0 0 280 160" style={{ overflow: "visible" }}>
-            {/* Cloud shape */}
-            <g>
-              {/* Main cloud body */}
-              <ellipse cx="140" cy="70" rx="100" ry="50" fill={currentColor.bg} stroke={currentColor.border} strokeWidth="3" />
-              {/* Left bump */}
-              <ellipse cx="70" cy="70" rx="45" ry="35" fill={currentColor.bg} stroke={currentColor.border} strokeWidth="3" />
-              {/* Right bump */}
-              <ellipse cx="210" cy="70" rx="45" ry="35" fill={currentColor.bg} stroke={currentColor.border} strokeWidth="3" />
-              {/* Top bump */}
-              <ellipse cx="140" cy="40" rx="50" ry="30" fill={currentColor.bg} stroke={currentColor.border} strokeWidth="3" />
-              {/* Cover inner lines */}
-              <ellipse cx="140" cy="70" rx="95" ry="45" fill={currentColor.bg} />
-              <ellipse cx="70" cy="70" rx="40" ry="30" fill={currentColor.bg} />
-              <ellipse cx="210" cy="70" rx="40" ry="30" fill={currentColor.bg} />
-              <ellipse cx="140" cy="45" rx="45" ry="25" fill={currentColor.bg} />
-            </g>
-            {/* Thought bubbles tail */}
-            <circle cx={isRight ? 220 : isLeft ? 60 : 140} cy="130" r="12" fill={currentColor.bg} stroke={currentColor.border} strokeWidth="2" />
-            <circle cx={isRight ? 235 : isLeft ? 45 : 140} cy="148" r="8" fill={currentColor.bg} stroke={currentColor.border} strokeWidth="2" />
-            <circle cx={isRight ? 248 : isLeft ? 32 : 140} cy="162" r="5" fill={currentColor.bg} stroke={currentColor.border} strokeWidth="2" />
+          <svg width="280" height="170" viewBox="0 0 280 170" style={{ overflow: "visible" }}>
+            {/* Bumpy cloud shape for thought */}
+            <path 
+              d={`
+                M 70,70 
+                Q 30,70 35,45 
+                Q 40,20 80,25 
+                Q 100,5 140,15 
+                Q 180,5 200,25 
+                Q 240,20 245,45 
+                Q 250,70 210,70 
+                Q 250,85 240,105 
+                Q 230,125 190,115 
+                Q 175,135 140,125 
+                Q 105,135 90,115 
+                Q 50,125 40,105 
+                Q 30,85 70,70 
+                Z 
+              `}
+              fill={currentColor.bg} 
+              stroke={currentColor.border} 
+              strokeWidth="3" 
+            />
+            {/* Thought bubble tail - small circles */}
+            <circle cx={isRight ? 210 : isLeft ? 70 : 140} cy="135" r="10" fill={currentColor.bg} stroke={currentColor.border} strokeWidth="2" />
+            <circle cx={isRight ? 225 : isLeft ? 55 : 140} cy="150" r="7" fill={currentColor.bg} stroke={currentColor.border} strokeWidth="2" />
+            <circle cx={isRight ? 238 : isLeft ? 42 : 140} cy="162" r="4" fill={currentColor.bg} stroke={currentColor.border} strokeWidth="2" />
             {/* Text */}
-            <foreignObject x="40" y="30" width="200" height="80">
-              <div style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                height: "100%",
-                textAlign: "center",
-                fontSize: getFontSize(),
-                fontWeight: "500",
-                color: currentColor.text,
-                padding: "10px",
-                lineHeight: "1.3",
-                wordBreak: "break-word"
+            <foreignObject x="55" y="30" width="170" height="85">
+              <div style={{ 
+                display: "flex", 
+                alignItems: "center", 
+                justifyContent: "center", 
+                height: "100%", 
+                textAlign: "center", 
+                fontSize: getFontSize(), 
+                fontWeight: "500", 
+                color: currentColor.text, 
+                padding: "10px", 
+                lineHeight: "1.3", 
+                wordBreak: "break-word" 
               }}>
-                {text}
-              </div>
-            </foreignObject>
-          </svg>
-        </div>
-      );
+                {text} 
+              </div> 
+            </foreignObject> 
+          </svg> 
+        </div> 
+      ); 
+    }
+
+    // Cloud bubble - soft fluffy cloud shape 
+    if (bubbleStyle === "cloud") { 
+      return ( 
+        <div style={{ position: "relative", padding: "20px" }}> 
+          <svg width="280" height="160" viewBox="0 0 280 160" style={{ overflow: "visible" }}> 
+            {/* Soft cloud using circles */} 
+            <ellipse cx="140" cy="60" rx="90" ry="45" fill={currentColor.bg} stroke={currentColor.border} strokeWidth="3" /> 
+            <circle cx="70" cy="55" r="35" fill={currentColor.bg} stroke={currentColor.border} strokeWidth="3" /> 
+            <circle cx="210" cy="55" r="35" fill={currentColor.bg} stroke={currentColor.border} strokeWidth="3" /> 
+            <circle cx="100" cy="35" r="30" fill={currentColor.bg} stroke={currentColor.border} strokeWidth="3" /> 
+            <circle cx="180" cy="35" r="30" fill={currentColor.bg} stroke={currentColor.border} strokeWidth="3" /> 
+            <circle cx="140" cy="30" r="25" fill={currentColor.bg} stroke={currentColor.border} strokeWidth="3" /> 
+            {/* Cover inner strokes */} 
+            <ellipse cx="140" cy="55" rx="85" ry="40" fill={currentColor.bg} /> 
+            <circle cx="70" cy="55" r="30" fill={currentColor.bg} /> 
+            <circle cx="210" cy="55" r="30" fill={currentColor.bg} /> 
+            <circle cx="100" cy="38" r="25" fill={currentColor.bg} /> 
+            <circle cx="180" cy="38" r="25" fill={currentColor.bg} /> 
+            <circle cx="140" cy="33" r="20" fill={currentColor.bg} /> 
+            {/* Wavy tail for cloud - different from thought */} 
+            <path 
+              d={ 
+                isRight 
+                  ? "M 200,95 Q 220,105 215,120 Q 210,135 230,145" 
+                  : isLeft 
+                  ? "M 80,95 Q 60,105 65,120 Q 70,135 50,145" 
+                  : "M 140,95 Q 145,110 140,125 Q 135,140 140,155" 
+              } 
+              fill="none" 
+              stroke={currentColor.border} 
+              strokeWidth="3" 
+              strokeLinecap="round" 
+            /> 
+            {/* Text */} 
+            <foreignObject x="50" y="25" width="180" height="70"> 
+              <div style={{ 
+                display: "flex", 
+                alignItems: "center", 
+                justifyContent: "center", 
+                height: "100%", 
+                textAlign: "center", 
+                fontSize: getFontSize(), 
+                fontWeight: "400", 
+                fontStyle: "italic", 
+                color: currentColor.text, 
+                padding: "10px", 
+                lineHeight: "1.3", 
+                wordBreak: "break-word" 
+              }}> 
+                {text} 
+              </div> 
+            </foreignObject> 
+          </svg> 
+        </div> 
+      ); 
     }
 
     // Shout bubble - spiky
@@ -500,43 +563,44 @@ export default function CartoonBubbleGenerator() {
     return (
       <div style={{ position: "relative", padding: "20px" }}>
         <svg width="280" height="140" viewBox="0 0 280 140" style={{ overflow: "visible" }}>
-          {/* Rounded rectangle bubble */}
-          <rect
-            x="20" y="10" width="240" height="85" rx="25" ry="25"
-            fill={currentColor.bg}
-            stroke={currentColor.border}
-            strokeWidth="3"
-          />
-          {/* Triangle tail */}
           <polygon
             points={
-              isHorizontal 
-                ? (tailPosition === "left" ? "20,40 0,55 20,60" : "260,40 280,55 260,60")
-                : (isRight ? "200,95 220,125 175,95" :
-                   isLeft ? "80,95 60,125 105,95" :
-                   "130,95 140,125 150,95")
+              isHorizontal
+                ? (tailPosition === "left" ? "25,45 5,52 25,60" : "255,45 275,52 255,60")
+                : (isRight ? "195,85 220,120 170,85" :
+                   isLeft ? "85,85 60,120 110,85" :
+                   "130,85 140,120 150,85")
             }
             fill={currentColor.bg}
             stroke={currentColor.border}
             strokeWidth="3"
             strokeLinejoin="round"
           />
-          {/* Cover the line inside for bottom tails */}
+          <rect
+            x="20" y="10" width="240" height="80" rx="25" ry="25"
+            fill={currentColor.bg}
+            stroke={currentColor.border}
+            strokeWidth="3"
+          />
           {!isHorizontal && (
-            <rect x="25" y="75" width="230" height="20" fill={currentColor.bg} />
-          )}
-          {/* Cover the line inside for horizontal tails */}
-          {isHorizontal && (
-            <rect 
-              x={tailPosition === "left" ? "15" : "255"} 
-              y="35" 
-              width="15" 
-              height="30" 
-              fill={currentColor.bg} 
+            <rect
+              x={isRight ? "170" : isLeft ? "85" : "130"}
+              y="82"
+              width="40"
+              height="10"
+              fill={currentColor.bg}
             />
           )}
-          {/* Text */}
-          <foreignObject x="35" y="20" width="210" height="65">
+          {isHorizontal && (
+            <rect
+              x={tailPosition === "left" ? "18" : "252"}
+              y="43"
+              width="12"
+              height="20"
+              fill={currentColor.bg}
+            />
+          )}
+          <foreignObject x="35" y="15" width="210" height="70">
             <div style={{
               display: "flex",
               alignItems: "center",
