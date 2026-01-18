@@ -1027,6 +1027,14 @@ export const calculators: Calculator[] = [
     url: "/birth-flower-tattoo-generator",
     category: "Entertainment",
     type: "Generator"
+  },
+  {
+    name: "Cartoon Bubble Generator",
+    description: "Create custom speech bubbles, thought bubbles, and comic bubbles for memes and social media.",
+    url: "/cartoon-bubble-generator",
+    category: "Entertainment",
+    type: "Generator",
+    icon: "💬"
   }
 ];
 
