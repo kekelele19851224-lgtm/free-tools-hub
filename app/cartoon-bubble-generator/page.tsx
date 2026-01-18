@@ -464,48 +464,56 @@ export default function CartoonBubbleGenerator() {
       );
     }
 
-    // Manga bubble - sharp pointed tail, more angular
-    if (bubbleStyle === "manga") {
-      return (
-        <div style={{ position: "relative", padding: "20px" }}>
-          <svg width="280" height="150" viewBox="0 0 280 150" style={{ overflow: "visible" }}>
-            {/* Main manga bubble - slightly angular ellipse */}
-            <ellipse cx="140" cy="55" rx="115" ry="50" fill={currentColor.bg} stroke={currentColor.border} strokeWidth="2" />
-            {/* Sharp pointed tail */}
-            <polygon
-              points={
-                isRight ? "190,90 250,140 170,95" :
-                isLeft ? "90,90 30,140 110,95" :
-                "135,90 140,140 145,90"
-              }
-              fill={currentColor.bg}
-              stroke={currentColor.border}
-              strokeWidth="2"
-              strokeLinejoin="miter"
-            />
-            {/* Cover the line inside */}
-            <ellipse cx="140" cy="55" rx="112" ry="47" fill={currentColor.bg} />
-            {/* Text */}
-            <foreignObject x="40" y="15" width="200" height="80">
-              <div style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                height: "100%",
-                textAlign: "center",
-                fontSize: getFontSize(),
-                fontWeight: "500",
-                color: currentColor.text,
-                padding: "10px",
-                lineHeight: "1.3",
-                wordBreak: "break-word"
-              }}>
-                {text}
-              </div>
-            </foreignObject>
-          </svg>
-        </div>
-      );
+    // Manga bubble - sharp pointed tail, thin lines, with speed lines 
+    if (bubbleStyle === "manga") { 
+      return ( 
+        <div style={{ position: "relative", padding: "20px" }}> 
+          <svg width="300" height="160" viewBox="0 0 300 160" style={{ overflow: "visible" }}> 
+            {/* Speed lines background effect */} 
+            <g opacity="0.3"> 
+              <line x1="30" y1="30" x2="10" y2="20" stroke={currentColor.border} strokeWidth="1" /> 
+              <line x1="25" y1="50" x2="5" y2="50" stroke={currentColor.border} strokeWidth="1" /> 
+              <line x1="30" y1="70" x2="10" y2="80" stroke={currentColor.border} strokeWidth="1" /> 
+              <line x1="270" y1="30" x2="290" y2="20" stroke={currentColor.border} strokeWidth="1" /> 
+              <line x1="275" y1="50" x2="295" y2="50" stroke={currentColor.border} strokeWidth="1" /> 
+              <line x1="270" y1="70" x2="290" y2="80" stroke={currentColor.border} strokeWidth="1" /> 
+            </g> 
+            {/* Main bubble - slightly angular ellipse with integrated sharp tail */} 
+            <path 
+              d={ 
+                isRight 
+                  ? "M 50,50 Q 50,15 150,15 Q 250,15 250,50 Q 250,85 200,85 L 270,140 L 170,85 Q 50,85 50,50 Z" 
+                  : isLeft 
+                  ? "M 50,50 Q 50,15 150,15 Q 250,15 250,50 Q 250,85 150,85 L 130,85 L 30,140 L 100,85 Q 50,85 50,50 Z" 
+                  : "M 50,50 Q 50,15 150,15 Q 250,15 250,50 Q 250,85 160,85 L 150,140 L 140,85 Q 50,85 50,50 Z" 
+              } 
+              fill={currentColor.bg} 
+              stroke={currentColor.border} 
+              strokeWidth="2" 
+              strokeLinejoin="miter" 
+            /> 
+            {/* Text */} 
+            <foreignObject x="60" y="20" width="180" height="60"> 
+              <div style={{ 
+                display: "flex", 
+                alignItems: "center", 
+                justifyContent: "center", 
+                height: "100%", 
+                textAlign: "center", 
+                fontSize: getFontSize(), 
+                fontWeight: "600", 
+                color: currentColor.text, 
+                padding: "5px", 
+                lineHeight: "1.2", 
+                wordBreak: "break-word", 
+                letterSpacing: "0.5px" 
+              }}> 
+                {text} 
+              </div> 
+            </foreignObject> 
+          </svg> 
+        </div> 
+      ); 
     }
 
     // Whisper bubble - dotted border
@@ -563,62 +571,44 @@ export default function CartoonBubbleGenerator() {
     return (
       <div style={{ position: "relative", padding: "20px" }}>
         <svg width="280" height="140" viewBox="0 0 280 140" style={{ overflow: "visible" }}>
-          <polygon
-            points={
-              isHorizontal
-                ? (tailPosition === "left" ? "25,45 5,52 25,60" : "255,45 275,52 255,60")
-                : (isRight ? "195,85 220,120 170,85" :
-                   isLeft ? "85,85 60,120 110,85" :
-                   "130,85 140,120 150,85")
-            }
-            fill={currentColor.bg}
-            stroke={currentColor.border}
-            strokeWidth="3"
-            strokeLinejoin="round"
-          />
-          <rect
-            x="20" y="10" width="240" height="80" rx="25" ry="25"
-            fill={currentColor.bg}
-            stroke={currentColor.border}
-            strokeWidth="3"
-          />
-          {!isHorizontal && (
-            <rect
-              x={isRight ? "170" : isLeft ? "85" : "130"}
-              y="82"
-              width="40"
-              height="10"
-              fill={currentColor.bg}
-            />
-          )}
-          {isHorizontal && (
-            <rect
-              x={tailPosition === "left" ? "18" : "252"}
-              y="43"
-              width="12"
-              height="20"
-              fill={currentColor.bg}
-            />
-          )}
-          <foreignObject x="35" y="15" width="210" height="70">
-            <div style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              height: "100%",
-              textAlign: "center",
-              fontSize: getFontSize(),
-              fontWeight: "500",
-              color: currentColor.text,
-              padding: "5px",
-              lineHeight: "1.3",
-              wordBreak: "break-word"
-            }}>
-              {text}
-            </div>
-          </foreignObject>
-        </svg>
-      </div>
+          {/* Complete speech bubble with integrated tail */}
+          <path 
+            d={
+              isHorizontal 
+                ? (tailPosition === "left" 
+                    ? "M 45,10 L 235,10 Q 260,10 260,35 L 260,65 Q 260,90 235,90 L 45,90 Q 20,90 20,65 L 20,58 L 5,52 L 20,46 L 20,35 Q 20,10 45,10 Z" 
+                    : "M 45,10 L 235,10 Q 260,10 260,35 L 260,46 L 275,52 L 260,58 L 260,65 Q 260,90 235,90 L 45,90 Q 20,90 20,65 L 20,35 Q 20,10 45,10 Z") 
+                : (isRight 
+                    ? "M 45,10 L 235,10 Q 260,10 260,35 L 260,65 Q 260,90 235,90 L 200,90 L 220,120 L 170,90 L 45,90 Q 20,90 20,65 L 20,35 Q 20,10 45,10 Z" 
+                    : isLeft 
+                    ? "M 45,10 L 235,10 Q 260,10 260,35 L 260,65 Q 260,90 235,90 L 110,90 L 60,120 L 80,90 L 45,90 Q 20,90 20,65 L 20,35 Q 20,10 45,10 Z" 
+                    : "M 45,10 L 235,10 Q 260,10 260,35 L 260,65 Q 260,90 235,90 L 155,90 L 140,120 L 125,90 L 45,90 Q 20,90 20,65 L 20,35 Q 20,10 45,10 Z") 
+            } 
+            fill={currentColor.bg} 
+            stroke={currentColor.border} 
+            strokeWidth="3" 
+            strokeLinejoin="round" 
+          /> 
+          {/* Text */} 
+          <foreignObject x="35" y="15" width="210" height="70"> 
+            <div style={{ 
+              display: "flex", 
+              alignItems: "center", 
+              justifyContent: "center", 
+              height: "100%", 
+              textAlign: "center", 
+              fontSize: getFontSize(), 
+              fontWeight: "500", 
+              color: currentColor.text, 
+              padding: "5px", 
+              lineHeight: "1.3", 
+              wordBreak: "break-word" 
+            }}> 
+              {text} 
+            </div> 
+          </foreignObject> 
+        </svg> 
+      </div> 
     );
   };
 
