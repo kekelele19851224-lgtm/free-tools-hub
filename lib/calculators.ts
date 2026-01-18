@@ -1020,6 +1020,13 @@ export const calculators: Calculator[] = [
     url: "/topic-sentence-generator",
     category: "Writing",
     type: "Generator"
+  },
+  {
+    name: "Birth Flower Tattoo Generator",
+    description: "Discover your birth flower and create personalized tattoo designs. Combine multiple months for family bouquet tattoos with names and meanings.",
+    url: "/birth-flower-tattoo-generator",
+    category: "Entertainment",
+    type: "Generator"
   }
 ];
 
