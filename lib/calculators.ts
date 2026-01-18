@@ -971,6 +971,13 @@ export const calculators: Calculator[] = [
     url: "/tiktok-comment-generator",
     category: "Social",
     type: "Generator"
+  },
+  {
+    name: "Whole House Generator Cost Calculator",
+    description: "Estimate total cost of a whole house generator including unit, installation, transfer switch, and permits. Get pricing for your home size.",
+    url: "/whole-house-generator-cost-calculator",
+    category: "Home",
+    type: "Calculator"
   }
 ];
 
