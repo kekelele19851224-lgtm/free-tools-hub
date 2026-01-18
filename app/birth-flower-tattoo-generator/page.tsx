@@ -172,24 +172,28 @@ const faqs = [
     answer: "The 12 birth month flowers are: January - Carnation, February - Violet, March - Daffodil, April - Daisy, May - Lily of the Valley, June - Rose, July - Larkspur, August - Gladiolus, September - Aster, October - Marigold, November - Chrysanthemum, and December - Poinsettia. Each flower carries unique symbolism and meaning."
   },
   {
+    question: "What is a birth flower bouquet tattoo?",
+    answer: "A birth flower bouquet tattoo combines multiple birth flowers into one design. It's popular for honoring family members, couples, or friends by combining each person's birth month flower. For example, a family birth flower bouquet tattoo might include a Rose (June - Mom), Daisy (April - Dad), and Aster (September - Child)."
+  },
+  {
     question: "What is the rarest birth flower?",
     answer: "Lily of the Valley (May) is often considered one of the rarest birth flowers because it only blooms for a short period in spring and is relatively difficult to cultivate. Its delicate bell-shaped flowers make it a highly sought-after choice for elegant, meaningful tattoos."
   },
   {
     question: "Can I combine multiple birth flowers in one tattoo?",
-    answer: "Yes! Combining birth flowers is a beautiful way to honor multiple loved ones in a single design. Family birth flower bouquet tattoos are very popular, where you combine the birth flowers of family members, partners, or close friends into one cohesive design."
+    answer: "Yes! Combining birth flowers is a beautiful way to honor multiple loved ones in a single design. Our birth flower bouquet generator lets you select multiple months to create a family birth flower bouquet tattoo, couple tattoo, or friendship tribute."
   },
   {
     question: "What does my birth flower mean?",
     answer: "Each birth flower carries specific symbolic meanings. For example, roses (June) represent love and passion, while daffodils (March) symbolize new beginnings. Use our generator to discover the full meaning of your birth flower and find the perfect design that resonates with you."
   },
   {
-    question: "Where should I place a birth flower tattoo?",
-    answer: "Popular placements include the wrist, ankle, forearm, shoulder blade, and behind the ear for smaller designs. For larger bouquet tattoos, consider the forearm, thigh, back, or ribcage. The best placement depends on the size of your design and how visible you want it to be."
+    question: "Where should I place a birth flower bouquet tattoo?",
+    answer: "Popular placements for birth flower bouquet tattoos include the forearm, thigh, back, or ribcage for larger multi-flower designs. For smaller single-flower tattoos, consider the wrist, ankle, or behind the ear. The best placement depends on the size of your bouquet and how visible you want it to be."
   },
   {
     question: "How do I show this design to my tattoo artist?",
-    answer: "You can copy the design details from our generator and share them with your tattoo artist. Include the flower name, style preference, meanings you want to incorporate, and any names or text. Professional tattoo artists can then create a custom design based on your preferences."
+    answer: "You can copy the design details from our birth flower bouquet generator and share them with your tattoo artist. Include the flower names, style preference (minimalist, watercolor, etc.), meanings you want to incorporate, and any names or text. Professional tattoo artists can then create a custom design based on your preferences."
   }
 ];
 
@@ -255,7 +259,7 @@ export default function BirthFlowerTattooGenerator() {
   // Copy to clipboard
   const copyToClipboard = async () => {
     const flowers = getSelectedFlowers();
-    let text = `🌸 Birth Flower Tattoo Design\n\n`;
+    let text = `🌸 Birth Flower Bouquet Tattoo Design\n\n`;
     text += `Style: ${tattooStyles[style].label}\n`;
     if (name) text += `Name: ${name}\n`;
     text += `\n--- Flowers ---\n`;
@@ -275,7 +279,44 @@ export default function BirthFlowerTattooGenerator() {
     }
   };
 
+  // Get style-specific CSS for flower display
+  const getStyleCSS = () => {
+    switch (style) {
+      case "minimalist":
+        return {
+          filter: "grayscale(100%)",
+          opacity: 0.85
+        };
+      case "watercolor":
+        return {
+          filter: "blur(0.5px) saturate(1.8) brightness(1.1)",
+          opacity: 1
+        };
+      case "outline":
+        return {
+          filter: "contrast(2) brightness(1.2)",
+          opacity: 1
+        };
+      case "botanical":
+        return {
+          filter: "sepia(40%) saturate(1.3)",
+          opacity: 1
+        };
+      case "geometric":
+        return {
+          filter: "hue-rotate(15deg) saturate(1.2)",
+          opacity: 1
+        };
+      default: // fineline
+        return {
+          filter: "none",
+          opacity: 1
+        };
+    }
+  };
+
   const selectedFlowers = getSelectedFlowers();
+  const styleCSS = getStyleCSS();
 
   return (
     <div style={{ minHeight: "100vh", backgroundColor: "#FDF2F8" }}>
@@ -299,7 +340,10 @@ export default function BirthFlowerTattooGenerator() {
               Birth Flower Tattoo & Bouquet Generator
             </h1>
           </div>
-          <p style={{ fontSize: "1.125rem", color: "#4B5563", maxWidth: "800px" }}>Free birth flower bouquet generator with names. Create personalized tattoo designs for yourself, or combine multiple birth flowers for a family birth flower bouquet tattoo.</p>
+          <p style={{ fontSize: "1.125rem", color: "#4B5563", maxWidth: "800px" }}>
+            Free birth flower bouquet generator with names. Create personalized tattoo designs for yourself, 
+            or combine multiple birth flowers for a family birth flower bouquet tattoo.
+          </p>
         </div>
 
         {/* Tip Box */}
@@ -342,7 +386,7 @@ export default function BirthFlowerTattooGenerator() {
               {/* Month Selection */}
               <div style={{ marginBottom: "24px" }}>
                 <label style={{ display: "block", fontSize: "0.9rem", color: "#374151", marginBottom: "12px", fontWeight: "600" }}>
-                  Click to select one or more months
+                  Click to select one or more months for your bouquet
                 </label>
                 <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "8px" }}>
                   {birthFlowers.map((flower) => (
@@ -455,7 +499,7 @@ export default function BirthFlowerTattooGenerator() {
                   gap: "8px"
                 }}
               >
-                🌸 Generate Birth Flower Tattoo
+                🌸 Generate Birth Flower Bouquet
               </button>
             </div>
           </div>
@@ -479,74 +523,61 @@ export default function BirthFlowerTattooGenerator() {
                 <div style={{ textAlign: "center", padding: "40px 20px", color: "#6B7280" }}>
                   <p style={{ fontSize: "3rem", margin: "0 0 12px 0" }}>🌸</p>
                   <p style={{ margin: 0 }}>Select your birth month(s) and click Generate</p>
-                  <p style={{ margin: "8px 0 0 0", fontSize: "0.85rem" }}>Discover your birth flower and its meaning</p>
+                  <p style={{ margin: "8px 0 0 0", fontSize: "0.85rem" }}>Create a single tattoo or a family bouquet</p>
                 </div>
               ) : (
                 <div>
                   {/* Design Preview */}
                   <div style={{
-                    backgroundColor: "#FDF2F8",
+                    backgroundColor: style === "minimalist" ? "#F9FAFB" : "#FDF2F8",
                     borderRadius: "12px",
                     padding: "24px",
                     textAlign: "center",
                     marginBottom: "20px",
-                    border: "2px dashed #FBCFE8"
+                    border: style === "geometric" ? "2px solid #DB2777" : "2px dashed #FBCFE8",
+                    position: "relative",
+                    overflow: "hidden"
                   }}>
+                    {/* Geometric background pattern */}
+                    {style === "geometric" && (
+                      <div style={{
+                        position: "absolute",
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        bottom: 0,
+                        opacity: 0.1,
+                        background: "repeating-linear-gradient(45deg, #DB2777 0, #DB2777 1px, transparent 0, transparent 50%)",
+                        backgroundSize: "20px 20px",
+                        pointerEvents: "none"
+                      }} />
+                    )}
+
                     {/* Flower Emojis with Style Effects */}
-                    <div style={{
-                      fontSize: "3rem",
-                      marginBottom: "16px",
+                    <div style={{ 
+                      fontSize: "3rem", 
+                      marginBottom: "16px", 
                       letterSpacing: "8px",
-                      filter: style === "minimalist" ? "grayscale(100%)" :
-                              style === "watercolor" ? "blur(1px) saturate(1.5)" :
-                              style === "outline" ? "contrast(2) brightness(1.1)" :
-                              style === "botanical" ? "sepia(30%) saturate(1.2)" :
-                              "none",
-                      opacity: style === "minimalist" ? 0.8 : 1,
-                      transition: "all 0.3s ease"
+                      filter: styleCSS.filter,
+                      opacity: styleCSS.opacity,
+                      transition: "all 0.3s ease",
+                      position: "relative",
+                      zIndex: 1
                     }}>
                       {selectedFlowers.map(f => f.emoji).join("")}
                     </div>
 
-                    {/* Style-specific visual frame */}
-                    {style === "geometric" && (
-                      <div style={{
-                        position: "relative",
-                        display: "inline-block",
-                        padding: "20px 40px",
-                        marginBottom: "16px"
-                      }}>
-                        <div style={{
-                          position: "absolute",
-                          top: 0,
-                          left: 0,
-                          right: 0,
-                          bottom: 0,
-                          border: "2px solid #DB2777",
-                          transform: "rotate(45deg)",
-                          borderRadius: "4px"
-                        }} />
-                        <div style={{
-                          position: "absolute",
-                          top: "-5px",
-                          left: "-5px",
-                          right: "-5px",
-                          bottom: "-5px",
-                          border: "1px solid #F9A8D4",
-                          borderRadius: "50%"
-                        }} />
-                      </div>
-                    )}
-
                     {/* Flower Names */}
-                    <div style={{
-                      fontSize: "1.25rem",
-                      fontWeight: "600",
-                      color: "#BE185D",
+                    <div style={{ 
+                      fontWeight: "600", 
+                      color: "#BE185D", 
                       marginBottom: "8px",
                       fontFamily: style === "botanical" ? "Georgia, serif" : "inherit",
-                      letterSpacing: style === "minimalist" ? "2px" : "normal",
-                      textTransform: style === "minimalist" ? "uppercase" : "none"
+                      letterSpacing: style === "minimalist" ? "3px" : "normal",
+                      textTransform: style === "minimalist" ? "uppercase" : "none",
+                      fontSize: style === "minimalist" ? "1rem" : "1.25rem",
+                      position: "relative",
+                      zIndex: 1
                     }}>
                       {selectedFlowers.length === 1 
                         ? `${selectedFlowers[0].month} - ${selectedFlowers[0].flower}`
@@ -556,16 +587,17 @@ export default function BirthFlowerTattooGenerator() {
 
                     {/* Name if provided */}
                     {name && (
-                      <div style={{
-                        fontFamily: style === "fineline" || style === "botanical" ? "Georgia, serif" :
-                                    style === "minimalist" ? "Arial, sans-serif" : "Georgia, serif",
+                      <div style={{ 
+                        fontFamily: style === "minimalist" ? "Arial, sans-serif" : "Georgia, serif",
                         fontStyle: style === "minimalist" ? "normal" : "italic",
-                        fontSize: style === "minimalist" ? "1.2rem" : "1.5rem",
+                        fontSize: style === "minimalist" ? "1rem" : "1.5rem",
                         fontWeight: style === "minimalist" ? "300" : "400",
                         color: "#DB2777",
                         margin: "16px 0",
                         letterSpacing: style === "minimalist" ? "4px" : "normal",
-                        textTransform: style === "minimalist" ? "lowercase" : "none"
+                        textTransform: style === "minimalist" ? "lowercase" : "none",
+                        position: "relative",
+                        zIndex: 1
                       }}>
                         {style === "minimalist" ? name : `~ ${name} ~`}
                       </div>
@@ -575,13 +607,15 @@ export default function BirthFlowerTattooGenerator() {
                     <span style={{
                       display: "inline-block",
                       padding: "6px 16px",
-                      backgroundColor: "#DB2777",
+                      backgroundColor: style === "minimalist" ? "#6B7280" : "#DB2777",
                       color: "white",
                       borderRadius: style === "geometric" ? "0" : "20px",
                       fontSize: "0.8rem",
                       fontWeight: "500",
                       border: style === "outline" ? "2px solid white" : "none",
-                      boxShadow: style === "watercolor" ? "0 4px 15px rgba(219, 39, 119, 0.4)" : "none"
+                      boxShadow: style === "watercolor" ? "0 4px 15px rgba(219, 39, 119, 0.4)" : "none",
+                      position: "relative",
+                      zIndex: 1
                     }}>
                       {tattooStyles[style].emoji} {tattooStyles[style].label} Style
                     </span>
@@ -592,14 +626,16 @@ export default function BirthFlowerTattooGenerator() {
                       color: "#9CA3AF",
                       marginTop: "12px",
                       marginBottom: 0,
-                      fontStyle: "italic"
+                      fontStyle: "italic",
+                      position: "relative",
+                      zIndex: 1
                     }}>
                       {style === "minimalist" && "Clean, simple lines with minimal detail"}
                       {style === "fineline" && "Delicate linework with subtle shading"}
                       {style === "watercolor" && "Soft, flowing colors like a painting"}
                       {style === "outline" && "Bold outlines with high contrast"}
                       {style === "botanical" && "Scientific illustration style"}
-                      {style === "geometric" && "Flowers with geometric shapes"}
+                      {style === "geometric" && "Flowers combined with geometric shapes"}
                     </p>
                   </div>
 
@@ -771,17 +807,17 @@ export default function BirthFlowerTattooGenerator() {
           <div style={{ flex: "2", minWidth: "300px" }}>
             <div style={{ backgroundColor: "white", borderRadius: "16px", boxShadow: "0 1px 3px rgba(0,0,0,0.1)", border: "1px solid #FBCFE8", padding: "32px" }}>
               <h2 style={{ fontSize: "1.5rem", fontWeight: "bold", color: "#111827", marginBottom: "20px" }}>
-                🌷 Birth Flower Tattoo Ideas & Inspiration
+                🌷 Birth Flower Bouquet Tattoo Ideas & Inspiration
               </h2>
 
               <div style={{ color: "#4B5563", lineHeight: "1.8" }}>
                 <p>
-                  Birth flower tattoos are a beautiful way to celebrate your identity, honor loved ones, or mark significant 
+                  Birth flower tattoos and birth flower bouquet tattoos are beautiful ways to celebrate your identity, honor loved ones, or mark significant 
                   life events. Each month has a designated flower with unique symbolism, making these tattoos deeply personal 
                   and meaningful.
                 </p>
 
-                <h3 style={{ color: "#111827", marginTop: "24px", marginBottom: "12px" }}>Popular Birth Flower Tattoo Styles</h3>
+                <h3 style={{ color: "#111827", marginTop: "24px", marginBottom: "12px" }}>Popular Birth Flower Bouquet Tattoo Styles</h3>
                 <div style={{
                   backgroundColor: "#FDF2F8",
                   padding: "20px",
@@ -800,8 +836,8 @@ export default function BirthFlowerTattooGenerator() {
 
                 <h3 style={{ color: "#111827", marginTop: "24px", marginBottom: "12px" }}>Family Birth Flower Bouquet Ideas</h3>
                 <p>
-                  One of the most meaningful ways to use birth flowers is creating a family bouquet tattoo. 
-                  Combine the birth flowers of your children, parents, siblings, or partner into one beautiful design. 
+                  One of the most meaningful ways to use birth flowers is creating a family birth flower bouquet tattoo. 
+                  Our birth flower bouquet generator lets you combine the birth flowers of your children, parents, siblings, or partner into one beautiful design. 
                   You can also add names, dates, or initials to personalize it further.
                 </p>
 
@@ -839,20 +875,20 @@ export default function BirthFlowerTattooGenerator() {
           <div style={{ flex: "1", minWidth: "280px" }}>
             {/* Placement Guide */}
             <div style={{ backgroundColor: "#DB2777", borderRadius: "16px", padding: "24px", marginBottom: "24px", color: "white" }}>
-              <h3 style={{ fontSize: "1.125rem", fontWeight: "bold", marginBottom: "16px" }}>📍 Popular Placements</h3>
+              <h3 style={{ fontSize: "1.125rem", fontWeight: "bold", marginBottom: "16px" }}>📍 Bouquet Tattoo Placements</h3>
               <div style={{ fontSize: "0.85rem", lineHeight: "1.8" }}>
-                <p style={{ margin: "0 0 8px 0" }}>• Wrist - Small, visible</p>
-                <p style={{ margin: "0 0 8px 0" }}>• Ankle - Delicate, feminine</p>
-                <p style={{ margin: "0 0 8px 0" }}>• Forearm - Medium size</p>
+                <p style={{ margin: "0 0 8px 0" }}>• Forearm - Most popular</p>
+                <p style={{ margin: "0 0 8px 0" }}>• Thigh - Large bouquets</p>
+                <p style={{ margin: "0 0 8px 0" }}>• Back - Full family bouquet</p>
+                <p style={{ margin: "0 0 8px 0" }}>• Ribcage - Elegant & hidden</p>
                 <p style={{ margin: "0 0 8px 0" }}>• Shoulder - Easy to cover</p>
-                <p style={{ margin: "0 0 8px 0" }}>• Ribcage - Large designs</p>
-                <p style={{ margin: 0 }}>• Behind Ear - Subtle, hidden</p>
+                <p style={{ margin: 0 }}>• Wrist - Small bouquets</p>
               </div>
             </div>
 
             {/* Tips */}
             <div style={{ backgroundColor: "#FEF3C7", borderRadius: "16px", padding: "24px", marginBottom: "24px", border: "1px solid #FCD34D" }}>
-              <h3 style={{ fontSize: "1.125rem", fontWeight: "bold", color: "#92400E", marginBottom: "16px" }}>💡 Tattoo Tips</h3>
+              <h3 style={{ fontSize: "1.125rem", fontWeight: "bold", color: "#92400E", marginBottom: "16px" }}>💡 Bouquet Tattoo Tips</h3>
               <div style={{ fontSize: "0.85rem", color: "#B45309", lineHeight: "1.8" }}>
                 <p style={{ margin: "0 0 8px 0" }}>• Research your artist&apos;s style</p>
                 <p style={{ margin: "0 0 8px 0" }}>• Consider size vs placement</p>
@@ -882,7 +918,7 @@ export default function BirthFlowerTattooGenerator() {
         {/* Disclaimer */}
         <div style={{ padding: "16px", backgroundColor: "#FDF2F8", borderRadius: "8px", border: "1px solid #FBCFE8" }}>
           <p style={{ fontSize: "0.75rem", color: "#BE185D", textAlign: "center", margin: 0 }}>
-            🌸 <strong>Note:</strong> This generator provides birth flower information and design inspiration. 
+            🌸 <strong>Note:</strong> This birth flower bouquet generator provides design inspiration and flower information. 
             For actual tattoo artwork, please consult with a professional tattoo artist who can create a custom design for you.
           </p>
         </div>
