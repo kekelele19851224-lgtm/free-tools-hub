@@ -122,7 +122,7 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
         </svg>
       </button>
       <div style={{ maxHeight: isOpen ? "500px" : "0", overflow: "hidden", transition: "max-height 0.3s ease-out" }}>
-        <p style={{ color: "#4B5563", paddingBottom: "16px", margin: 0, lineHeight: "1.7" }}>{answer}</p>
+        <p style={{ color: "#D1D5DB", paddingBottom: "16px", margin: 0, lineHeight: "1.7" }}>{answer}</p>
       </div>
     </div>
   );
