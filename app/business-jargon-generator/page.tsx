@@ -90,7 +90,7 @@ const funnyExtras = ['at the end of the day', 'when all is said and done', 'goin
 
 // Sentence templates - use {action} for actionPhrases and {statement} for statements
 const sentenceTemplates = [
-  "We need to {verb} our {adjective} {noun} to {verb} {noun}.",
+  "We need to {verb} our {adjective} {noun} to {verb} the {noun}.",
   "Let's {action} and {verb} the {adjective} {noun}.",
   "Moving forward, we'll {verb} {noun} to drive {adjective} {noun}.",
   "Our {adjective} approach will {verb} {noun} across all {noun}.",
@@ -101,13 +101,13 @@ const sentenceTemplates = [
 ];
 
 const funnyTemplates = [
-  "We need to {verb} our {adjective} {noun} to {verb} {noun}, {extra}.",
+  "We need to {verb} our {adjective} {noun} to {verb} the {noun}, {extra}.",
   "Let's {action}, {action}, and {verb} the {adjective} {noun}.",
-  "{extra}, we must {verb} our {adjective} {noun} to {verb} {noun} at scale.",
+  "{extra}, we must {verb} our {adjective} {noun} to {verb} the {noun} at scale.",
   "Our {adjective}, {adjective} approach will {verb} {noun} across all {noun}, {extra}.",
   "By {verb}ing and {verb}ing our {noun}, we can achieve {adjective}, {adjective} {noun}.",
   "{statement}, and we must {verb} the {adjective} {noun}.",
-  "Look, {statement}, so let's {action} and {verb} {noun}.",
+  "Look, {statement}, so let's {action} and {verb} the {noun}.",
 ];
 
 // Translator replacements
