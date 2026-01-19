@@ -174,7 +174,7 @@ export default function NutritionLabelGenerator() {
     <div style={{
       width: "280px",
       border: "1px solid #000",
-      padding: "4px",
+      padding: "8px 8px 14px 8px",
       fontFamily: "Helvetica, Arial, sans-serif",
       backgroundColor: "#fff",
       fontSize: "12px"
@@ -201,95 +201,95 @@ export default function NutritionLabelGenerator() {
       </div>
 
       {/* % Daily Value Header */}
-      <div style={{ textAlign: "right", fontSize: "10px", fontWeight: "700", borderBottom: "1px solid #000", paddingTop: "2px", paddingBottom: "2px" }}>
+      <div style={{ textAlign: "right", fontSize: "10px", fontWeight: "700", borderBottom: "1px solid #000", paddingTop: "4px", paddingBottom: "4px" }}>
         % Daily Value*
       </div>
 
       {/* Nutrients */}
-      <div style={{ borderBottom: "1px solid #000", padding: "2px 0" }}>
+      <div style={{ borderBottom: "1px solid #000", padding: "4px 0" }}>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <span><strong>Total Fat</strong> {totalFat}g</span>
           <strong>{calcDV(totalFat, dailyValues.totalFat)}%</strong>
         </div>
       </div>
 
-      <div style={{ borderBottom: "1px solid #000", padding: "2px 0", paddingLeft: "16px" }}>
+      <div style={{ borderBottom: "1px solid #000", padding: "4px 0", paddingLeft: "16px" }}>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <span>Saturated Fat {saturatedFat}g</span>
           <strong>{calcDV(saturatedFat, dailyValues.saturatedFat)}%</strong>
         </div>
       </div>
 
-      <div style={{ borderBottom: "1px solid #000", padding: "2px 0", paddingLeft: "16px" }}>
+      <div style={{ borderBottom: "1px solid #000", padding: "4px 0", paddingLeft: "16px" }}>
         <span><em>Trans</em> Fat {transFat}g</span>
       </div>
 
-      <div style={{ borderBottom: "1px solid #000", padding: "2px 0" }}>
+      <div style={{ borderBottom: "1px solid #000", padding: "4px 0" }}>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <span><strong>Cholesterol</strong> {cholesterol}mg</span>
           <strong>{calcDV(cholesterol, dailyValues.cholesterol)}%</strong>
         </div>
       </div>
 
-      <div style={{ borderBottom: "1px solid #000", padding: "2px 0" }}>
+      <div style={{ borderBottom: "1px solid #000", padding: "4px 0" }}>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <span><strong>Sodium</strong> {sodium}mg</span>
           <strong>{calcDV(sodium, dailyValues.sodium)}%</strong>
         </div>
       </div>
 
-      <div style={{ borderBottom: "1px solid #000", padding: "2px 0" }}>
+      <div style={{ borderBottom: "1px solid #000", padding: "4px 0" }}>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <span><strong>Total Carbohydrate</strong> {totalCarbs}g</span>
           <strong>{calcDV(totalCarbs, dailyValues.totalCarbs)}%</strong>
         </div>
       </div>
 
-      <div style={{ borderBottom: "1px solid #000", padding: "2px 0", paddingLeft: "16px" }}>
+      <div style={{ borderBottom: "1px solid #000", padding: "4px 0", paddingLeft: "16px" }}>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <span>Dietary Fiber {dietaryFiber}g</span>
           <strong>{calcDV(dietaryFiber, dailyValues.dietaryFiber)}%</strong>
         </div>
       </div>
 
-      <div style={{ borderBottom: "1px solid #000", padding: "2px 0", paddingLeft: "16px" }}>
+      <div style={{ borderBottom: "1px solid #000", padding: "4px 0", paddingLeft: "16px" }}>
         <span>Total Sugars {totalSugars}g</span>
       </div>
 
-      <div style={{ borderBottom: "1px solid #000", padding: "2px 0", paddingLeft: "32px" }}>
+      <div style={{ borderBottom: "1px solid #000", padding: "4px 0", paddingLeft: "32px" }}>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <span>Includes {addedSugars}g Added Sugars</span>
           <strong>{calcDV(addedSugars, dailyValues.addedSugars)}%</strong>
         </div>
       </div>
 
-      <div style={{ borderBottom: "10px solid #000", padding: "2px 0" }}>
+      <div style={{ borderBottom: "10px solid #000", padding: "4px 0" }}>
         <span><strong>Protein</strong> {protein}g</span>
       </div>
 
       {/* Vitamins & Minerals */}
-      <div style={{ borderBottom: "1px solid #000", padding: "2px 0" }}>
+      <div style={{ borderBottom: "1px solid #000", padding: "4px 0" }}>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <span>Vitamin D {vitaminD}mcg</span>
           <span>{calcDV(vitaminD, dailyValues.vitaminD)}%</span>
         </div>
       </div>
 
-      <div style={{ borderBottom: "1px solid #000", padding: "2px 0" }}>
+      <div style={{ borderBottom: "1px solid #000", padding: "4px 0" }}>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <span>Calcium {calcium}mg</span>
           <span>{calcDV(calcium, dailyValues.calcium)}%</span>
         </div>
       </div>
 
-      <div style={{ borderBottom: "1px solid #000", padding: "2px 0" }}>
+      <div style={{ borderBottom: "1px solid #000", padding: "4px 0" }}>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <span>Iron {iron}mg</span>
           <span>{calcDV(iron, dailyValues.iron)}%</span>
         </div>
       </div>
 
-      <div style={{ borderBottom: "4px solid #000", padding: "2px 0" }}>
+      <div style={{ borderBottom: "4px solid #000", padding: "4px 0" }}>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <span>Potassium {potassium}mg</span>
           <span>{calcDV(potassium, dailyValues.potassium)}%</span>
@@ -297,7 +297,7 @@ export default function NutritionLabelGenerator() {
       </div>
 
       {/* Footer */}
-      <div style={{ fontSize: "9px", paddingTop: "4px", lineHeight: "1.3" }}>
+      <div style={{ fontSize: "9px", paddingTop: "8px", lineHeight: "1.4" }}>
         <div>* The % Daily Value (DV) tells you how much a nutrient in a serving of food contributes to a daily diet. 2,000 calories a day is used for general nutrition advice.</div>
       </div>
     </div>
@@ -308,51 +308,51 @@ export default function NutritionLabelGenerator() {
     <div style={{
       width: "220px",
       border: "1px solid #000",
-      padding: "4px",
+      padding: "8px 8px 14px 8px",
       fontFamily: "Helvetica, Arial, sans-serif",
       backgroundColor: "#fff",
       fontSize: "11px"
     }}>
       <div style={{ fontSize: "22px", fontWeight: "900" }}>Nutrition Facts</div>
-      <div style={{ borderBottom: "1px solid #000", paddingBottom: "2px", fontSize: "10px" }}>
+      <div style={{ borderBottom: "1px solid #000", paddingBottom: "4px", fontSize: "10px" }}>
         <div>{servingsPerContainer} servings per container</div>
         <div><strong>Serving size</strong> {servingSize}</div>
       </div>
-      <div style={{ borderBottom: "8px solid #000", padding: "4px 0" }}>
+      <div style={{ borderBottom: "8px solid #000", padding: "6px 0" }}>
         <div style={{ fontSize: "9px", fontWeight: "700" }}>Amount per serving</div>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <span style={{ fontSize: "20px", fontWeight: "900" }}>Calories</span>
           <span style={{ fontSize: "20px", fontWeight: "900" }}>{calories}</span>
         </div>
       </div>
-      <div style={{ textAlign: "right", fontSize: "9px", fontWeight: "700", borderBottom: "1px solid #000", padding: "2px 0" }}>
+      <div style={{ textAlign: "right", fontSize: "9px", fontWeight: "700", borderBottom: "1px solid #000", padding: "4px 0" }}>
         % Daily Value*
       </div>
-      <div style={{ borderBottom: "1px solid #000", padding: "2px 0" }}>
+      <div style={{ borderBottom: "1px solid #000", padding: "4px 0" }}>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <span><strong>Total Fat</strong> {totalFat}g</span>
           <strong>{calcDV(totalFat, dailyValues.totalFat)}%</strong>
         </div>
       </div>
-      <div style={{ borderBottom: "1px solid #000", padding: "2px 0" }}>
+      <div style={{ borderBottom: "1px solid #000", padding: "4px 0" }}>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <span><strong>Sodium</strong> {sodium}mg</span>
           <strong>{calcDV(sodium, dailyValues.sodium)}%</strong>
         </div>
       </div>
-      <div style={{ borderBottom: "1px solid #000", padding: "2px 0" }}>
+      <div style={{ borderBottom: "1px solid #000", padding: "4px 0" }}>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <span><strong>Total Carb.</strong> {totalCarbs}g</span>
           <strong>{calcDV(totalCarbs, dailyValues.totalCarbs)}%</strong>
         </div>
       </div>
-      <div style={{ borderBottom: "4px solid #000", padding: "2px 0" }}>
+      <div style={{ borderBottom: "4px solid #000", padding: "4px 0" }}>
         <span><strong>Protein</strong> {protein}g</span>
       </div>
-      <div style={{ fontSize: "8px", paddingTop: "2px" }}>
+      <div style={{ fontSize: "8px", paddingTop: "6px" }}>
         Not a significant source of other nutrients.
       </div>
-      <div style={{ fontSize: "8px", paddingTop: "2px" }}>
+      <div style={{ fontSize: "8px", paddingTop: "6px", lineHeight: "1.3" }}>
         * The % Daily Value tells you how much a nutrient contributes to a daily diet. 2,000 calories a day is used.
       </div>
     </div>
@@ -364,10 +364,11 @@ export default function NutritionLabelGenerator() {
       width: "100%",
       maxWidth: "500px",
       border: "1px solid #000",
-      padding: "6px 8px",
+      padding: "10px 12px 14px 12px",
       fontFamily: "Helvetica, Arial, sans-serif",
       backgroundColor: "#fff",
-      fontSize: "10px"
+      fontSize: "10px",
+      lineHeight: "1.6"
     }}>
       <div style={{ display: "flex", flexWrap: "wrap", alignItems: "baseline", gap: "4px" }}>
         <span style={{ fontWeight: "900", fontSize: "14px" }}>Nutrition Facts</span>
@@ -396,74 +397,74 @@ export default function NutritionLabelGenerator() {
       width: "100%",
       maxWidth: "480px",
       border: "1px solid #000",
-      padding: "4px",
+      padding: "8px 8px 16px 8px",
       fontFamily: "Helvetica, Arial, sans-serif",
       backgroundColor: "#fff",
-      fontSize: "10px"
+      fontSize: "11px"
     }}>
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", borderBottom: "1px solid #000", paddingBottom: "2px" }}>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", borderBottom: "1px solid #000", paddingBottom: "4px" }}>
         <span style={{ fontSize: "18px", fontWeight: "900" }}>Nutrition Facts</span>
-        <span>{servingsPerContainer} servings per container, Serving size {servingSize}</span>
+        <span style={{ fontSize: "10px" }}>{servingsPerContainer} servings per container, Serving size {servingSize}</span>
       </div>
-      <table style={{ width: "100%", borderCollapse: "collapse", marginTop: "4px" }}>
+      <table style={{ width: "100%", borderCollapse: "collapse", marginTop: "6px", fontSize: "10px" }}>
         <thead>
-          <tr style={{ borderBottom: "4px solid #000" }}>
-            <th style={{ textAlign: "left", padding: "2px" }}>Amount/serving</th>
-            <th style={{ textAlign: "right", padding: "2px" }}>%DV*</th>
-            <th style={{ textAlign: "left", padding: "2px", borderLeft: "1px solid #000", paddingLeft: "8px" }}>Amount/serving</th>
-            <th style={{ textAlign: "right", padding: "2px" }}>%DV*</th>
+          <tr style={{ borderBottom: "3px solid #000" }}>
+            <th style={{ textAlign: "left", padding: "5px 6px", fontWeight: "700" }}>Amount/serving</th>
+            <th style={{ textAlign: "right", padding: "5px 6px", fontWeight: "700" }}>%DV*</th>
+            <th style={{ textAlign: "left", padding: "5px 6px", borderLeft: "1px solid #000", paddingLeft: "10px", fontWeight: "700" }}>Amount/serving</th>
+            <th style={{ textAlign: "right", padding: "5px 6px", fontWeight: "700" }}>%DV*</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td style={{ padding: "2px" }}><strong>Calories</strong> {calories}</td>
+            <td style={{ padding: "5px 6px" }}><strong>Calories</strong> {calories}</td>
             <td></td>
-            <td style={{ padding: "2px", borderLeft: "1px solid #000", paddingLeft: "8px" }}><strong>Total Carb.</strong> {totalCarbs}g</td>
-            <td style={{ textAlign: "right", padding: "2px" }}><strong>{calcDV(totalCarbs, dailyValues.totalCarbs)}%</strong></td>
+            <td style={{ padding: "5px 6px", borderLeft: "1px solid #000", paddingLeft: "10px" }}><strong>Total Carb.</strong> {totalCarbs}g</td>
+            <td style={{ textAlign: "right", padding: "5px 6px" }}><strong>{calcDV(totalCarbs, dailyValues.totalCarbs)}%</strong></td>
           </tr>
           <tr>
-            <td style={{ padding: "2px" }}><strong>Total Fat</strong> {totalFat}g</td>
-            <td style={{ textAlign: "right", padding: "2px" }}><strong>{calcDV(totalFat, dailyValues.totalFat)}%</strong></td>
-            <td style={{ padding: "2px", borderLeft: "1px solid #000", paddingLeft: "16px" }}>Dietary Fiber {dietaryFiber}g</td>
-            <td style={{ textAlign: "right", padding: "2px" }}>{calcDV(dietaryFiber, dailyValues.dietaryFiber)}%</td>
+            <td style={{ padding: "5px 6px" }}><strong>Total Fat</strong> {totalFat}g</td>
+            <td style={{ textAlign: "right", padding: "5px 6px" }}><strong>{calcDV(totalFat, dailyValues.totalFat)}%</strong></td>
+            <td style={{ padding: "5px 6px", borderLeft: "1px solid #000", paddingLeft: "18px" }}>Dietary Fiber {dietaryFiber}g</td>
+            <td style={{ textAlign: "right", padding: "5px 6px" }}>{calcDV(dietaryFiber, dailyValues.dietaryFiber)}%</td>
           </tr>
           <tr>
-            <td style={{ padding: "2px", paddingLeft: "8px" }}>Sat. Fat {saturatedFat}g</td>
-            <td style={{ textAlign: "right", padding: "2px" }}>{calcDV(saturatedFat, dailyValues.saturatedFat)}%</td>
-            <td style={{ padding: "2px", borderLeft: "1px solid #000", paddingLeft: "16px" }}>Total Sugars {totalSugars}g</td>
-            <td></td>
-          </tr>
-          <tr>
-            <td style={{ padding: "2px", paddingLeft: "8px" }}><em>Trans</em> Fat {transFat}g</td>
-            <td></td>
-            <td style={{ padding: "2px", borderLeft: "1px solid #000", paddingLeft: "24px" }}>Incl. Added Sugars {addedSugars}g</td>
-            <td style={{ textAlign: "right", padding: "2px" }}>{calcDV(addedSugars, dailyValues.addedSugars)}%</td>
-          </tr>
-          <tr>
-            <td style={{ padding: "2px" }}><strong>Cholest.</strong> {cholesterol}mg</td>
-            <td style={{ textAlign: "right", padding: "2px" }}><strong>{calcDV(cholesterol, dailyValues.cholesterol)}%</strong></td>
-            <td style={{ padding: "2px", borderLeft: "1px solid #000", paddingLeft: "8px" }}><strong>Protein</strong> {protein}g</td>
+            <td style={{ padding: "5px 6px", paddingLeft: "14px" }}>Sat. Fat {saturatedFat}g</td>
+            <td style={{ textAlign: "right", padding: "5px 6px" }}>{calcDV(saturatedFat, dailyValues.saturatedFat)}%</td>
+            <td style={{ padding: "5px 6px", borderLeft: "1px solid #000", paddingLeft: "18px" }}>Total Sugars {totalSugars}g</td>
             <td></td>
           </tr>
-          <tr style={{ borderTop: "4px solid #000" }}>
-            <td style={{ padding: "2px" }}><strong>Sodium</strong> {sodium}mg</td>
-            <td style={{ textAlign: "right", padding: "2px" }}><strong>{calcDV(sodium, dailyValues.sodium)}%</strong></td>
-            <td style={{ padding: "2px", borderLeft: "1px solid #000", paddingLeft: "8px" }}>Vitamin D {vitaminD}mcg</td>
-            <td style={{ textAlign: "right", padding: "2px" }}>{calcDV(vitaminD, dailyValues.vitaminD)}%</td>
+          <tr>
+            <td style={{ padding: "5px 6px", paddingLeft: "14px" }}><em>Trans</em> Fat {transFat}g</td>
+            <td></td>
+            <td style={{ padding: "5px 6px", borderLeft: "1px solid #000", paddingLeft: "26px" }}>Incl. Added Sugars {addedSugars}g</td>
+            <td style={{ textAlign: "right", padding: "5px 6px" }}>{calcDV(addedSugars, dailyValues.addedSugars)}%</td>
           </tr>
           <tr>
-            <td style={{ padding: "2px" }}>Calcium {calcium}mg</td>
-            <td style={{ textAlign: "right", padding: "2px" }}>{calcDV(calcium, dailyValues.calcium)}%</td>
-            <td style={{ padding: "2px", borderLeft: "1px solid #000", paddingLeft: "8px" }}>Iron {iron}mg</td>
-            <td style={{ textAlign: "right", padding: "2px" }}>{calcDV(iron, dailyValues.iron)}%</td>
+            <td style={{ padding: "5px 6px" }}><strong>Cholest.</strong> {cholesterol}mg</td>
+            <td style={{ textAlign: "right", padding: "5px 6px" }}><strong>{calcDV(cholesterol, dailyValues.cholesterol)}%</strong></td>
+            <td style={{ padding: "5px 6px", borderLeft: "1px solid #000", paddingLeft: "10px" }}><strong>Protein</strong> {protein}g</td>
+            <td></td>
+          </tr>
+          <tr style={{ borderTop: "3px solid #000" }}>
+            <td style={{ padding: "5px 6px" }}><strong>Sodium</strong> {sodium}mg</td>
+            <td style={{ textAlign: "right", padding: "5px 6px" }}><strong>{calcDV(sodium, dailyValues.sodium)}%</strong></td>
+            <td style={{ padding: "5px 6px", borderLeft: "1px solid #000", paddingLeft: "10px" }}>Vitamin D {vitaminD}mcg</td>
+            <td style={{ textAlign: "right", padding: "5px 6px" }}>{calcDV(vitaminD, dailyValues.vitaminD)}%</td>
           </tr>
           <tr>
-            <td colSpan={2} style={{ padding: "2px" }}>Potassium {potassium}mg</td>
-            <td colSpan={2} style={{ textAlign: "right", padding: "2px" }}>{calcDV(potassium, dailyValues.potassium)}%</td>
+            <td style={{ padding: "5px 6px" }}>Calcium {calcium}mg</td>
+            <td style={{ textAlign: "right", padding: "5px 6px" }}>{calcDV(calcium, dailyValues.calcium)}%</td>
+            <td style={{ padding: "5px 6px", borderLeft: "1px solid #000", paddingLeft: "10px" }}>Iron {iron}mg</td>
+            <td style={{ textAlign: "right", padding: "5px 6px" }}>{calcDV(iron, dailyValues.iron)}%</td>
+          </tr>
+          <tr>
+            <td colSpan={2} style={{ padding: "5px 6px" }}>Potassium {potassium}mg</td>
+            <td colSpan={2} style={{ textAlign: "right", padding: "5px 6px" }}>{calcDV(potassium, dailyValues.potassium)}%</td>
           </tr>
         </tbody>
       </table>
-      <div style={{ fontSize: "8px", paddingTop: "4px", borderTop: "1px solid #000", marginTop: "2px" }}>
+      <div style={{ fontSize: "8px", paddingTop: "10px", borderTop: "1px solid #000", marginTop: "6px", lineHeight: "1.4" }}>
         *The % Daily Value (DV) tells you how much a nutrient in a serving of food contributes to a daily diet. 2,000 calories a day is used for general nutrition advice.
       </div>
     </div>
