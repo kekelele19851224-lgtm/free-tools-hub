@@ -148,8 +148,8 @@ function GravestoneSVG({
       case 'cross':
         return (
           <>
-            <rect x="100" y="5" width="100" height="275" fill={stoneColor} stroke="#374151" strokeWidth="3"/>
-            <rect x="50" y="60" width="200" height="50" fill={stoneColor} stroke="#374151" strokeWidth="3"/>
+            <rect x="75" y="5" width="150" height="275" fill={stoneColor} stroke="#374151" strokeWidth="3"/>
+            <rect x="40" y="50" width="220" height="45" fill={stoneColor} stroke="#374151" strokeWidth="3"/>
           </>
         );
       case 'gothic':
@@ -210,11 +210,11 @@ function GravestoneSVG({
         y={getTitleY()} 
         textAnchor="middle" 
         fill={textColor} 
-        fontFamily={font}
-        fontSize={title.length > 15 ? "16" : "20"}
-        fontWeight="bold"
-      >
-        {title}
+        fontFamily={font} 
+        fontSize={style === 'cross' ? "16" : (title.length > 15 ? "16" : "20")} 
+        fontWeight="bold" 
+      > 
+        {title} 
       </text>
       
       {/* Years/Name */}
@@ -223,27 +223,27 @@ function GravestoneSVG({
         y={getYearsY()} 
         textAnchor="middle" 
         fill={textColor} 
-        fontFamily={font}
-        fontSize={years.length > 20 ? "14" : "18"}
-        fontWeight="bold"
-      >
-        {years}
+        fontFamily={font} 
+        fontSize={style === 'cross' ? "13" : (years.length > 20 ? "14" : "18")} 
+        fontWeight="bold" 
+      > 
+        {years} 
       </text>
       
       {/* Epitaph */}
-      {epitaphLines.map((line, idx) => (
+      {epitaphLines.map((line, idx) => ( 
         <text 
-          key={idx}
+          key={idx} 
           x="150" 
-          y={getEpitaphY() + (idx * 22)} 
+          y={getEpitaphY() + (idx * (style === 'cross' ? 18 : 22))} 
           textAnchor="middle" 
           fill={textColor} 
-          fontFamily={font}
-          fontSize={line.length > 25 ? "11" : "13"}
-          fontStyle="italic"
-        >
-          {line}
-        </text>
+          fontFamily={font} 
+          fontSize={style === 'cross' ? "10" : (line.length > 25 ? "11" : "13")} 
+          fontStyle="italic" 
+        > 
+          {line} 
+        </text> 
       ))}
     </svg>
   );
