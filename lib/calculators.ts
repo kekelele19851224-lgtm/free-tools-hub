@@ -1131,6 +1131,14 @@ export const calculators: Calculator[] = [
     href: "/diss-track-lyrics-generator",
     category: "Entertainment",
     type: "Generator"
+  },
+  {
+    name: "Resonance Structure Generator",
+    description: "Generate resonance structures for common molecules and ions. View step-by-step Lewis structures, electron movement, and resonance rules.",
+    url: "/resonance-structure-generator",
+    href: "/resonance-structure-generator",
+    category: "Science",
+    type: "Generator"
   }
 ];
 
