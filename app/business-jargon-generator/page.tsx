@@ -64,36 +64,50 @@ const nouns: Record<string, string[]> = {
   startup: ['traction', 'runway', 'burn rate', 'ARR', 'MRR', 'churn', 'CAC', 'LTV', 'product-market fit', 'hockey stick', 'Series A', 'term sheet', 'cap table', 'pitch deck', 'moat'],
 };
 
-const phrases: Record<string, string[]> = {
-  general: ['move the needle', 'circle back', 'low-hanging fruit', 'touch base', 'deep dive', 'boil the ocean', 'run it up the flagpole', 'think outside the box', 'take it offline', 'put a pin in it', 'open the kimono', 'drink the Kool-Aid', 'peel the onion', 'sharpen the saw', 'move the goalposts'],
-  tech: ['ship it', 'push to prod', 'it works on my machine', 'let\'s not reinvent the wheel', 'this is a feature not a bug', 'let\'s table that for the retro', 'we need to refactor', 'tech debt is killing us', 'let\'s do a spike', 'we\'re in the weeds', 'that\'s out of scope', 'let\'s timebox this', 'we need more bandwidth', 'let\'s sync async', 'LGTM'],
-  marketing: ['go viral', 'create buzz', 'build brand awareness', 'capture mindshare', 'drive engagement', 'own the conversation', 'leverage influencers', 'create thumb-stopping content', 'optimize the funnel', 'nurture the lead', 'close the loop', 'double down on what works', 'test and learn', 'fail fast', 'growth hack'],
-  finance: ['crunch the numbers', 'run the model', 'stress test the assumptions', 'sanity check the projections', 'pressure test the thesis', 'pencil it out', 'back of the envelope', 'in the black', 'in the red', 'raise a round', 'extend the runway', 'hit our numbers', 'make the quarter', 'beat consensus', 'price it in'],
-  hr: ['lean in', 'bring your whole self', 'have a growth mindset', 'embrace feedback', 'model the behavior', 'walk the talk', 'lead with empathy', 'foster psychological safety', 'champion diversity', 'build bridges', 'break down silos', 'invest in our people', 'develop our bench', 'retain top talent', 'create a culture of'],
+// Action phrases - can follow "Let's" (verb phrases)
+const actionPhrases: Record<string, string[]> = {
+  general: ['move the needle', 'circle back', 'touch base', 'deep dive', 'take it offline', 'put a pin in it', 'peel the onion', 'sharpen the saw', 'think outside the box', 'run it up the flagpole'],
+  tech: ['ship it', 'push to prod', 'table that for the retro', 'do a spike', 'timebox this', 'sync up async', 'spin up a POC', 'refactor the codebase', 'automate that workflow', 'containerize the solution'],
+  marketing: ['go viral', 'create buzz', 'build brand awareness', 'capture mindshare', 'drive engagement', 'own the conversation', 'leverage influencers', 'optimize the funnel', 'nurture the lead', 'close the loop', 'double down on what works', 'test and learn', 'fail fast', 'growth hack'],
+  finance: ['crunch the numbers', 'run the model', 'stress test the assumptions', 'sanity check the projections', 'pressure test the thesis', 'pencil it out', 'raise a round', 'extend the runway', 'hit our numbers', 'make the quarter'],
+  hr: ['lean in', 'bring your whole self', 'have a growth mindset', 'embrace feedback', 'model the behavior', 'walk the talk', 'lead with empathy', 'foster psychological safety', 'champion diversity', 'build bridges', 'break down silos', 'invest in our people', 'develop our bench', 'retain top talent'],
   consulting: ['unpack that', 'pressure test', 'stress test', 'sanity check', 'gut check', 'take a step back', 'zoom out', 'get granular', 'drill down', 'bubble up', 'socialize the idea', 'get buy-in', 'align stakeholders', 'manage up', 'right-size'],
-  startup: ['fail fast', 'move fast and break things', 'done is better than perfect', 'launch and iterate', 'find product-market fit', 'nail it then scale it', 'be scrappy', 'hustle harder', 'crush it', '10x your growth', 'hockey stick growth', 'get to ramen profitable', 'default alive', 'blitzscale', 'go big or go home'],
+  startup: ['fail fast', 'move fast and break things', 'launch and iterate', 'find product-market fit', 'nail it then scale it', 'be scrappy', 'hustle harder', 'crush it', '10x our growth', 'get to ramen profitable', 'blitzscale', 'go big or go home'],
+};
+
+// Statement phrases - complete sentences or noun phrases (cannot follow "Let's")
+const statements: Record<string, string[]> = {
+  general: ['low-hanging fruit is key here', 'we need to boil the ocean on this', 'time to open the kimono', 'everyone needs to drink the Kool-Aid', 'the goalposts keep moving'],
+  tech: ['it works on my machine', 'this is a feature not a bug', 'tech debt is killing us', 'we are in the weeds here', 'that is out of scope', 'we need more bandwidth', 'LGTM ship it', 'we should not reinvent the wheel'],
+  marketing: ['content is king', 'the algorithm has spoken', 'we need thumb-stopping content', 'engagement is through the roof', 'the funnel is leaking'],
+  finance: ['back of the envelope it works', 'we are in the black', 'we are in the red', 'we beat consensus', 'it is priced in already'],
+  hr: ['culture eats strategy for breakfast', 'people are our greatest asset', 'we need to create a culture of innovation', 'psychological safety is paramount'],
+  consulting: ['per my last email', 'as per the framework', 'the data speaks for itself', 'we need to manage up on this', 'scope creep is real'],
+  startup: ['done is better than perfect', 'we are default alive', 'hockey stick growth is coming', 'we need to find product-market fit', 'the TAM is huge'],
 };
 
 const funnyExtras = ['at the end of the day', 'when all is said and done', 'going forward', 'in this space', 'quite frankly', 'to be honest', 'net-net', 'bottom line', 'long story short', 'with all due respect', 'let me be clear', 'make no mistake', 'needless to say', 'it is what it is', 'the fact of the matter is'];
 
-// Sentence templates
+// Sentence templates - use {action} for actionPhrases and {statement} for statements
 const sentenceTemplates = [
   "We need to {verb} our {adjective} {noun} to {verb} {noun}.",
-  "Let's {phrase} and {verb} the {adjective} {noun}.",
+  "Let's {action} and {verb} the {adjective} {noun}.",
   "Moving forward, we'll {verb} {noun} to drive {adjective} {noun}.",
   "Our {adjective} approach will {verb} {noun} across all {noun}.",
   "By {verb}ing our {noun}, we can achieve {adjective} {noun}.",
-  "The key is to {verb} {adjective} {noun} while we {phrase}.",
+  "The key is to {verb} {adjective} {noun} while we {action}.",
   "It's critical that we {verb} our {noun} to remain {adjective}.",
-  "Let's {phrase} to {verb} our {adjective} {noun} strategy.",
+  "Let's {action} to {verb} our {adjective} {noun} strategy.",
 ];
 
 const funnyTemplates = [
   "We need to {verb} our {adjective} {noun} to {verb} {noun}, {extra}.",
-  "Let's {phrase}, {phrase}, and {verb} the {adjective} {noun}.",
+  "Let's {action}, {action}, and {verb} the {adjective} {noun}.",
   "{extra}, we must {verb} our {adjective} {noun} to {verb} {noun} at scale.",
   "Our {adjective}, {adjective} approach will {verb} {noun} across all {noun}, {extra}.",
   "By {verb}ing and {verb}ing our {noun}, we can achieve {adjective}, {adjective} {noun}.",
+  "{statement}, and we must {verb} the {adjective} {noun}.",
+  "Look, {statement}, so let's {action} and {verb} {noun}.",
 ];
 
 // Translator replacements
@@ -203,7 +217,8 @@ function getWords(industry: string) {
     verbs: verbs[industry] || verbs.general,
     adjectives: adjectives[industry] || adjectives.general,
     nouns: nouns[industry] || nouns.general,
-    phrases: phrases[industry] || phrases.general,
+    actions: actionPhrases[industry] || actionPhrases.general,
+    statements: statements[industry] || statements.general,
   };
 }
 
@@ -293,7 +308,7 @@ export default function BusinessJargonGenerator() {
         const usedVerbs: string[] = [];
         const usedNouns: string[] = [];
         const usedAdjectives: string[] = [];
-        const usedPhrases: string[] = [];
+        const usedActions: string[] = [];
         
         sentence = sentence.replace(/{verb}/g, () => {
           let word = getRandomItem(words.verbs);
@@ -325,16 +340,17 @@ export default function BusinessJargonGenerator() {
           usedNouns.push(word);
           return word;
         });
-        sentence = sentence.replace(/{phrase}/g, () => {
-          let word = getRandomItem(words.phrases);
+        sentence = sentence.replace(/{action}/g, () => {
+          let word = getRandomItem(words.actions);
           let attempts = 0;
-          while (usedPhrases.includes(word) && attempts < 10) {
-            word = getRandomItem(words.phrases);
+          while (usedActions.includes(word) && attempts < 10) {
+            word = getRandomItem(words.actions);
             attempts++;
           }
-          usedPhrases.push(word);
+          usedActions.push(word);
           return word;
         });
+        sentence = sentence.replace(/{statement}/g, () => getRandomItem(words.statements));
         sentence = sentence.replace(/{extra}/g, () => getRandomItem(funnyExtras));
         
         // Ensure first letter is capitalized
@@ -388,7 +404,8 @@ export default function BusinessJargonGenerator() {
             usedNouns.push(word);
             return word;
           });
-          sentence = sentence.replace(/{phrase}/g, () => getRandomItem(words.phrases));
+          sentence = sentence.replace(/{action}/g, () => getRandomItem(words.actions));
+          sentence = sentence.replace(/{statement}/g, () => getRandomItem(words.statements));
           sentence = sentence.replace(/{extra}/g, () => getRandomItem(funnyExtras));
           
           // Ensure first letter is capitalized
