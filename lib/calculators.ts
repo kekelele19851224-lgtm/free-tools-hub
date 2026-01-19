@@ -1059,6 +1059,14 @@ export const calculators: Calculator[] = [
     href: "/etsy-shop-name-generator",
     category: "Business",
     type: "Generator"
+  },
+  {
+    name: "Gallery Wall Template Generator",
+    description: "Plan your perfect gallery wall layout with frame positions and measurements. Multiple styles including grid, salon, and linear.",
+    url: "/gallery-wall-template-generator",
+    href: "/gallery-wall-template-generator",
+    category: "Home",
+    type: "Generator"
   }
 ];
 
