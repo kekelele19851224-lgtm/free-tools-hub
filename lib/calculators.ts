@@ -1067,6 +1067,14 @@ export const calculators: Calculator[] = [
     href: "/gallery-wall-template-generator",
     category: "Home",
     type: "Generator"
+  },
+  {
+    name: "Gravestone Generator",
+    description: "Create funny tombstone memes for RIP jokes. Multiple styles, custom text, instant PNG download.",
+    url: "/gravestone-generator",
+    href: "/gravestone-generator",
+    category: "Entertainment",
+    type: "Generator"
   }
 ];
 
