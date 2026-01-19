@@ -1123,6 +1123,14 @@ export const calculators: Calculator[] = [
     href: "/roman-numeral-tattoo-generator",
     category: "Converter",
     type: "Generator"
+  },
+  {
+    name: "Diss Track Lyrics Generator",
+    description: "Generate sharp, witty diss track lyrics for rap battles and roasting friends. Choose from savage, funny, sarcastic, and more tones.",
+    url: "/diss-track-lyrics-generator",
+    href: "/diss-track-lyrics-generator",
+    category: "Entertainment",
+    type: "Generator"
   }
 ];
 
