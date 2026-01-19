@@ -1139,6 +1139,14 @@ export const calculators: Calculator[] = [
     href: "/resonance-structure-generator",
     category: "Science",
     type: "Generator"
+  },
+  {
+    name: "Speak and Spell Voice Generator",
+    description: "Create retro robotic text-to-speech with the classic 80s Speak & Spell sound. Adjustable pitch, speed, and spell mode.",
+    url: "/speak-and-spell-voice-generator",
+    href: "/speak-and-spell-voice-generator",
+    category: "Entertainment",
+    type: "Generator"
   }
 ];
 
