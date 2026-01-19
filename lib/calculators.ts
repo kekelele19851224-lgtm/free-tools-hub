@@ -1115,6 +1115,14 @@ export const calculators: Calculator[] = [
     href: "/hypothesis-generator",
     category: "Research",
     type: "Generator"
+  },
+  {
+    name: "Roman Numeral Tattoo Generator",
+    description: "Convert dates and numbers into elegant Roman numerals for your tattoo. Preview in multiple fonts with various separators.",
+    url: "/roman-numeral-tattoo-generator",
+    href: "/roman-numeral-tattoo-generator",
+    category: "Converter",
+    type: "Generator"
   }
 ];
 
