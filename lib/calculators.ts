@@ -1035,6 +1035,14 @@ export const calculators: Calculator[] = [
     category: "Entertainment",
     type: "Generator",
     icon: "💬"
+  },
+  {
+    name: "Nutrition Label Generator",
+    description: "Create FDA-compliant Nutrition Facts labels for food products. Free online tool with multiple formats.",
+    url: "/nutrition-label-generator",
+    href: "/nutrition-label-generator",
+    category: "Health",
+    type: "Generator"
   }
 ];
 
