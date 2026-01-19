@@ -1075,6 +1075,14 @@ export const calculators: Calculator[] = [
     href: "/gravestone-generator",
     category: "Entertainment",
     type: "Generator"
+  },
+  {
+    name: "Propane Generator Calculator",
+    description: "Calculate propane generator fuel consumption per hour, estimate costs, and find how long your tank will last.",
+    url: "/propane-generator-calculator",
+    href: "/propane-generator-calculator",
+    category: "Home",
+    type: "Calculator"
   }
 ];
 
