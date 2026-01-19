@@ -288,11 +288,57 @@ export default function BusinessJargonGenerator() {
       
       for (let i = 0; i < 5; i++) {
         let sentence = getRandomItem(templates);
-        sentence = sentence.replace(/{verb}/g, () => getRandomItem(words.verbs));
-        sentence = sentence.replace(/{adjective}/g, () => getRandomItem(words.adjectives));
-        sentence = sentence.replace(/{noun}/g, () => getRandomItem(words.nouns));
-        sentence = sentence.replace(/{phrase}/g, () => getRandomItem(words.phrases));
+        
+        // Track used words to avoid repetition
+        const usedVerbs: string[] = [];
+        const usedNouns: string[] = [];
+        const usedAdjectives: string[] = [];
+        const usedPhrases: string[] = [];
+        
+        sentence = sentence.replace(/{verb}/g, () => {
+          let word = getRandomItem(words.verbs);
+          let attempts = 0;
+          while (usedVerbs.includes(word) && attempts < 10) {
+            word = getRandomItem(words.verbs);
+            attempts++;
+          }
+          usedVerbs.push(word);
+          return word;
+        });
+        sentence = sentence.replace(/{adjective}/g, () => {
+          let word = getRandomItem(words.adjectives);
+          let attempts = 0;
+          while (usedAdjectives.includes(word) && attempts < 10) {
+            word = getRandomItem(words.adjectives);
+            attempts++;
+          }
+          usedAdjectives.push(word);
+          return word;
+        });
+        sentence = sentence.replace(/{noun}/g, () => {
+          let word = getRandomItem(words.nouns);
+          let attempts = 0;
+          while (usedNouns.includes(word) && attempts < 10) {
+            word = getRandomItem(words.nouns);
+            attempts++;
+          }
+          usedNouns.push(word);
+          return word;
+        });
+        sentence = sentence.replace(/{phrase}/g, () => {
+          let word = getRandomItem(words.phrases);
+          let attempts = 0;
+          while (usedPhrases.includes(word) && attempts < 10) {
+            word = getRandomItem(words.phrases);
+            attempts++;
+          }
+          usedPhrases.push(word);
+          return word;
+        });
         sentence = sentence.replace(/{extra}/g, () => getRandomItem(funnyExtras));
+        
+        // Ensure first letter is capitalized
+        sentence = sentence.charAt(0).toUpperCase() + sentence.slice(1);
         
         if (!newResults.includes(sentence)) {
           newResults.push(sentence);
@@ -307,11 +353,47 @@ export default function BusinessJargonGenerator() {
         
         for (let i = 0; i < numSentences; i++) {
           let sentence = getRandomItem(templates);
-          sentence = sentence.replace(/{verb}/g, () => getRandomItem(words.verbs));
-          sentence = sentence.replace(/{adjective}/g, () => getRandomItem(words.adjectives));
-          sentence = sentence.replace(/{noun}/g, () => getRandomItem(words.nouns));
+          
+          const usedVerbs: string[] = [];
+          const usedNouns: string[] = [];
+          const usedAdjectives: string[] = [];
+          
+          sentence = sentence.replace(/{verb}/g, () => {
+            let word = getRandomItem(words.verbs);
+            let attempts = 0;
+            while (usedVerbs.includes(word) && attempts < 10) {
+              word = getRandomItem(words.verbs);
+              attempts++;
+            }
+            usedVerbs.push(word);
+            return word;
+          });
+          sentence = sentence.replace(/{adjective}/g, () => {
+            let word = getRandomItem(words.adjectives);
+            let attempts = 0;
+            while (usedAdjectives.includes(word) && attempts < 10) {
+              word = getRandomItem(words.adjectives);
+              attempts++;
+            }
+            usedAdjectives.push(word);
+            return word;
+          });
+          sentence = sentence.replace(/{noun}/g, () => {
+            let word = getRandomItem(words.nouns);
+            let attempts = 0;
+            while (usedNouns.includes(word) && attempts < 10) {
+              word = getRandomItem(words.nouns);
+              attempts++;
+            }
+            usedNouns.push(word);
+            return word;
+          });
           sentence = sentence.replace(/{phrase}/g, () => getRandomItem(words.phrases));
           sentence = sentence.replace(/{extra}/g, () => getRandomItem(funnyExtras));
+          
+          // Ensure first letter is capitalized
+          sentence = sentence.charAt(0).toUpperCase() + sentence.slice(1);
+          
           sentences.push(sentence);
         }
         
