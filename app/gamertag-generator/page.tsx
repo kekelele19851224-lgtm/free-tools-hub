@@ -245,10 +245,10 @@ export default function GamertagGenerator() {
         name = name.substring(0, maxLen);
       }
       
-      // Check uniqueness
+      // Check uniqueness and length constraints
       const nameLower = name.toLowerCase();
       if (usedNames.has(nameLower)) continue;
-      if (name.length < 3) continue;
+      if (name.length < minLen || name.length > maxLen) continue;
       
       usedNames.add(nameLower);
       
