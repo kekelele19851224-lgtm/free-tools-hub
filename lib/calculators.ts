@@ -1051,6 +1051,14 @@ export const calculators: Calculator[] = [
     href: "/russian-accent-generator",
     category: "Entertainment",
     type: "Generator"
+  },
+  {
+    name: "Etsy Shop Name Generator",
+    description: "Generate unique, catchy names for your Etsy store. Multiple styles including aesthetic, cute, vintage, and modern.",
+    url: "/etsy-shop-name-generator",
+    href: "/etsy-shop-name-generator",
+    category: "Business",
+    type: "Generator"
   }
 ];
 
