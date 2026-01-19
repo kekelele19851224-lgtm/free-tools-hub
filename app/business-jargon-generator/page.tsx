@@ -212,6 +212,29 @@ function getRandomItem<T>(arr: T[]): T {
   return arr[Math.floor(Math.random() * arr.length)];
 }
 
+function toGerund(verb: string): string {
+  const v = verb.toLowerCase().trim();
+  const irregulars: Record<string, string> = {
+    'ship': 'shipping',
+    'debug': 'debugging',
+    'spin up': 'spinning up',
+    'a/b test': 'a/b testing',
+    'A/B test': 'A/B testing'
+  };
+  if (irregulars[v]) return irregulars[v];
+  const doubleConsonant = ['ship', 'debug', 'plan', 'stop', 'drop', 'cut', 'run', 'sit', 'put', 'get', 'set', 'hit', 'bet', 'let', 'wet', 'dig', 'fit', 'log', 'nag', 'nap', 'net', 'pat', 'peg', 'pen', 'pet', 'pin', 'pit', 'pop', 'pot', 'pry', 'rag', 'ram', 'rap', 'rat', 'red', 'ref', 'rib', 'rid', 'rig', 'rim', 'rip', 'rob', 'rot', 'rub', 'rug', 'sag', 'sap', 'sin', 'sip', 'sob', 'sop', 'sub', 'sum', 'sun', 'tab', 'tag', 'tan', 'tap', 'tar', 'tin', 'tip', 'top', 'tot', 'tow', 'tub', 'tug', 'van', 'vat', 'vet', 'wad', 'wag', 'wed', 'win', 'wit', 'wop', 'yap', 'zap', 'zip'];
+  if (doubleConsonant.includes(v)) {
+    return v + v.slice(-1) + 'ing';
+  }
+  if (v.endsWith('e') && !v.endsWith('ee') && !v.endsWith('ye')) {
+    return v.slice(0, -1) + 'ing';
+  }
+  if (v.endsWith('ie')) {
+    return v.slice(0, -2) + 'ying';
+  }
+  return v + 'ing';
+}
+
 function getWords(industry: string) {
   return {
     verbs: verbs[industry] || verbs.general,
@@ -310,6 +333,16 @@ export default function BusinessJargonGenerator() {
         const usedAdjectives: string[] = [];
         const usedActions: string[] = [];
         
+        sentence = sentence.replace(/{verb}ing/g, () => {
+          let word = getRandomItem(words.verbs);
+          let attempts = 0;
+          while (usedVerbs.includes(word) && attempts < 10) {
+            word = getRandomItem(words.verbs);
+            attempts++;
+          }
+          usedVerbs.push(word);
+          return toGerund(word);
+        });
         sentence = sentence.replace(/{verb}/g, () => {
           let word = getRandomItem(words.verbs);
           let attempts = 0;
@@ -374,6 +407,16 @@ export default function BusinessJargonGenerator() {
           const usedNouns: string[] = [];
           const usedAdjectives: string[] = [];
           
+          sentence = sentence.replace(/{verb}ing/g, () => {
+            let word = getRandomItem(words.verbs);
+            let attempts = 0;
+            while (usedVerbs.includes(word) && attempts < 10) {
+              word = getRandomItem(words.verbs);
+              attempts++;
+            }
+            usedVerbs.push(word);
+            return toGerund(word);
+          });
           sentence = sentence.replace(/{verb}/g, () => {
             let word = getRandomItem(words.verbs);
             let attempts = 0;
