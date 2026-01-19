@@ -1099,6 +1099,14 @@ export const calculators: Calculator[] = [
     href: "/business-jargon-generator",
     category: "Business",
     type: "Generator"
+  },
+  {
+    name: "Fantasy Story Generator",
+    description: "Generate epic fantasy plots, story ideas, and writing prompts. Perfect for novelists, D&D game masters, and creative writers.",
+    url: "/fantasy-story-generator",
+    href: "/fantasy-story-generator",
+    category: "Writing",
+    type: "Generator"
   }
 ];
 
