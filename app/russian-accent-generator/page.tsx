@@ -8,43 +8,52 @@ import RelatedTools from "@/components/RelatedTools";
 // Russian Accent Conversion Function
 // ============================================
 
-const convertToRussianAccent = (text: string, level: string): string => {
-  let result = text;
+const convertToRussianAccent = (text: string, level: string): string => { 
+  let result = text; 
   
-  if (level === 'light') {
-    // Light accent - basic changes only
-    result = result.replace(/\bW/g, 'V');
-    result = result.replace(/\bw/g, 'v');
-    result = result.replace(/\bTh/g, 'Z');
-    result = result.replace(/\bth/g, 'z');
-    result = result.replace(/th\b/gi, 'z');
-  } else if (level === 'medium') {
-    // Medium accent - more changes
-    result = result.replace(/W/g, 'V');
-    result = result.replace(/w/g, 'v');
-    result = result.replace(/Th/g, 'Z');
-    result = result.replace(/th/gi, 'z');
-    result = result.replace(/\bH([aeiou])/g, 'Kh$1');
-    result = result.replace(/\bh([aeiou])/g, 'kh$1');
-  } else if (level === 'heavy') {
-    // Heavy accent - full transformation
-    result = result.replace(/W/g, 'V');
-    result = result.replace(/w/g, 'v');
-    result = result.replace(/Th/g, 'Z');
-    result = result.replace(/th/gi, 'z');
-    result = result.replace(/\bH([aeiou])/g, 'Kh$1');
-    result = result.replace(/\bh([aeiou])/g, 'kh$1');
-    result = result.replace(/\ba\s/gi, ' ');
-    result = result.replace(/\ban\s/gi, ' ');
-    result = result.replace(/\bthe\s/gi, ' ');
-    result = result.replace(/ing\b/gi, 'ink');
-    result = result.replace(/tion\b/gi, 'shun');
-  }
+  if (level === 'light') { 
+    // Light accent - basic changes only 
+    result = result.replace(/\bW/g, 'V'); 
+    result = result.replace(/\bw/g, 'v'); 
+    result = result.replace(/\bTh/g, 'Z'); 
+    result = result.replace(/\bth/g, 'z'); 
+    result = result.replace(/th\b/gi, 'z'); 
+  } else if (level === 'medium') { 
+    // Medium accent - more changes 
+    result = result.replace(/W/g, 'V'); 
+    result = result.replace(/w/g, 'v'); 
+    result = result.replace(/Th/g, 'Z'); 
+    result = result.replace(/th/gi, 'z'); 
+    result = result.replace(/\bH([aeiou])/g, 'Kh$1'); 
+    result = result.replace(/\bh([aeiou])/g, 'kh$1'); 
+  } else if (level === 'heavy') { 
+    // Heavy accent - first remove articles, then transform 
+    result = result.replace(/\bA\s+/g, ''); 
+    result = result.replace(/\ba\s+/g, ''); 
+    result = result.replace(/\bAn\s+/g, ''); 
+    result = result.replace(/\ban\s+/g, ''); 
+    result = result.replace(/\bThe\s+/g, ''); 
+    result = result.replace(/\bthe\s+/g, ''); 
+    // Then apply phonetic changes 
+    result = result.replace(/W/g, 'V'); 
+    result = result.replace(/w/g, 'v'); 
+    result = result.replace(/Th/g, 'Z'); 
+    result = result.replace(/th/gi, 'z'); 
+    result = result.replace(/\bH([aeiou])/g, 'Kh$1'); 
+    result = result.replace(/\bh([aeiou])/g, 'kh$1'); 
+    result = result.replace(/ing\b/gi, 'ink'); 
+    result = result.replace(/tion\b/gi, 'shun'); 
+    result = result.replace(/\bis\b/gi, 'iz'); 
+    result = result.replace(/\bI\s/g, 'I '); 
+    result = result.replace(/\bwas\b/gi, 'vaz'); 
+    result = result.replace(/\bhave\b/gi, 'khave'); 
+    result = result.replace(/\bHave\b/g, 'Khave'); 
+  } 
   
-  // Clean up double spaces
-  result = result.replace(/\s+/g, ' ').trim();
+  // Clean up double spaces 
+  result = result.replace(/\s+/g, ' ').trim(); 
   
-  return result;
+  return result; 
 };
 
 // Example phrases
