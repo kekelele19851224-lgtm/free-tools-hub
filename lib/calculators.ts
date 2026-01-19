@@ -1091,6 +1091,14 @@ export const calculators: Calculator[] = [
     href: "/gamertag-generator",
     category: "Entertainment",
     type: "Generator"
+  },
+  {
+    name: "Business Jargon Generator",
+    description: "Generate corporate buzzwords, business speak, and professional jargon. Includes jargon translator for plain English.",
+    url: "/business-jargon-generator",
+    href: "/business-jargon-generator",
+    category: "Business",
+    type: "Generator"
   }
 ];
 
