@@ -116,7 +116,7 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
           cursor: "pointer"
         }}
       >
-        <h3 style={{ fontWeight: "600", color: "#111827", paddingRight: "16px", margin: 0, fontSize: "1rem" }}>{question}</h3>
+        <h3 style={{ fontWeight: "600", color: "#D4AF37", paddingRight: "16px", margin: 0, fontSize: "1rem" }}>{question}</h3>
         <svg style={{ width: "20px", height: "20px", color: "#6B7280", transform: isOpen ? "rotate(180deg)" : "rotate(0deg)", transition: "transform 0.2s", flexShrink: 0 }} fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
         </svg>
