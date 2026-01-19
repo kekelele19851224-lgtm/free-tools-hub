@@ -1083,6 +1083,14 @@ export const calculators: Calculator[] = [
     href: "/propane-generator-calculator",
     category: "Home",
     type: "Calculator"
+  },
+  {
+    name: "AI Gamertag Generator",
+    description: "Generate unique, cool, and funny gamertags for Xbox, PlayStation, Steam, and more. Multiple styles available.",
+    url: "/gamertag-generator",
+    href: "/gamertag-generator",
+    category: "Entertainment",
+    type: "Generator"
   }
 ];
 
