@@ -838,6 +838,10 @@ const faqs = [
   {
     question: "Can vegetarians use this generator?",
     answer: "Absolutely! Select 'Vegetarian' or 'Vegan' in the diet filter to see only plant-based recipes. We have a variety of vegetarian options from different cuisines including Italian pasta, Asian stir-fries, Mexican tacos, and more."
+  },
+  {
+    question: "What&apos;s the difference between a dinner generator and a meal generator?",
+    answer: "A dinner generator specifically focuses on evening meal ideas, while a meal generator can suggest food for any time of day. Our tool works as both – primarily designed for dinner ideas but the recipes work great for lunch too. Simply use our random meal generator whenever you need food inspiration!"
   }
 ];
 
@@ -1006,7 +1010,7 @@ export default function RandomDinnerGenerator() {
             </h1>
           </div>
           <p style={{ fontSize: "1.125rem", color: "#4B5563", maxWidth: "800px" }}>
-            Can&apos;t decide what to eat for dinner? Let our random dinner generator pick for you! 
+            Can&apos;t decide what to eat for dinner? Let our random dinner &amp; meal generator pick for you! 
             Filter by cuisine, diet, cooking time, and more.
           </p>
         </div>
@@ -1025,7 +1029,7 @@ export default function RandomDinnerGenerator() {
                 <strong>What&apos;s for dinner tonight?</strong>
               </p>
               <p style={{ color: "#FED7AA", margin: 0, fontSize: "0.95rem" }}>
-                Set your preferences and let us surprise you with a delicious meal idea. Each recipe includes ingredients and cooking time!
+                Set your preferences and let our meal generator surprise you with a delicious dinner idea. Each recipe includes ingredients and cooking time!
               </p>
             </div>
           </div>
@@ -1380,17 +1384,17 @@ export default function RandomDinnerGenerator() {
           <div style={{ flex: "2", minWidth: "300px" }}>
             <div style={{ backgroundColor: "white", borderRadius: "16px", boxShadow: "0 1px 3px rgba(0,0,0,0.1)", border: "1px solid #FED7AA", padding: "32px" }}>
               <h2 style={{ fontSize: "1.5rem", fontWeight: "bold", color: "#111827", marginBottom: "20px" }}>
-                🍽️ End the &quot;What&apos;s for Dinner?&quot; Dilemma
+                🍽️ Free Random Meal Generator - End the &quot;What&apos;s for Dinner?&quot; Dilemma
               </h2>
 
               <div style={{ color: "#4B5563", lineHeight: "1.8" }}>
                 <p>
                   We&apos;ve all been there – standing in front of the fridge, staring blankly, wondering what to make for dinner. 
-                  Decision fatigue is real, especially after a long day. Our Random Dinner Generator takes the stress out of 
+                  Decision fatigue is real, especially after a long day. Our random meal generator (also known as a dinner idea generator) takes the stress out of 
                   meal planning by suggesting delicious recipes based on your preferences.
                 </p>
 
-                <h3 style={{ color: "#111827", marginTop: "24px", marginBottom: "12px" }}>Why Use a Random Dinner Generator?</h3>
+                <h3 style={{ color: "#111827", marginTop: "24px", marginBottom: "12px" }}>Why Use a Random Meal Generator?</h3>
                 <div style={{
                   backgroundColor: "#FFF7ED",
                   padding: "20px",
