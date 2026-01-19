@@ -1107,6 +1107,14 @@ export const calculators: Calculator[] = [
     href: "/fantasy-story-generator",
     category: "Writing",
     type: "Generator"
+  },
+  {
+    name: "Hypothesis Generator",
+    description: "Generate research hypotheses for free. Create null and alternative hypotheses, simple if-then statements for your thesis or research paper.",
+    url: "/hypothesis-generator",
+    href: "/hypothesis-generator",
+    category: "Research",
+    type: "Generator"
   }
 ];
 
