@@ -149,7 +149,7 @@ function GravestoneSVG({
         return (
           <>
             <rect x="75" y="5" width="150" height="275" fill={stoneColor} stroke="#374151" strokeWidth="3"/>
-            <rect x="40" y="50" width="220" height="45" fill={stoneColor} stroke="#374151" strokeWidth="3"/>
+            <rect x="40" y="25" width="220" height="40" fill={stoneColor} stroke="#374151" strokeWidth="3"/>
           </>
         );
       case 'gothic':
@@ -182,9 +182,9 @@ function GravestoneSVG({
   };
 
   // Calculate text positions based on style
-  const getTitleY = () => style === 'cross' ? 140 : 80;
-  const getYearsY = () => style === 'cross' ? 170 : 130;
-  const getEpitaphY = () => style === 'cross' ? 200 : 180;
+  const getTitleY = () => style === 'cross' ? 100 : 80;
+  const getYearsY = () => style === 'cross' ? 135 : 130;
+  const getEpitaphY = () => style === 'cross' ? 175 : 180;
 
   // Split epitaph into lines
   const epitaphLines = epitaph.split('\n').slice(0, 3);
