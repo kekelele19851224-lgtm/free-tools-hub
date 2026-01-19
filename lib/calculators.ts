@@ -1043,6 +1043,14 @@ export const calculators: Calculator[] = [
     href: "/nutrition-label-generator",
     category: "Health",
     type: "Generator"
+  },
+  {
+    name: "Russian Accent Generator",
+    description: "Convert English text to Russian-accented English. Text to speech with authentic accent for memes and videos.",
+    url: "/russian-accent-generator",
+    href: "/russian-accent-generator",
+    category: "Entertainment",
+    type: "Generator"
   }
 ];
 
