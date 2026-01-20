@@ -1168,6 +1168,13 @@ export const calculators: Calculator[] = [
     url: "/how-many-sessions-to-remove-tattoo",
     category: "Health",
     type: "Calculator"
+  },
+  {
+    name: "Propane Tank Calculator",
+    description: "Calculate propane tank weight, capacity, fill cost & usage time. 100 gallon = 424 lbs, 100 lb = 23.6 gallons.",
+    url: "/propane-tank-calculator",
+    category: "Home",
+    type: "Calculator"
   }
 ];
 
