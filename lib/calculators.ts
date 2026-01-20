@@ -1175,6 +1175,13 @@ export const calculators: Calculator[] = [
     url: "/propane-tank-calculator",
     category: "Home",
     type: "Calculator"
+  },
+  {
+    name: "Shingles Calculator",
+    description: "Calculate how many bundles of shingles in a square. 1 square = 100 sq ft = 3-5 bundles depending on type.",
+    url: "/shingles-calculator",
+    category: "Home",
+    type: "Calculator"
   }
 ];
 
