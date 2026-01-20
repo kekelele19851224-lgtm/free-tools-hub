@@ -1182,6 +1182,13 @@ export const calculators: Calculator[] = [
     url: "/shingles-calculator",
     category: "Home",
     type: "Calculator"
+  },
+  {
+    name: "BTU to Ton Calculator",
+    description: "Convert BTU to tons for air conditioning. 1 ton = 12,000 BTU/hr. Find the right AC size for your room.",
+    url: "/btu-to-ton-calculator",
+    category: "Home",
+    type: "Calculator"
   }
 ];
 
