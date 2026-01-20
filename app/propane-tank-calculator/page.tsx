@@ -250,7 +250,7 @@ export default function PropaneTankCalculator() {
           <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "12px", flexWrap: "wrap" }}>
             <span style={{ fontSize: "2.5rem" }}>⛽</span>
             <h1 style={{ fontSize: "clamp(1.75rem, 5vw, 2.25rem)", fontWeight: "bold", color: "#111827", margin: 0 }}>
-              Propane Tank Calculator
+              How Many Pounds in a 100 Gallon Propane Tank?
             </h1>
           </div>
           <p style={{ fontSize: "1.125rem", color: "#4B5563", maxWidth: "800px" }}>
