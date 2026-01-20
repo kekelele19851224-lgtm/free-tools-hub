@@ -1189,6 +1189,13 @@ export const calculators: Calculator[] = [
     url: "/btu-to-ton-calculator",
     category: "Home",
     type: "Calculator"
+  },
+  {
+    name: "Mulch Calculator",
+    description: "Calculate how many bags of mulch you need. 1 cubic yard = 13.5 bags (2 cu ft). Compare bagged vs bulk costs.",
+    url: "/mulch-calculator",
+    category: "Home",
+    type: "Calculator"
   }
 ];
 
