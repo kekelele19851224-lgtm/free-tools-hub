@@ -1196,6 +1196,13 @@ export const calculators: Calculator[] = [
     url: "/mulch-calculator",
     category: "Home",
     type: "Calculator"
+  },
+  {
+    name: "Sod Calculator",
+    description: "Calculate how many pallets of sod you need. 1 pallet = 400-500 sq ft (most common: 450). Compare grass types and costs.",
+    url: "/sod-calculator",
+    category: "Home",
+    type: "Calculator"
   }
 ];
 
