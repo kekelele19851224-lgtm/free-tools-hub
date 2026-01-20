@@ -1147,6 +1147,13 @@ export const calculators: Calculator[] = [
     href: "/speak-and-spell-voice-generator",
     category: "Entertainment",
     type: "Generator"
+  },
+  {
+    name: "Bathroom Renovation Cost Estimator",
+    description: "Calculate bathroom remodel costs by size, fixtures, and finishes. Get detailed cost breakdowns and money-saving tips.",
+    url: "/bathroom-renovation-cost-estimator",
+    category: "Home",
+    type: "Calculator"
   }
 ];
 
