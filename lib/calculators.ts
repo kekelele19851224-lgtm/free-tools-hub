@@ -1154,6 +1154,13 @@ export const calculators: Calculator[] = [
     url: "/bathroom-renovation-cost-estimator",
     category: "Home",
     type: "Calculator"
+  },
+  {
+    name: "Pawn Shop Value Estimator",
+    description: "Estimate how much pawn shops pay for electronics, jewelry, gold, tools & more. Compare pawn vs sell offers.",
+    url: "/pawn-shop-value-estimator",
+    category: "Finance",
+    type: "Calculator"
   }
 ];
 
