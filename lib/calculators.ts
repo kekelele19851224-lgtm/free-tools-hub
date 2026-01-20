@@ -1161,6 +1161,13 @@ export const calculators: Calculator[] = [
     url: "/pawn-shop-value-estimator",
     category: "Finance",
     type: "Calculator"
+  },
+  {
+    name: "Tattoo Removal Session Estimator",
+    description: "Calculate how many laser sessions to remove your tattoo based on size, color, location, and other factors.",
+    url: "/how-many-sessions-to-remove-tattoo",
+    category: "Health",
+    type: "Calculator"
   }
 ];
 
